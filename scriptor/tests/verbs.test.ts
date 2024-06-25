@@ -71,7 +71,7 @@ describe("Perfect active indicative", () => {
   test("3rd person singular", () => expect(scriptor(traho, "3rd", "singular", ...repeated)).toBe("traxit"));
   test("1st person plural", () => expect(scriptor(invenio, "1st", "plural", ...repeated)).toBe("invenimus"));
   test("2nd person plural", () => expect(scriptor(doVerb, "2nd", "plural", ...repeated)).toBe("dedistis"));
-  test("3rd person plural", () => expect(scriptor(maneo, "3nd", "plural", ...repeated)).toBe("manserunt"));
+  test("3rd person plural", () => expect(scriptor(maneo, "3rd", "plural", ...repeated)).toBe("manserunt"));
 });
 
 describe("Imperfect active indicative", () => {
@@ -128,7 +128,7 @@ describe("Pluperfect active indicative", () => {
   test("3rd person singular", () => expect(scriptor(traho, "3rd", "singular", ...repeated)).toBe("traxerat"));
   test("1st person plural", () => expect(scriptor(invenio, "1st", "plural", ...repeated)).toBe("inveneramus"));
   test("2nd person plural", () => expect(scriptor(doVerb, "2nd", "plural", ...repeated)).toBe("dederatis"));
-  test("3rd person plural", () => expect(scriptor(maneo, "3nd", "plural", ...repeated)).toBe("manserant"));
+  test("3rd person plural", () => expect(scriptor(maneo, "3rd", "plural", ...repeated)).toBe("manserant"));
 });
 
 describe("Imperfect active subjunctive", () => {
@@ -139,7 +139,7 @@ describe("Imperfect active subjunctive", () => {
   test("3rd person singular", () => expect(scriptor(traho, "3rd", "singular", ...repeated)).toBe("traheret"));
   test("1st person plural", () => expect(scriptor(invenio, "1st", "plural", ...repeated)).toBe("inveniremus"));
   test("2nd person plural", () => expect(scriptor(doVerb, "2nd", "plural", ...repeated)).toBe("daretis"));
-  test("3rd person plural", () => expect(scriptor(maneo, "3nd", "plural", ...repeated)).toBe("manerent"));
+  test("3rd person plural", () => expect(scriptor(maneo, "3rd", "plural", ...repeated)).toBe("manerent"));
 });
 
 describe("Pluperfect active subjunctive", () => {
@@ -150,7 +150,7 @@ describe("Pluperfect active subjunctive", () => {
   test("3rd person singular", () => expect(scriptor(traho, "3rd", "singular", ...repeated)).toBe("traxisset"));
   test("1st person plural", () => expect(scriptor(invenio, "1st", "plural", ...repeated)).toBe("invenissemus"));
   test("2nd person plural", () => expect(scriptor(doVerb, "2nd", "plural", ...repeated)).toBe("dedissetis"));
-  test("3rd person plural", () => expect(scriptor(maneo, "3nd", "plural", ...repeated)).toBe("mansissent"));
+  test("3rd person plural", () => expect(scriptor(maneo, "3rd", "plural", ...repeated)).toBe("mansissent"));
 });
 
 describe("Present active imperative", () => {
