@@ -8,7 +8,7 @@ const PERFECT_ENDINGS = ["i", "isti", "it", "imus", "istis", "erunt"];
 export default class Verb {
   #principalParts: VerbPrincipalParts;
   
-  static checkPrincipalParts(parts: string[]): parts is VerbPrincipalParts {
+  static checkPrincipalParts(parts: (string | undefined)[]): parts is VerbPrincipalParts {
     return parts.length >= 3;
   }
 
@@ -29,7 +29,7 @@ export default class Verb {
   }
 
   get #perfectPassiveStem() {
-    return this.#principalParts.length === 4 ? this.#principalParts[3].slice(0, -2) : null;
+    return this.#principalParts[3]?.slice(0, -2) ?? null;
   }
 
   get #conjugation() {

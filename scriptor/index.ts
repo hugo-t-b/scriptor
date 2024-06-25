@@ -1,5 +1,7 @@
 import Verb from "./utils/verb";
 
+const keyIsValid = (key: string, word: Verb): key is keyof typeof word => key in word;
+
 export default (principalParts: string, ...form: string[]): string => {
   const parts = principalParts.split(/, | ,| |,/g);
 
@@ -11,10 +13,15 @@ export default (principalParts: string, ...form: string[]): string => {
 
   if (!Verb.isFinite(form)) {
     const key = form.join("_");
+
+    if (!keyIsValid(key, verb)) {
+      throw new Error("Unsupported or invalid form");
+    }
+
     const result = verb[key];
 
     if (typeof result !== "string") {
-      throw new Error("Unsupported or invalid form");
+      throw new Error("Invalid form");
     }
 
     return result;
@@ -24,7 +31,12 @@ export default (principalParts: string, ...form: string[]): string => {
   const personNumberIndex = parseInt(person.charAt(0)) + (grammaticalNumber === "plural" ? 3 : 0) - 1;
   
   const key = form.toSpliced(0, 2).join("_");
-  const fullConjugation: string[] | string | null = verb[key];
+
+  if (!keyIsValid(key, verb)) {
+    throw new Error("Unsupported or invalid form");
+  }
+
+  const fullConjugation = verb[key];
   const result = Array.isArray(fullConjugation) ? fullConjugation[personNumberIndex] : null;
 
   if (!result) {
