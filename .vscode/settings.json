@@ -1,0 +1,5 @@
+{
+  "cSpell.ignorePaths": [
+    "scriptor/tests/*.test.ts"
+  ]
+}
