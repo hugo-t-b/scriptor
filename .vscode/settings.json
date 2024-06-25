@@ -1,5 +1,13 @@
 {
   "cSpell.ignorePaths": [
     "scriptor/tests/*.test.ts"
+  ],
+
+  "cSpell.ignoreWords": [
+    "erunt",
+    "isse",
+    "isti",
+    "istis",
+    "ntis"
   ]
 }
