@@ -145,7 +145,7 @@ describe("Imperfect active subjunctive", () => {
 describe("Pluperfect active subjunctive", () => {
   const repeated = ["pluperfect", "active", "subjunctive"];
 
-  test("1st person singular", () => expect(scriptor(amo, "1st", "singular", ...repeated)).toBe("spectavissem"));
+  test("1st person singular", () => expect(scriptor(amo, "1st", "singular", ...repeated)).toBe("amavissem"));
   test("2nd person singular", () => expect(scriptor(habeo, "2nd", "singular", ...repeated)).toBe("habuisses"));
   test("3rd person singular", () => expect(scriptor(traho, "3rd", "singular", ...repeated)).toBe("traxisset"));
   test("1st person plural", () => expect(scriptor(invenio, "1st", "plural", ...repeated)).toBe("invenissemus"));
@@ -180,7 +180,7 @@ test("Present active infinitive", () => {
   expect(scriptor(invenio, ...repeated)).toBe("invenire");
 });
 
-describe("Perfect active infinitive", () => {
+test("Perfect active infinitive", () => {
   const repeated = ["perfect", "active", "infinitive"];
 
   expect(scriptor(amo, ...repeated)).toBe("amavisse");
@@ -189,7 +189,7 @@ describe("Perfect active infinitive", () => {
   expect(scriptor(invenio, ...repeated)).toBe("invenisse");
 });
 
-describe("Present active participle", () => {
+test("Present active participle", () => {
   const repeated = ["present", "active", "participle"];
 
   expect(scriptor(amo, ...repeated)).toBe("amans, amantis");
@@ -198,11 +198,11 @@ describe("Present active participle", () => {
   expect(scriptor(invenio, ...repeated)).toBe("inveniens, invenientis");
 });
 
-describe("Perfect passive participle", () => {
+test("Perfect passive participle", () => {
   const repeated = ["perfect", "passive", "participle"];
 
   expect(scriptor(amo, ...repeated)).toBe("amatus, amata, amatum");
   expect(scriptor(habeo, ...repeated)).toBe("habitus, habita, habitum");
   expect(scriptor(traho, ...repeated)).toBe("tractus, tracta, tractum");
-  expect(scriptor(invenio, ...repeated)).toBe("inventus, inveta, inventum");
+  expect(scriptor(invenio, ...repeated)).toBe("inventus, inventa, inventum");
 });
