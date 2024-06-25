@@ -1,22 +1,51 @@
-type VerbPrincipalParts = [ string, string, string, string? ];
-type InfiniteForm = [ "present" | "perfect" | "imperfect" | "pluperfect", "active" | "passive", "indicative" | "subjunctive" | "imperative" | "infinitive" | "participle" ];
-type FiniteForm = [ "1st" | "2nd" | "3rd", "singular" | "plural", ...InfiniteForm ];
+import { z } from "zod";
 
 const DEFAULT_ENDINGS = ["m", "s", "t", "mus", "tis", "nt"];
 const PERFECT_ENDINGS = ["i", "isti", "it", "imus", "istis", "erunt"];
 
+const tense = z.enum([ "present", "perfect", "imperfect", "pluperfect" ]);
+const voice = z.enum([ "active", "passive" ]);
+
+export const VerbForm = z.union([
+  z.tuple([
+    z.enum([ "1st", "2nd", "3rd" ]),
+    z.enum([ "singular", "plural"]),
+    tense,
+    voice,
+    z.enum([ "indicative", "subjunctive", "imperative" ])
+  ]),
+
+  z.tuple([
+    tense,
+    voice,
+    z.enum([ "infinitive", "participle" ])
+  ])
+]);
+
+const firstPP = z.string().endsWith("o");
+const secondPP = z.string().endsWith("re");
+const thirdPP = z.string().endsWith("i");
+const fourthPP = z.string().endsWith("us");
+
+export const VerbPrincipalParts = z.union([
+  z.tuple([
+    firstPP,
+    secondPP,
+    thirdPP,
+    fourthPP
+  ]),
+
+  z.tuple([
+    firstPP,
+    secondPP,
+    thirdPP
+  ])
+]);
+
 export default class Verb {
-  #principalParts: VerbPrincipalParts;
-  
-  static checkPrincipalParts(parts: (string | undefined)[]): parts is VerbPrincipalParts {
-    return parts.length >= 3;
-  }
+  #principalParts: z.infer<typeof VerbPrincipalParts>;
 
-  static isFinite(form: string[]): form is FiniteForm {
-    return form.length === 5;
-  }
-
-  constructor(principalParts: VerbPrincipalParts) {
+  constructor(principalParts: z.infer<typeof VerbPrincipalParts>) {
     this.#principalParts = principalParts;
   }
 
