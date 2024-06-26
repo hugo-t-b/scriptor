@@ -14,6 +14,14 @@ export const NounPrincipalParts = z.tuple([
 export default class Noun {
   #principalParts: z.infer<typeof NounPrincipalParts>;
 
+  static ACCUSATIVE_SINGULAR_ENDINGS = [ "am", "um", "em" ] as const;
+  static DATIVE_SINGULAR_ENDINGS = [ "ae", "o", "i" ] as const;
+  static ABLATIVE_SINGULAR_ENDINGS = [ "a", "o", "e" ] as const;
+  static NOMINATIVE_PLURAL_ENDINGS = [ "ae", "i", "es" ] as const;
+  static ACCUSATIVE_PLURAL_ENDINGS = [ "as", "os", "es" ] as const;
+  static GENITIVE_PLURAL_ENDINGS = [ "arum", "orum", "um" ] as const;
+  static DATIVE_PLURAL_ENDINGS = [ "is", "is", "ibus" ] as const;
+
   constructor(principalParts: z.infer<typeof NounPrincipalParts>) {
     this.#principalParts = principalParts;
   }
@@ -46,23 +54,19 @@ export default class Noun {
   }
 
   get accusative_singular() {
-    const endings = [ "am", "um", "em" ] as const;
-    return this.#gender === "n" ? this.nominative_singular : `${this.#stem}${endings[this.#declension - 1]}`;
+    return this.#gender === "n" ? this.nominative_singular : `${this.#stem}${Noun.ACCUSATIVE_SINGULAR_ENDINGS[this.#declension - 1]}`;
   }
 
   get dative_singular() {
-    const endings = [ "ae", "o", "i" ] as const;
-    return `${this.#stem}${endings[this.#declension - 1]}`;
+    return `${this.#stem}${Noun.DATIVE_SINGULAR_ENDINGS[this.#declension - 1]}`;
   }
 
   get ablative_singular() {
-    const endings = [ "a", "o", "e" ] as const;
-    return `${this.#stem}${endings[this.#declension - 1]}`;
+    return `${this.#stem}${Noun.ABLATIVE_SINGULAR_ENDINGS[this.#declension - 1]}`;
   }
 
   get nominative_plural() {
-    const endings = [ "ae", "i", "es" ] as const;
-    return `${this.#stem}${this.#gender === "n" ? "a" : endings[this.#declension - 1]}`;
+    return `${this.#stem}${this.#gender === "n" ? "a" : Noun.NOMINATIVE_PLURAL_ENDINGS[this.#declension - 1]}`;
   }
 
   get vocative_plural() {
@@ -70,18 +74,15 @@ export default class Noun {
   }
 
   get accusative_plural() {
-    const endings = [ "as", "os", "es" ] as const;
-    return this.#gender === "n" ? this.nominative_plural : `${this.#stem}${endings[this.#declension - 1]}`;
+    return this.#gender === "n" ? this.nominative_plural : `${this.#stem}${Noun.ACCUSATIVE_PLURAL_ENDINGS[this.#declension - 1]}`;
   }
 
   get genitive_plural() {
-    const endings = [ "arum", "orum", "um" ] as const;
-    return `${this.#stem}${endings[this.#declension - 1]}`;
+    return `${this.#stem}${Noun.GENITIVE_PLURAL_ENDINGS[this.#declension - 1]}`;
   }
 
   get dative_plural() {
-    const endings = [ "is", "is", "ibus" ] as const;
-    return `${this.#stem}${endings[this.#declension - 1]}`;
+    return `${this.#stem}${Noun.DATIVE_PLURAL_ENDINGS[this.#declension - 1]}`;
   }
 
   get ablative_plural() {

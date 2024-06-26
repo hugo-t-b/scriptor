@@ -1,8 +1,5 @@
 import { z } from "zod";
 
-const DEFAULT_ENDINGS = ["m", "s", "t", "mus", "tis", "nt"];
-const PERFECT_ENDINGS = ["i", "isti", "it", "imus", "istis", "erunt"];
-
 const tense = z.enum([ "present", "perfect", "imperfect", "pluperfect" ]);
 const voice = z.enum([ "active", "passive" ]);
 
@@ -45,6 +42,9 @@ export const VerbPrincipalParts = z.union([
 export default class Verb {
   #principalParts: z.infer<typeof VerbPrincipalParts>;
 
+  static DEFAULT_ENDINGS = ["m", "s", "t", "mus", "tis", "nt"];
+  static PERFECT_ENDINGS = ["i", "isti", "it", "imus", "istis", "erunt"];
+
   constructor(principalParts: z.infer<typeof VerbPrincipalParts>) {
     this.#principalParts = principalParts;
   }
@@ -70,7 +70,7 @@ export default class Verb {
   get present_active_indicative() {
     const stem = this.#conjugation === 3 ? `${this.#presentStem.slice(0, -1)}i` : this.#presentStem;
 
-    return DEFAULT_ENDINGS
+    return Verb.DEFAULT_ENDINGS
       .with(0, "o")
       .map((ending, index) => {
         if (index === 0 && (this.#conjugation === 1 || this.#conjugation === 3)) {
@@ -90,24 +90,24 @@ export default class Verb {
   }
 
   get perfect_active_indicative() {
-    return PERFECT_ENDINGS.map(ending => `${this.#perfectStem}${ending}`);
+    return Verb.PERFECT_ENDINGS.map(ending => `${this.#perfectStem}${ending}`);
   }
 
   get imperfect_active_indicative() {
     const addToStem = this.#conjugation === 4 ? "e" : "";
-    return DEFAULT_ENDINGS.map(ending => `${this.#presentStem}${addToStem}ba${ending}`);
+    return Verb.DEFAULT_ENDINGS.map(ending => `${this.#presentStem}${addToStem}ba${ending}`);
   }
 
   get pluperfect_active_indicative() {
-    return DEFAULT_ENDINGS.map(ending => `${this.#perfectStem}era${ending}`);
+    return Verb.DEFAULT_ENDINGS.map(ending => `${this.#perfectStem}era${ending}`);
   }
 
   get imperfect_active_subjunctive() {
-    return DEFAULT_ENDINGS.map(ending => `${this.present_active_infinitive}${ending}`);
+    return Verb.DEFAULT_ENDINGS.map(ending => `${this.present_active_infinitive}${ending}`);
   }
 
   get pluperfect_active_subjunctive() {
-    return DEFAULT_ENDINGS.map(ending => `${this.perfect_active_infinitive}${ending}`);
+    return Verb.DEFAULT_ENDINGS.map(ending => `${this.perfect_active_infinitive}${ending}`);
   }
 
   get present_active_imperative() {
