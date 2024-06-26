@@ -21,7 +21,7 @@ const corpus = "corpus, corporis, n";
 const nomen = "nomen, nominis, n";
 const tempus = "tempus, temporis, n";
 
-test.todo("Nominative singular", () => {
+test("Nominative singular", () => {
   const form = ["nominative", "singular"];
 
   expect(scriptor(metella, ...form)).toBe("Metella");
@@ -31,7 +31,7 @@ test.todo("Nominative singular", () => {
   expect(scriptor(corpus, ...form)).toBe("corpus");
 });
 
-test.todo("Vocative singular", () => {
+test("Vocative singular", () => {
   const form = ["vocative", "singular"];
 
   expect(scriptor(metella, ...form)).toBe("Metella");
@@ -43,7 +43,7 @@ test.todo("Vocative singular", () => {
   expect(scriptor(corpus, ...form)).toBe("corpus");
 });
 
-test.todo("Accusative singular", () => {
+test("Accusative singular", () => {
   const form = ["accusative", "singular"];
 
   expect(scriptor(scriba, ...form)).toBe("scribam");
@@ -53,7 +53,7 @@ test.todo("Accusative singular", () => {
   expect(scriptor(nomen, ...form)).toBe("nomen");
 });
 
-test.todo("Genitive singular", () => {
+test("Genitive singular", () => {
   const form = ["genitive", "singular"];
 
   expect(scriptor(villa, ...form)).toBe("villae");
@@ -63,7 +63,7 @@ test.todo("Genitive singular", () => {
   expect(scriptor(tempus, ...form)).toBe("temporis");
 });
 
-test.todo("Dative singular", () => {
+test("Dative singular", () => {
   const form = ["dative", "singular"];
 
   expect(scriptor(metella, ...form)).toBe("Metellae");
@@ -73,7 +73,7 @@ test.todo("Dative singular", () => {
   expect(scriptor(corpus, ...form)).toBe("corpori");
 });
 
-test.todo("Ablative singular", () => {
+test("Ablative singular", () => {
   const form = ["ablative", "singular"];
 
   expect(scriptor(scriba, ...form)).toBe("scriba");
@@ -83,7 +83,7 @@ test.todo("Ablative singular", () => {
   expect(scriptor(nomen, ...form)).toBe("nomine");
 });
 
-test.todo("Nominative plural", () => {
+test("Nominative plural", () => {
   const form = ["nominative", "plural"];
 
   expect(scriptor(villa, ...form)).toBe("villae");
@@ -93,7 +93,7 @@ test.todo("Nominative plural", () => {
   expect(scriptor(tempus, ...form)).toBe("tempora");
 });
 
-test.todo("Vocative plural", () => {
+test("Vocative plural", () => {
   const form = ["vocative", "plural"];
 
   expect(scriptor(villa, ...form)).toBe("villae");
@@ -103,7 +103,7 @@ test.todo("Vocative plural", () => {
   expect(scriptor(tempus, ...form)).toBe("tempora");
 });
 
-test.todo("Accusative plural", () => {
+test("Accusative plural", () => {
   const form = ["accusative", "plural"];
 
   expect(scriptor(villa, ...form)).toBe("villas");
@@ -113,7 +113,7 @@ test.todo("Accusative plural", () => {
   expect(scriptor(corpus, ...form)).toBe("corpora");
 });
 
-test.todo("Genitive plural", () => {
+test("Genitive plural", () => {
   const form = ["genitive", "plural"];
 
   expect(scriptor(scriba, ...form)).toBe("scribarum");
@@ -123,7 +123,7 @@ test.todo("Genitive plural", () => {
   expect(scriptor(nomen, ...form)).toBe("nominum");
 });
 
-test.todo("Dative plural", () => {
+test("Dative plural", () => {
   const form = ["dative", "plural"];
 
   expect(scriptor(villa, ...form)).toBe("villis");
@@ -133,7 +133,7 @@ test.todo("Dative plural", () => {
   expect(scriptor(tempus, ...form)).toBe("temporibus");
 });
 
-test.todo("Ablative plural", () => {
+test("Ablative plural", () => {
   const form = ["ablative", "plural"];
 
   expect(scriptor(villa, ...form)).toBe("villis");

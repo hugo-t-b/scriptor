@@ -1,8 +1,9 @@
 import { assertNever } from "assert-never";
 import { parseForm, parsePrincipalParts } from "./utils/parse";
 import Verb from "./utils/verb";
+import Noun from "./utils/noun";
 
-const validateKey = (key: string, word: Verb): key is keyof typeof word => key in word;
+const validateKey = (key: string, word: Noun | Verb): key is keyof typeof word => key in word;
 
 export default (parts: string, ...form: string[]): string => {
   const principalPartsParseResult = parsePrincipalParts(parts);
@@ -23,13 +24,13 @@ export default (parts: string, ...form: string[]): string => {
       const verb = new Verb(principalParts);
 
       if (formParseResult.data.length === 5) {
-        const key = formParseResult.data.toSpliced(0, 2).join("_");
+        const verbKey = formParseResult.data.toSpliced(0, 2).join("_");
 
-        if (!validateKey(key, verb)) {
+        if (!validateKey(verbKey, verb)) {
           throw new Error("Unsupported or invalid form");
         }
 
-        const fullConjugation = verb[key];
+        const fullConjugation = verb[verbKey];
 
         if (!Array.isArray(fullConjugation)) {
           throw new Error("Invalid form");
@@ -37,28 +38,43 @@ export default (parts: string, ...form: string[]): string => {
 
         const [ person, grammaticalNumber ] = formParseResult.data;
         const personNumberIndex = parseInt(person.charAt(0)) + (grammaticalNumber === "plural" ? 3 : 0) - 1;
-        const result = fullConjugation[personNumberIndex];
+        const verbResult = fullConjugation[personNumberIndex];
 
-        if (!result) {
+        if (!verbResult) {
           throw new Error("Invalid form");
         }
 
-        return result;
+        return verbResult;
       }
 
-      const key = formParseResult.data.join("_");
+      const verbKey = formParseResult.data.join("_");
 
-      if (!validateKey(key, verb)) {
+      if (!validateKey(verbKey, verb)) {
         throw new Error("Unsupported or invalid form");
       }
 
-      const result = verb[key];
+      const verbResult = verb[verbKey];
 
-      if (typeof result !== "string") {
+      if (typeof verbResult !== "string") {
         throw new Error("Invalid form");
       }
 
-      return result;
+      return verbResult;
+    case "noun":
+      const noun = new Noun(principalParts);
+      const nounKey = formParseResult.data.join("_");
+
+      if (!validateKey(nounKey, noun)) {
+        throw new Error("Unsupported or invalid form");
+      }
+
+      const nounResult = noun[nounKey];
+
+      if (typeof nounResult !== "string") {
+        throw new Error("Invalid form");
+      }
+
+      return nounResult;
     default:
       assertNever(partOfSpeech);
   }
