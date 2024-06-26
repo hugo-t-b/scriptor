@@ -66,7 +66,7 @@ export default class Noun {
   }
 
   get ablative_singular() {
-    const endingIndex = this.#isIStem ? 3 : this.#declension - 1;
+    const endingIndex = this.#isIStem && this.#gender === "n" ? 3 : this.#declension - 1;
     return `${this.#stem}${Noun.ABLATIVE_SINGULAR_ENDINGS[endingIndex]}`;
   }
 
