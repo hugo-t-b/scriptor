@@ -88,4 +88,4 @@ export default class Noun {
   get ablative_plural() {
     return this.dative_plural;
   }
-}
+};

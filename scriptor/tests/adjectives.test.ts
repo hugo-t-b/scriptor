@@ -11,7 +11,7 @@ const scriptus = "scriptus, scripta, scriptum";
 describe("Masculine singular", () => {
   const repeated = ["masculine", "singular"];
 
-  test.todo("Nominative", () => {
+  test("Nominative", () => {
     const form = ["nominative", ...repeated];
   
     expect(scriptor(aeger, ...form)).toBe("aeger");
@@ -22,7 +22,7 @@ describe("Masculine singular", () => {
     expect(scriptor(scriptus, ...form)).toBe("scriptus");
   });
   
-  test.todo("Vocative", () => {
+  test("Vocative", () => {
     const form = ["vocative", ...repeated];
   
     expect(scriptor(aeger, ...form)).toBe("aeger");
@@ -33,7 +33,7 @@ describe("Masculine singular", () => {
     expect(scriptor(scriptus, ...form)).toBe("scripte");
   });
   
-  test.todo("Accusative", () => {
+  test("Accusative", () => {
     const form = ["accusative", ...repeated];
   
     expect(scriptor(aeger, ...form)).toBe("aegrum");
@@ -44,7 +44,7 @@ describe("Masculine singular", () => {
     expect(scriptor(scriptus, ...form)).toBe("scriptum");
   });
   
-  test.todo("Genitive", () => {
+  test("Genitive", () => {
     const form = ["genitive", ...repeated];
   
     expect(scriptor(aeger, ...form)).toBe("aegri");
@@ -55,7 +55,7 @@ describe("Masculine singular", () => {
     expect(scriptor(scriptus, ...form)).toBe("scripti");
   });
   
-  test.todo("Dative", () => {
+  test("Dative", () => {
     const form = ["dative", ...repeated];
   
     expect(scriptor(aeger, ...form)).toBe("aegro");
@@ -66,7 +66,7 @@ describe("Masculine singular", () => {
     expect(scriptor(scriptus, ...form)).toBe("scripto");
   });
   
-  test.todo("Ablative", () => {
+  test("Ablative", () => {
     const form = ["ablative", ...repeated];
   
     expect(scriptor(aeger, ...form)).toBe("aegro");
@@ -81,7 +81,7 @@ describe("Masculine singular", () => {
 describe("Feminine singular", () => {
   const repeated = ["feminine", "singular"];
 
-  test.todo("Nominative", () => {
+  test("Nominative", () => {
     const form = ["nominative", ...repeated];
   
     expect(scriptor(aeger, ...form)).toBe("aegra");
@@ -92,7 +92,7 @@ describe("Feminine singular", () => {
     expect(scriptor(scriptus, ...form)).toBe("scripta");
   });
   
-  test.todo("Vocative", () => {
+  test("Vocative", () => {
     const form = ["vocative", ...repeated];
   
     expect(scriptor(aeger, ...form)).toBe("aegra");
@@ -103,7 +103,7 @@ describe("Feminine singular", () => {
     expect(scriptor(scriptus, ...form)).toBe("scripta");
   });
   
-  test.todo("Accusative", () => {
+  test("Accusative", () => {
     const form = ["accusative", ...repeated];
   
     expect(scriptor(aeger, ...form)).toBe("aegram");
@@ -114,7 +114,7 @@ describe("Feminine singular", () => {
     expect(scriptor(scriptus, ...form)).toBe("scriptam");
   });
   
-  test.todo("Genitive", () => {
+  test("Genitive", () => {
     const form = ["genitive", ...repeated];
   
     expect(scriptor(aeger, ...form)).toBe("aegrae");
@@ -125,7 +125,7 @@ describe("Feminine singular", () => {
     expect(scriptor(scriptus, ...form)).toBe("scriptae");
   });
   
-  test.todo("Dative", () => {
+  test("Dative", () => {
     const form = ["dative", ...repeated];
   
     expect(scriptor(aeger, ...form)).toBe("aegrae");
@@ -136,7 +136,7 @@ describe("Feminine singular", () => {
     expect(scriptor(scriptus, ...form)).toBe("scriptae");
   });
   
-  test.todo("Ablative", () => {
+  test("Ablative", () => {
     const form = ["ablative", ...repeated];
   
     expect(scriptor(aeger, ...form)).toBe("aegra");
@@ -151,7 +151,7 @@ describe("Feminine singular", () => {
 describe("Neuter singular", () => {
   const repeated = ["neuter", "singular"];
 
-  test.todo("Nominative", () => {
+  test("Nominative", () => {
     const form = ["nominative", ...repeated];
   
     expect(scriptor(aeger, ...form)).toBe("aegrum");
@@ -162,7 +162,7 @@ describe("Neuter singular", () => {
     expect(scriptor(scriptus, ...form)).toBe("scriptum");
   });
   
-  test.todo("Vocative", () => {
+  test("Vocative", () => {
     const form = ["vocative", ...repeated];
   
     expect(scriptor(aeger, ...form)).toBe("aegrum");
@@ -173,7 +173,7 @@ describe("Neuter singular", () => {
     expect(scriptor(scriptus, ...form)).toBe("scriptum");
   });
   
-  test.todo("Accusative", () => {
+  test("Accusative", () => {
     const form = ["accusative", ...repeated];
   
     expect(scriptor(aeger, ...form)).toBe("aegrum");
@@ -184,7 +184,7 @@ describe("Neuter singular", () => {
     expect(scriptor(scriptus, ...form)).toBe("scriptum");
   });
   
-  test.todo("Genitive", () => {
+  test("Genitive", () => {
     const form = ["genitive", ...repeated];
   
     expect(scriptor(aeger, ...form)).toBe("aegri");
@@ -195,7 +195,7 @@ describe("Neuter singular", () => {
     expect(scriptor(scriptus, ...form)).toBe("scripti");
   });
   
-  test.todo("Dative", () => {
+  test("Dative", () => {
     const form = ["dative", ...repeated];
   
     expect(scriptor(aeger, ...form)).toBe("aegro");
@@ -206,7 +206,7 @@ describe("Neuter singular", () => {
     expect(scriptor(scriptus, ...form)).toBe("scripto");
   });
   
-  test.todo("Ablative", () => {
+  test("Ablative", () => {
     const form = ["ablative", ...repeated];
   
     expect(scriptor(aeger, ...form)).toBe("aegro");
@@ -221,7 +221,7 @@ describe("Neuter singular", () => {
 describe("Masculine plural", () => {
   const repeated = ["masculine", "plural"];
 
-  test.todo("Nominative", () => {
+  test("Nominative", () => {
     const form = ["nominative", ...repeated];
   
     expect(scriptor(aeger, ...form)).toBe("aegri");
@@ -232,7 +232,7 @@ describe("Masculine plural", () => {
     expect(scriptor(scriptus, ...form)).toBe("scripti");
   });
   
-  test.todo("Vocative", () => {
+  test("Vocative", () => {
     const form = ["vocative", ...repeated];
   
     expect(scriptor(aeger, ...form)).toBe("aegri");
@@ -243,7 +243,7 @@ describe("Masculine plural", () => {
     expect(scriptor(scriptus, ...form)).toBe("scripti");
   });
   
-  test.todo("Accusative", () => {
+  test("Accusative", () => {
     const form = ["accusative", ...repeated];
   
     expect(scriptor(aeger, ...form)).toBe("aegros");
@@ -254,7 +254,7 @@ describe("Masculine plural", () => {
     expect(scriptor(scriptus, ...form)).toBe("scriptos");
   });
   
-  test.todo("Genitive", () => {
+  test("Genitive", () => {
     const form = ["genitive", ...repeated];
   
     expect(scriptor(aeger, ...form)).toBe("aegrorum");
@@ -265,7 +265,7 @@ describe("Masculine plural", () => {
     expect(scriptor(scriptus, ...form)).toBe("scriptorum");
   });
   
-  test.todo("Dative", () => {
+  test("Dative", () => {
     const form = ["dative", ...repeated];
   
     expect(scriptor(aeger, ...form)).toBe("aegris");
@@ -276,7 +276,7 @@ describe("Masculine plural", () => {
     expect(scriptor(scriptus, ...form)).toBe("scriptis");
   });
   
-  test.todo("Ablative", () => {
+  test("Ablative", () => {
     const form = ["ablative", ...repeated];
   
     expect(scriptor(aeger, ...form)).toBe("aegris");
@@ -291,7 +291,7 @@ describe("Masculine plural", () => {
 describe("Feminine plural", () => {
   const repeated = ["feminine", "plural"];
 
-  test.todo("Nominative", () => {
+  test("Nominative", () => {
     const form = ["nominative", ...repeated];
   
     expect(scriptor(aeger, ...form)).toBe("aegrae");
@@ -302,7 +302,7 @@ describe("Feminine plural", () => {
     expect(scriptor(scriptus, ...form)).toBe("scriptae");
   });
   
-  test.todo("Vocative", () => {
+  test("Vocative", () => {
     const form = ["vocative", ...repeated];
   
     expect(scriptor(aeger, ...form)).toBe("aegrae");
@@ -313,7 +313,7 @@ describe("Feminine plural", () => {
     expect(scriptor(scriptus, ...form)).toBe("scriptae");
   });
   
-  test.todo("Accusative", () => {
+  test("Accusative", () => {
     const form = ["accusative", ...repeated];
   
     expect(scriptor(aeger, ...form)).toBe("aegras");
@@ -324,7 +324,7 @@ describe("Feminine plural", () => {
     expect(scriptor(scriptus, ...form)).toBe("scriptas");
   });
   
-  test.todo("Genitive", () => {
+  test("Genitive", () => {
     const form = ["genitive", ...repeated];
   
     expect(scriptor(aeger, ...form)).toBe("aegrarum");
@@ -335,7 +335,7 @@ describe("Feminine plural", () => {
     expect(scriptor(scriptus, ...form)).toBe("scriptarum");
   });
   
-  test.todo("Dative", () => {
+  test("Dative", () => {
     const form = ["dative", ...repeated];
   
     expect(scriptor(aeger, ...form)).toBe("aegris");
@@ -346,7 +346,7 @@ describe("Feminine plural", () => {
     expect(scriptor(scriptus, ...form)).toBe("scriptis");
   });
   
-  test.todo("Ablative", () => {
+  test("Ablative", () => {
     const form = ["ablative", ...repeated];
   
     expect(scriptor(aeger, ...form)).toBe("aegris");
@@ -361,7 +361,7 @@ describe("Feminine plural", () => {
 describe("Neuter plural", () => {
   const repeated = ["neuter", "plural"];
 
-  test.todo("Nominative", () => {
+  test("Nominative", () => {
     const form = ["nominative", ...repeated];
   
     expect(scriptor(aeger, ...form)).toBe("aegra");
@@ -372,7 +372,7 @@ describe("Neuter plural", () => {
     expect(scriptor(scriptus, ...form)).toBe("scripta");
   });
   
-  test.todo("Vocative", () => {
+  test("Vocative", () => {
     const form = ["vocative", ...repeated];
   
     expect(scriptor(aeger, ...form)).toBe("aegra");
@@ -383,7 +383,7 @@ describe("Neuter plural", () => {
     expect(scriptor(scriptus, ...form)).toBe("scripta");
   });
   
-  test.todo("Accusative", () => {
+  test("Accusative", () => {
     const form = ["accusative", ...repeated];
   
     expect(scriptor(aeger, ...form)).toBe("aegra");
@@ -394,7 +394,7 @@ describe("Neuter plural", () => {
     expect(scriptor(scriptus, ...form)).toBe("scripta");
   });
   
-  test.todo("Genitive", () => {
+  test("Genitive", () => {
     const form = ["genitive", ...repeated];
   
     expect(scriptor(aeger, ...form)).toBe("aegrorum");
@@ -405,7 +405,7 @@ describe("Neuter plural", () => {
     expect(scriptor(scriptus, ...form)).toBe("scriptorum");
   });
   
-  test.todo("Dative", () => {
+  test("Dative", () => {
     const form = ["dative", ...repeated];
   
     expect(scriptor(aeger, ...form)).toBe("aegris");
@@ -416,7 +416,7 @@ describe("Neuter plural", () => {
     expect(scriptor(scriptus, ...form)).toBe("scriptis");
   });
   
-  test.todo("Ablative", () => {
+  test("Ablative", () => {
     const form = ["ablative", ...repeated];
   
     expect(scriptor(aeger, ...form)).toBe("aegris");

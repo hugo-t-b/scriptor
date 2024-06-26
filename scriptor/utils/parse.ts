@@ -1,9 +1,10 @@
 import assertNever from "assert-never";
+import { AdjectiveForm, AdjectivePrincipalParts } from "./adjective";
 import { NounForm, NounPrincipalParts } from "./noun";
 import { VerbForm, VerbPrincipalParts } from "./verb";
 import { z } from "zod";
 
-type PrincipalPartsResult = [ "verb", z.infer<typeof VerbPrincipalParts> ] | [ "noun", z.infer<typeof NounPrincipalParts> ] | null;
+type PrincipalPartsResult = [ "verb", z.infer<typeof VerbPrincipalParts> ] | [ "noun", z.infer<typeof NounPrincipalParts> ] | [ "adjective", z.infer<typeof AdjectivePrincipalParts> ] | null;
 type PartOfSpeech = NonNullable<PrincipalPartsResult>[0];
 
 export const parsePrincipalParts = (parts: string): PrincipalPartsResult => {
@@ -20,6 +21,12 @@ export const parsePrincipalParts = (parts: string): PrincipalPartsResult => {
     return [ "noun", nounParse.data ];
   }
 
+  const adjectiveParse = AdjectivePrincipalParts.safeParse(principalParts);
+
+  if (adjectiveParse.success) {
+    return [ "adjective", adjectiveParse.data ];
+  }
+
   return null;
 };
 
@@ -31,6 +38,9 @@ export const parseForm = (partOfSpeech: PartOfSpeech, form: string[]) => {
     case "noun":
       const nounParseResult = NounForm.safeParse(form);
       return nounParseResult;
+    case "adjective":
+      const adjectiveParseResult = AdjectiveForm.safeParse(form);
+      return adjectiveParseResult;
     default:
       assertNever(partOfSpeech);
   }
