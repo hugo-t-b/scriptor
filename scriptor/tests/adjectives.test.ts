@@ -3,8 +3,13 @@ import scriptor from "..";
 
 const aeger = "aeger, aegra, aegrum";
 const celer = "celer, celeris, celere";
+const felix = "felix, felicis";
+const fortis = "fortis, forte";
+const ingens = "ingens, ingentis";
+const laetus = "laetus, laeta, laetum";
 const liber = "liber, libera, liberum";
 const omnis = "omnis, omne";
+const sapiens = "sapiens, sapientis";
 const scribens = "scribens, scribentis";
 const scriptus = "scriptus, scripta, scriptum";
 
@@ -426,4 +431,39 @@ describe("Neuter plural", () => {
     expect(scriptor(scribens, ...form)).toBe("scribentibus");
     expect(scriptor(scriptus, ...form)).toBe("scriptis");
   });
+});
+
+test.todo("Comparative", () => {
+  const form = "comparative";
+
+  expect(scriptor(aeger, form)).toBe("aegrior, aegrius");
+  expect(scriptor(celer, form)).toBe("celerior, celerius");
+  expect(scriptor(fortis, form)).toBe("fortior, fortius");
+  expect(scriptor(ingens, form)).toBe("ingentior, ingentius");
+  expect(scriptor(laetus, form)).toBe("laetior, laetius");
+  expect(scriptor(liber, form)).toBe("liberior, liberius");
+});
+
+test.todo("Superlative", () => {
+  const form = "superlative";
+
+  expect(scriptor(aeger, form)).toBe("aegerrimus, aegerrima, aegerrimum");
+  expect(scriptor(celer, form)).toBe("celerrimus, celerrima, celerrimum");
+  expect(scriptor(fortis, form)).toBe("fortissimus, fortissima, fortissimum");
+  expect(scriptor(ingens, form)).toBe("ingentissimus, ingentissima, ingentissimum");
+  expect(scriptor(laetus, form)).toBe("laetissimus, laetissima, laetissimum");
+  expect(scriptor(liber, form)).toBe("liberrimus, liberrima, liberrimum");
+});
+
+
+test.todo("Adverb", () => {
+  const form = "adverb";
+
+  expect(scriptor(aeger, form)).toBe("aegre");
+  expect(scriptor(celer, form)).toBe("celeriter");
+  expect(scriptor(felix, form)).toBe("feliciter");
+  expect(scriptor(fortis, form)).toBe("fortiter");
+  expect(scriptor(laetus, form)).toBe("laete");
+  expect(scriptor(liber, form)).toBe("libere");
+  expect(scriptor(sapiens, form)).toBe("sapienter");
 });
