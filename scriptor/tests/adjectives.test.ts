@@ -1,6 +1,7 @@
 import { describe, expect, test } from "bun:test";
 import scriptor from "..";
 
+const acer = "acer, acris, acre";
 const aeger = "aeger, aegra, aegrum";
 const celer = "celer, celeris, celere";
 const felix = "felix, felicis";
@@ -433,9 +434,10 @@ describe("Neuter plural", () => {
   });
 });
 
-test.todo("Comparative", () => {
+test("Comparative", () => {
   const form = "comparative";
 
+  expect(scriptor(acer, form)).toBe("acrior, acrius");
   expect(scriptor(aeger, form)).toBe("aegrior, aegrius");
   expect(scriptor(celer, form)).toBe("celerior, celerius");
   expect(scriptor(fortis, form)).toBe("fortior, fortius");
@@ -444,9 +446,10 @@ test.todo("Comparative", () => {
   expect(scriptor(liber, form)).toBe("liberior, liberius");
 });
 
-test.todo("Superlative", () => {
+test("Superlative", () => {
   const form = "superlative";
 
+  expect(scriptor(acer, form)).toBe("acerrimus, acerrima, acerrimum");
   expect(scriptor(aeger, form)).toBe("aegerrimus, aegerrima, aegerrimum");
   expect(scriptor(celer, form)).toBe("celerrimus, celerrima, celerrimum");
   expect(scriptor(fortis, form)).toBe("fortissimus, fortissima, fortissimum");
@@ -455,8 +458,7 @@ test.todo("Superlative", () => {
   expect(scriptor(liber, form)).toBe("liberrimus, liberrima, liberrimum");
 });
 
-
-test.todo("Adverb", () => {
+test("Adverb", () => {
   const form = "adverb";
 
   expect(scriptor(aeger, form)).toBe("aegre");

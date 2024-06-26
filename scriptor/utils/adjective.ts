@@ -1,9 +1,15 @@
 import { z } from "zod";
 
-export const AdjectiveForm = z.tuple([
-  z.enum([ "nominative", "vocative", "accusative", "genitive", "dative", "ablative" ]),
-  z.enum([ "feminine", "masculine", "neuter" ]),
-  z.enum([ "singular", "plural" ])
+export const AdjectiveForm = z.union([
+  z.tuple([
+    z.enum([ "nominative", "vocative", "accusative", "genitive", "dative", "ablative" ]),
+    z.enum([ "feminine", "masculine", "neuter" ]),
+    z.enum([ "singular", "plural" ])
+  ]),
+
+  z.tuple([
+    z.enum([ "comparative", "superlative", "adverb" ])
+  ])
 ]);
 
 const PatternA = z.tuple([
@@ -196,5 +202,24 @@ export default class Adjective {
 
   get ablative_neuter_plural() {
     return this.ablative_masculine_plural;
+  }
+
+  get comparative() {
+    return `${this.#stem}ior, ${this.#stem}ius`;
+  }
+
+  get superlative() {
+    if (this.nominative_masculine_singular.endsWith("er")) {
+      return `${this.nominative_masculine_singular}rimus, ${this.nominative_masculine_singular}rima, ${this.nominative_masculine_singular}rimum`;
+    }
+
+    return this.#stem.endsWith("er")
+      ? `${this.#stem}rimus, ${this.#stem}rima, ${this.#stem}rimum`
+      : `${this.#stem}issimus, ${this.#stem}issima, ${this.#stem}issimum`
+  }
+
+  get adverb() {
+    if (this.#pattern === "A") return `${this.#stem}e`;
+    return this.#stem.endsWith("nt") ? `${this.#stem}er` : `${this.#stem}iter`;
   }
 };
