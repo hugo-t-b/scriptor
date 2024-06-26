@@ -7,8 +7,10 @@ const celer = "celer, celeris, celere";
 const felix = "felix, felicis";
 const fortis = "fortis, forte";
 const ingens = "ingens, ingentis";
+const laetissimus = "laetissimus, laetissima, laetissimum";
 const laetus = "laetus, laeta, laetum";
 const liber = "liber, libera, liberum";
+const maior = "maior, maius";
 const omnis = "omnis, omne";
 const sapiens = "sapiens, sapientis";
 const scribens = "scribens, scribentis";
@@ -22,7 +24,9 @@ describe("Masculine singular", () => {
   
     expect(scriptor(aeger, ...form)).toBe("aeger");
     expect(scriptor(celer, ...form)).toBe("celer");
+    expect(scriptor(laetissimus, ...form)).toBe("laetissimus");
     expect(scriptor(liber, ...form)).toBe("liber");
+    expect(scriptor(maior, ...form)).toBe("maior");
     expect(scriptor(omnis, ...form)).toBe("omnis");
     expect(scriptor(scribens, ...form)).toBe("scribens");
     expect(scriptor(scriptus, ...form)).toBe("scriptus");
@@ -33,7 +37,9 @@ describe("Masculine singular", () => {
   
     expect(scriptor(aeger, ...form)).toBe("aeger");
     expect(scriptor(celer, ...form)).toBe("celer");
+    expect(scriptor(laetissimus, ...form)).toBe("laetissime");
     expect(scriptor(liber, ...form)).toBe("liber");
+    expect(scriptor(maior, ...form)).toBe("maior");
     expect(scriptor(omnis, ...form)).toBe("omnis");
     expect(scriptor(scribens, ...form)).toBe("scribens");
     expect(scriptor(scriptus, ...form)).toBe("scripte");
@@ -44,7 +50,9 @@ describe("Masculine singular", () => {
   
     expect(scriptor(aeger, ...form)).toBe("aegrum");
     expect(scriptor(celer, ...form)).toBe("celerem");
+    expect(scriptor(laetissimus, ...form)).toBe("laetissimum");
     expect(scriptor(liber, ...form)).toBe("liberum");
+    expect(scriptor(maior, ...form)).toBe("maiorem");
     expect(scriptor(omnis, ...form)).toBe("omnem");
     expect(scriptor(scribens, ...form)).toBe("scribentem");
     expect(scriptor(scriptus, ...form)).toBe("scriptum");
@@ -55,7 +63,9 @@ describe("Masculine singular", () => {
   
     expect(scriptor(aeger, ...form)).toBe("aegri");
     expect(scriptor(celer, ...form)).toBe("celeris");
+    expect(scriptor(laetissimus, ...form)).toBe("laetissimi");
     expect(scriptor(liber, ...form)).toBe("liberi");
+    expect(scriptor(maior, ...form)).toBe("maioris");
     expect(scriptor(omnis, ...form)).toBe("omnis");
     expect(scriptor(scribens, ...form)).toBe("scribentis");
     expect(scriptor(scriptus, ...form)).toBe("scripti");
@@ -66,7 +76,9 @@ describe("Masculine singular", () => {
   
     expect(scriptor(aeger, ...form)).toBe("aegro");
     expect(scriptor(celer, ...form)).toBe("celeri");
+    expect(scriptor(laetissimus, ...form)).toBe("laetissimo");
     expect(scriptor(liber, ...form)).toBe("libero");
+    expect(scriptor(maior, ...form)).toBe("maiori");
     expect(scriptor(omnis, ...form)).toBe("omni");
     expect(scriptor(scribens, ...form)).toBe("scribenti");
     expect(scriptor(scriptus, ...form)).toBe("scripto");
@@ -77,7 +89,9 @@ describe("Masculine singular", () => {
   
     expect(scriptor(aeger, ...form)).toBe("aegro");
     expect(scriptor(celer, ...form)).toBe("celeri");
+    expect(scriptor(laetissimus, ...form)).toBe("laetissimo");
     expect(scriptor(liber, ...form)).toBe("libero");
+    expect(scriptor(maior, ...form)).toBe("maiore");
     expect(scriptor(omnis, ...form)).toBe("omni");
     expect(scriptor(scribens, ...form)).toBe("scribenti");
     expect(scriptor(scriptus, ...form)).toBe("scripto");
@@ -92,7 +106,9 @@ describe("Feminine singular", () => {
   
     expect(scriptor(aeger, ...form)).toBe("aegra");
     expect(scriptor(celer, ...form)).toBe("celeris");
+    expect(scriptor(laetissimus, ...form)).toBe("laetissima");
     expect(scriptor(liber, ...form)).toBe("libera");
+    expect(scriptor(maior, ...form)).toBe("maior");
     expect(scriptor(omnis, ...form)).toBe("omnis");
     expect(scriptor(scribens, ...form)).toBe("scribens");
     expect(scriptor(scriptus, ...form)).toBe("scripta");
@@ -103,7 +119,9 @@ describe("Feminine singular", () => {
   
     expect(scriptor(aeger, ...form)).toBe("aegra");
     expect(scriptor(celer, ...form)).toBe("celeris");
+    expect(scriptor(laetissimus, ...form)).toBe("laetissima");
     expect(scriptor(liber, ...form)).toBe("libera");
+    expect(scriptor(maior, ...form)).toBe("maior");
     expect(scriptor(omnis, ...form)).toBe("omnis");
     expect(scriptor(scribens, ...form)).toBe("scribens");
     expect(scriptor(scriptus, ...form)).toBe("scripta");
@@ -114,7 +132,9 @@ describe("Feminine singular", () => {
   
     expect(scriptor(aeger, ...form)).toBe("aegram");
     expect(scriptor(celer, ...form)).toBe("celerem");
+    expect(scriptor(laetissimus, ...form)).toBe("laetissimam");
     expect(scriptor(liber, ...form)).toBe("liberam");
+    expect(scriptor(maior, ...form)).toBe("maiorem");
     expect(scriptor(omnis, ...form)).toBe("omnem");
     expect(scriptor(scribens, ...form)).toBe("scribentem");
     expect(scriptor(scriptus, ...form)).toBe("scriptam");
@@ -125,7 +145,9 @@ describe("Feminine singular", () => {
   
     expect(scriptor(aeger, ...form)).toBe("aegrae");
     expect(scriptor(celer, ...form)).toBe("celeris");
+    expect(scriptor(laetissimus, ...form)).toBe("laetissimae");
     expect(scriptor(liber, ...form)).toBe("liberae");
+    expect(scriptor(maior, ...form)).toBe("maioris");
     expect(scriptor(omnis, ...form)).toBe("omnis");
     expect(scriptor(scribens, ...form)).toBe("scribentis");
     expect(scriptor(scriptus, ...form)).toBe("scriptae");
@@ -136,7 +158,9 @@ describe("Feminine singular", () => {
   
     expect(scriptor(aeger, ...form)).toBe("aegrae");
     expect(scriptor(celer, ...form)).toBe("celeri");
+    expect(scriptor(laetissimus, ...form)).toBe("laetissimae");
     expect(scriptor(liber, ...form)).toBe("liberae");
+    expect(scriptor(maior, ...form)).toBe("maiori");
     expect(scriptor(omnis, ...form)).toBe("omni");
     expect(scriptor(scribens, ...form)).toBe("scribenti");
     expect(scriptor(scriptus, ...form)).toBe("scriptae");
@@ -147,7 +171,9 @@ describe("Feminine singular", () => {
   
     expect(scriptor(aeger, ...form)).toBe("aegra");
     expect(scriptor(celer, ...form)).toBe("celeri");
+    expect(scriptor(laetissimus, ...form)).toBe("laetissima");
     expect(scriptor(liber, ...form)).toBe("libera");
+    expect(scriptor(maior, ...form)).toBe("maiore");
     expect(scriptor(omnis, ...form)).toBe("omni");
     expect(scriptor(scribens, ...form)).toBe("scribenti");
     expect(scriptor(scriptus, ...form)).toBe("scripta");
@@ -162,7 +188,9 @@ describe("Neuter singular", () => {
   
     expect(scriptor(aeger, ...form)).toBe("aegrum");
     expect(scriptor(celer, ...form)).toBe("celere");
+    expect(scriptor(laetissimus, ...form)).toBe("laetissimum");
     expect(scriptor(liber, ...form)).toBe("liberum");
+    expect(scriptor(maior, ...form)).toBe("maius");
     expect(scriptor(omnis, ...form)).toBe("omne");
     expect(scriptor(scribens, ...form)).toBe("scribens");
     expect(scriptor(scriptus, ...form)).toBe("scriptum");
@@ -173,7 +201,9 @@ describe("Neuter singular", () => {
   
     expect(scriptor(aeger, ...form)).toBe("aegrum");
     expect(scriptor(celer, ...form)).toBe("celere");
+    expect(scriptor(laetissimus, ...form)).toBe("laetissimum");
     expect(scriptor(liber, ...form)).toBe("liberum");
+    expect(scriptor(maior, ...form)).toBe("maius");
     expect(scriptor(omnis, ...form)).toBe("omne");
     expect(scriptor(scribens, ...form)).toBe("scribens");
     expect(scriptor(scriptus, ...form)).toBe("scriptum");
@@ -184,7 +214,9 @@ describe("Neuter singular", () => {
   
     expect(scriptor(aeger, ...form)).toBe("aegrum");
     expect(scriptor(celer, ...form)).toBe("celere");
+    expect(scriptor(laetissimus, ...form)).toBe("laetissimum");
     expect(scriptor(liber, ...form)).toBe("liberum");
+    expect(scriptor(maior, ...form)).toBe("maius");
     expect(scriptor(omnis, ...form)).toBe("omne");
     expect(scriptor(scribens, ...form)).toBe("scribens");
     expect(scriptor(scriptus, ...form)).toBe("scriptum");
@@ -195,7 +227,9 @@ describe("Neuter singular", () => {
   
     expect(scriptor(aeger, ...form)).toBe("aegri");
     expect(scriptor(celer, ...form)).toBe("celeris");
+    expect(scriptor(laetissimus, ...form)).toBe("laetissimi");
     expect(scriptor(liber, ...form)).toBe("liberi");
+    expect(scriptor(maior, ...form)).toBe("maioris");
     expect(scriptor(omnis, ...form)).toBe("omnis");
     expect(scriptor(scribens, ...form)).toBe("scribentis");
     expect(scriptor(scriptus, ...form)).toBe("scripti");
@@ -206,7 +240,9 @@ describe("Neuter singular", () => {
   
     expect(scriptor(aeger, ...form)).toBe("aegro");
     expect(scriptor(celer, ...form)).toBe("celeri");
+    expect(scriptor(laetissimus, ...form)).toBe("laetissimo");
     expect(scriptor(liber, ...form)).toBe("libero");
+    expect(scriptor(maior, ...form)).toBe("maiori");
     expect(scriptor(omnis, ...form)).toBe("omni");
     expect(scriptor(scribens, ...form)).toBe("scribenti");
     expect(scriptor(scriptus, ...form)).toBe("scripto");
@@ -217,7 +253,9 @@ describe("Neuter singular", () => {
   
     expect(scriptor(aeger, ...form)).toBe("aegro");
     expect(scriptor(celer, ...form)).toBe("celeri");
+    expect(scriptor(laetissimus, ...form)).toBe("laetissimo");
     expect(scriptor(liber, ...form)).toBe("libero");
+    expect(scriptor(maior, ...form)).toBe("maiore");
     expect(scriptor(omnis, ...form)).toBe("omni");
     expect(scriptor(scribens, ...form)).toBe("scribenti");
     expect(scriptor(scriptus, ...form)).toBe("scripto");
@@ -232,7 +270,9 @@ describe("Masculine plural", () => {
   
     expect(scriptor(aeger, ...form)).toBe("aegri");
     expect(scriptor(celer, ...form)).toBe("celeres");
+    expect(scriptor(laetissimus, ...form)).toBe("laetissimi");
     expect(scriptor(liber, ...form)).toBe("liberi");
+    expect(scriptor(maior, ...form)).toBe("maiores");
     expect(scriptor(omnis, ...form)).toBe("omnes");
     expect(scriptor(scribens, ...form)).toBe("scribentes");
     expect(scriptor(scriptus, ...form)).toBe("scripti");
@@ -243,7 +283,9 @@ describe("Masculine plural", () => {
   
     expect(scriptor(aeger, ...form)).toBe("aegri");
     expect(scriptor(celer, ...form)).toBe("celeres");
+    expect(scriptor(laetissimus, ...form)).toBe("laetissimi");
     expect(scriptor(liber, ...form)).toBe("liberi");
+    expect(scriptor(maior, ...form)).toBe("maiores");
     expect(scriptor(omnis, ...form)).toBe("omnes");
     expect(scriptor(scribens, ...form)).toBe("scribentes");
     expect(scriptor(scriptus, ...form)).toBe("scripti");
@@ -254,7 +296,9 @@ describe("Masculine plural", () => {
   
     expect(scriptor(aeger, ...form)).toBe("aegros");
     expect(scriptor(celer, ...form)).toBe("celeres");
+    expect(scriptor(laetissimus, ...form)).toBe("laetissimos");
     expect(scriptor(liber, ...form)).toBe("liberos");
+    expect(scriptor(maior, ...form)).toBe("maiores");
     expect(scriptor(omnis, ...form)).toBe("omnes");
     expect(scriptor(scribens, ...form)).toBe("scribentes");
     expect(scriptor(scriptus, ...form)).toBe("scriptos");
@@ -265,7 +309,9 @@ describe("Masculine plural", () => {
   
     expect(scriptor(aeger, ...form)).toBe("aegrorum");
     expect(scriptor(celer, ...form)).toBe("celerium");
+    expect(scriptor(laetissimus, ...form)).toBe("laetissimorum");
     expect(scriptor(liber, ...form)).toBe("liberorum");
+    expect(scriptor(maior, ...form)).toBe("maiorum");
     expect(scriptor(omnis, ...form)).toBe("omnium");
     expect(scriptor(scribens, ...form)).toBe("scribentium");
     expect(scriptor(scriptus, ...form)).toBe("scriptorum");
@@ -276,7 +322,9 @@ describe("Masculine plural", () => {
   
     expect(scriptor(aeger, ...form)).toBe("aegris");
     expect(scriptor(celer, ...form)).toBe("celeribus");
+    expect(scriptor(laetissimus, ...form)).toBe("laetissimis");
     expect(scriptor(liber, ...form)).toBe("liberis");
+    expect(scriptor(maior, ...form)).toBe("maioribus");
     expect(scriptor(omnis, ...form)).toBe("omnibus");
     expect(scriptor(scribens, ...form)).toBe("scribentibus");
     expect(scriptor(scriptus, ...form)).toBe("scriptis");
@@ -287,7 +335,9 @@ describe("Masculine plural", () => {
   
     expect(scriptor(aeger, ...form)).toBe("aegris");
     expect(scriptor(celer, ...form)).toBe("celeribus");
+    expect(scriptor(laetissimus, ...form)).toBe("laetissimis");
     expect(scriptor(liber, ...form)).toBe("liberis");
+    expect(scriptor(maior, ...form)).toBe("maioribus");
     expect(scriptor(omnis, ...form)).toBe("omnibus");
     expect(scriptor(scribens, ...form)).toBe("scribentibus");
     expect(scriptor(scriptus, ...form)).toBe("scriptis");
@@ -302,7 +352,9 @@ describe("Feminine plural", () => {
   
     expect(scriptor(aeger, ...form)).toBe("aegrae");
     expect(scriptor(celer, ...form)).toBe("celeres");
+    expect(scriptor(laetissimus, ...form)).toBe("laetissimae");
     expect(scriptor(liber, ...form)).toBe("liberae");
+    expect(scriptor(maior, ...form)).toBe("maiores");
     expect(scriptor(omnis, ...form)).toBe("omnes");
     expect(scriptor(scribens, ...form)).toBe("scribentes");
     expect(scriptor(scriptus, ...form)).toBe("scriptae");
@@ -313,7 +365,9 @@ describe("Feminine plural", () => {
   
     expect(scriptor(aeger, ...form)).toBe("aegrae");
     expect(scriptor(celer, ...form)).toBe("celeres");
+    expect(scriptor(laetissimus, ...form)).toBe("laetissimae");
     expect(scriptor(liber, ...form)).toBe("liberae");
+    expect(scriptor(maior, ...form)).toBe("maiores");
     expect(scriptor(omnis, ...form)).toBe("omnes");
     expect(scriptor(scribens, ...form)).toBe("scribentes");
     expect(scriptor(scriptus, ...form)).toBe("scriptae");
@@ -324,7 +378,9 @@ describe("Feminine plural", () => {
   
     expect(scriptor(aeger, ...form)).toBe("aegras");
     expect(scriptor(celer, ...form)).toBe("celeres");
+    expect(scriptor(laetissimus, ...form)).toBe("laetissimas");
     expect(scriptor(liber, ...form)).toBe("liberas");
+    expect(scriptor(maior, ...form)).toBe("maiores");
     expect(scriptor(omnis, ...form)).toBe("omnes");
     expect(scriptor(scribens, ...form)).toBe("scribentes");
     expect(scriptor(scriptus, ...form)).toBe("scriptas");
@@ -335,7 +391,9 @@ describe("Feminine plural", () => {
   
     expect(scriptor(aeger, ...form)).toBe("aegrarum");
     expect(scriptor(celer, ...form)).toBe("celerium");
+    expect(scriptor(laetissimus, ...form)).toBe("laetissimarum");
     expect(scriptor(liber, ...form)).toBe("liberarum");
+    expect(scriptor(maior, ...form)).toBe("maiorum");
     expect(scriptor(omnis, ...form)).toBe("omnium");
     expect(scriptor(scribens, ...form)).toBe("scribentium");
     expect(scriptor(scriptus, ...form)).toBe("scriptarum");
@@ -346,7 +404,9 @@ describe("Feminine plural", () => {
   
     expect(scriptor(aeger, ...form)).toBe("aegris");
     expect(scriptor(celer, ...form)).toBe("celeribus");
+    expect(scriptor(laetissimus, ...form)).toBe("laetissimis");
     expect(scriptor(liber, ...form)).toBe("liberis");
+    expect(scriptor(maior, ...form)).toBe("maioribus");
     expect(scriptor(omnis, ...form)).toBe("omnibus");
     expect(scriptor(scribens, ...form)).toBe("scribentibus");
     expect(scriptor(scriptus, ...form)).toBe("scriptis");
@@ -357,7 +417,9 @@ describe("Feminine plural", () => {
   
     expect(scriptor(aeger, ...form)).toBe("aegris");
     expect(scriptor(celer, ...form)).toBe("celeribus");
+    expect(scriptor(laetissimus, ...form)).toBe("laetissimis");
     expect(scriptor(liber, ...form)).toBe("liberis");
+    expect(scriptor(maior, ...form)).toBe("maioribus");
     expect(scriptor(omnis, ...form)).toBe("omnibus");
     expect(scriptor(scribens, ...form)).toBe("scribentibus");
     expect(scriptor(scriptus, ...form)).toBe("scriptis");
@@ -372,7 +434,9 @@ describe("Neuter plural", () => {
   
     expect(scriptor(aeger, ...form)).toBe("aegra");
     expect(scriptor(celer, ...form)).toBe("celeria");
+    expect(scriptor(laetissimus, ...form)).toBe("laetissima");
     expect(scriptor(liber, ...form)).toBe("libera");
+    expect(scriptor(maior, ...form)).toBe("maiora");
     expect(scriptor(omnis, ...form)).toBe("omnia");
     expect(scriptor(scribens, ...form)).toBe("scribentia");
     expect(scriptor(scriptus, ...form)).toBe("scripta");
@@ -383,7 +447,9 @@ describe("Neuter plural", () => {
   
     expect(scriptor(aeger, ...form)).toBe("aegra");
     expect(scriptor(celer, ...form)).toBe("celeria");
+    expect(scriptor(laetissimus, ...form)).toBe("laetissima");
     expect(scriptor(liber, ...form)).toBe("libera");
+    expect(scriptor(maior, ...form)).toBe("maiora");
     expect(scriptor(omnis, ...form)).toBe("omnia");
     expect(scriptor(scribens, ...form)).toBe("scribentia");
     expect(scriptor(scriptus, ...form)).toBe("scripta");
@@ -394,7 +460,9 @@ describe("Neuter plural", () => {
   
     expect(scriptor(aeger, ...form)).toBe("aegra");
     expect(scriptor(celer, ...form)).toBe("celeria");
+    expect(scriptor(laetissimus, ...form)).toBe("laetissima");
     expect(scriptor(liber, ...form)).toBe("libera");
+    expect(scriptor(maior, ...form)).toBe("maiora");
     expect(scriptor(omnis, ...form)).toBe("omnia");
     expect(scriptor(scribens, ...form)).toBe("scribentia");
     expect(scriptor(scriptus, ...form)).toBe("scripta");
@@ -405,7 +473,9 @@ describe("Neuter plural", () => {
   
     expect(scriptor(aeger, ...form)).toBe("aegrorum");
     expect(scriptor(celer, ...form)).toBe("celerium");
+    expect(scriptor(laetissimus, ...form)).toBe("laetissimorum");
     expect(scriptor(liber, ...form)).toBe("liberorum");
+    expect(scriptor(maior, ...form)).toBe("maiorum");
     expect(scriptor(omnis, ...form)).toBe("omnium");
     expect(scriptor(scribens, ...form)).toBe("scribentium");
     expect(scriptor(scriptus, ...form)).toBe("scriptorum");
@@ -416,7 +486,9 @@ describe("Neuter plural", () => {
   
     expect(scriptor(aeger, ...form)).toBe("aegris");
     expect(scriptor(celer, ...form)).toBe("celeribus");
+    expect(scriptor(laetissimus, ...form)).toBe("laetissimis");
     expect(scriptor(liber, ...form)).toBe("liberis");
+    expect(scriptor(maior, ...form)).toBe("maioribus");
     expect(scriptor(omnis, ...form)).toBe("omnibus");
     expect(scriptor(scribens, ...form)).toBe("scribentibus");
     expect(scriptor(scriptus, ...form)).toBe("scriptis");
@@ -427,7 +499,9 @@ describe("Neuter plural", () => {
   
     expect(scriptor(aeger, ...form)).toBe("aegris");
     expect(scriptor(celer, ...form)).toBe("celeribus");
+    expect(scriptor(laetissimus, ...form)).toBe("laetissimis");
     expect(scriptor(liber, ...form)).toBe("liberis");
+    expect(scriptor(maior, ...form)).toBe("maioribus");
     expect(scriptor(omnis, ...form)).toBe("omnibus");
     expect(scriptor(scribens, ...form)).toBe("scribentibus");
     expect(scriptor(scriptus, ...form)).toBe("scriptis");

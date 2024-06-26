@@ -19,8 +19,8 @@ const PatternA = z.tuple([
 ]);
 
 const PatternB = z.tuple([
-  z.string().endsWith("is"),
-  z.string().endsWith("e")
+  z.string().regex(/(is|ior)$/),
+  z.string().regex(/(e|ius)$/)
 ]);
 
 const PatternC = z.tuple([
@@ -54,9 +54,17 @@ export default class Adjective {
     let part = this.#principalParts[1];
 
     if (this.#pattern === "A") part = this.#principalParts[2]!;
-    if (this.#pattern === "B") part = this.#principalParts[0];
+
+    if (this.#pattern === "B") {
+      if (this.#principalParts[0].endsWith("is")) part = this.#principalParts[0];
+      else return this.#principalParts[0];
+    }
 
     return part.slice(0, -2);
+  }
+
+  get #isIStem() {
+    return this.#pattern !== "B" || !this.#stem.endsWith("or");
   }
 
   get nominative_masculine_singular() {
@@ -81,7 +89,7 @@ export default class Adjective {
   }
 
   get nominative_neuter_plural() {
-    return `${this.#stem}${this.#pattern === "A" ? "a" : "ia"}`;
+    return `${this.#stem}${this.#pattern === "A" || !this.#isIStem ? "a" : "ia"}`;
   }
 
   get vocative_masculine_singular() {
@@ -145,7 +153,8 @@ export default class Adjective {
   }
 
   get genitive_masculine_plural() {
-    return `${this.#stem}${this.#pattern === "A" ? "orum" : "ium"}`;
+    if (this.#pattern === "A") return `${this.#stem}orum`;
+    return this.#isIStem ? `${this.#stem}ium` : `${this.#stem}um`;
   }
 
   get genitive_feminine_plural() {
@@ -181,7 +190,7 @@ export default class Adjective {
   }
 
   get ablative_masculine_singular() {
-    return this.dative_masculine_singular;
+    return this.#isIStem ? this.dative_masculine_singular : `${this.#stem}e`;
   }
 
   get ablative_feminine_singular() {
