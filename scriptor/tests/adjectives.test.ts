@@ -535,6 +535,7 @@ test("Superlative", () => {
 test("Adverb", () => {
   const form = "adverb";
 
+  expect(scriptor(acer, form)).toBe("acriter");
   expect(scriptor(aeger, form)).toBe("aegre");
   expect(scriptor(celer, form)).toBe("celeriter");
   expect(scriptor(felix, form)).toBe("feliciter");
