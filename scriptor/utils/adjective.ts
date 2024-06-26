@@ -226,6 +226,10 @@ export default class Adjective {
       return `${this.nominative_masculine_singular}rimus, ${this.nominative_masculine_singular}rima, ${this.nominative_masculine_singular}rimum`;
     }
 
+    if (this.#pattern !== "A" && this.#stem.endsWith("l")) {
+      return `${this.#stem}limus, ${this.#stem}lima, ${this.#stem}limum`;
+    }
+
     return this.#stem.endsWith("er")
       ? `${this.#stem}rimus, ${this.#stem}rima, ${this.#stem}rimum`
       : `${this.#stem}issimus, ${this.#stem}issima, ${this.#stem}issimum`

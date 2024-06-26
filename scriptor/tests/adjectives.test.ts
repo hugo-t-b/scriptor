@@ -538,6 +538,7 @@ test("Superlative", () => {
   expect(scriptor(acer, form)).toBe("acerrimus, acerrima, acerrimum");
   expect(scriptor(aeger, form)).toBe("aegerrimus, aegerrima, aegerrimum");
   expect(scriptor(celer, form)).toBe("celerrimus, celerrima, celerrimum");
+  expect(scriptor("facilis, facile", form)).toBe("facillimus, facillima, facillimum");
   expect(scriptor(fortis, form)).toBe("fortissimus, fortissima, fortissimum");
   expect(scriptor(ingens, form)).toBe("ingentissimus, ingentissima, ingentissimum");
   expect(scriptor(laetus, form)).toBe("laetissimus, laetissima, laetissimum");
