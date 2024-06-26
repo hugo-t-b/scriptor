@@ -21,6 +21,10 @@ const corpus = "corpus, corporis, n";
 const nomen = "nomen, nominis, n";
 const tempus = "tempus, temporis, n";
 
+const animal = "animal, animalis, n";
+const exemplar =  "exemplar, exemplaris, n";
+const mare = "mare, maris, n";
+
 describe("Singular", () => {
   test("Nominative", () => {
     const form = ["nominative", "singular"];
@@ -82,6 +86,7 @@ describe("Singular", () => {
     expect(scriptor(oppidum, ...form)).toBe("oppido");
     expect(scriptor(scriptrix, ...form)).toBe("scriptrice");
     expect(scriptor(nomen, ...form)).toBe("nomine");
+    expect(scriptor(animal, ...form)).toBe("animali");
   });
 });
 
@@ -94,6 +99,7 @@ describe("Plural", () => {
     expect(scriptor(templum, ...form)).toBe("templa");
     expect(scriptor(virtus, ...form)).toBe("virtutes");
     expect(scriptor(tempus, ...form)).toBe("tempora");
+    expect(scriptor(exemplar, ...form)).toBe("exemplaria");
   });
 
   test("Vocative", () => {
@@ -104,6 +110,7 @@ describe("Plural", () => {
     expect(scriptor(templum, ...form)).toBe("templa");
     expect(scriptor(virtus, ...form)).toBe("virtutes");
     expect(scriptor(tempus, ...form)).toBe("tempora");
+    expect(scriptor(mare, ...form)).toBe("maria");
   });
 
   test("Accusative", () => {
@@ -114,6 +121,7 @@ describe("Plural", () => {
     expect(scriptor(donum, ...form)).toBe("dona");
     expect(scriptor(scriptorNoun, ...form)).toBe("scriptores");
     expect(scriptor(corpus, ...form)).toBe("corpora");
+    expect(scriptor(animal, ...form)).toBe("animalia");
   });
 
   test("Genitive", () => {
@@ -124,6 +132,7 @@ describe("Plural", () => {
     expect(scriptor(oppidum, ...form)).toBe("oppidorum");
     expect(scriptor(scriptrix, ...form)).toBe("scriptricum");
     expect(scriptor(nomen, ...form)).toBe("nominum");
+    expect(scriptor(exemplar, ...form)).toBe("exemplarium");
   });
 
   test("Dative", () => {

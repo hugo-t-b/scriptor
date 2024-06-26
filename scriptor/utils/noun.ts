@@ -16,10 +16,10 @@ export default class Noun {
 
   static ACCUSATIVE_SINGULAR_ENDINGS = [ "am", "um", "em" ] as const;
   static DATIVE_SINGULAR_ENDINGS = [ "ae", "o", "i" ] as const;
-  static ABLATIVE_SINGULAR_ENDINGS = [ "a", "o", "e" ] as const;
+  static ABLATIVE_SINGULAR_ENDINGS = [ "a", "o", "e", "i" ] as const;
   static NOMINATIVE_PLURAL_ENDINGS = [ "ae", "i", "es" ] as const;
   static ACCUSATIVE_PLURAL_ENDINGS = [ "as", "os", "es" ] as const;
-  static GENITIVE_PLURAL_ENDINGS = [ "arum", "orum", "um" ] as const;
+  static GENITIVE_PLURAL_ENDINGS = [ "arum", "orum", "um", "ium" ] as const;
   static DATIVE_PLURAL_ENDINGS = [ "is", "is", "ibus" ] as const;
 
   constructor(principalParts: z.infer<typeof NounPrincipalParts>) {
@@ -47,6 +47,10 @@ export default class Noun {
     return this.genitive_singular.slice(0, this.#declension === 2 ? -1 : -2);
   }
 
+  get #isIStem() {
+    return this.#declension === 3 && this.#gender === "n" && this.nominative_singular.match(/(e|al|ar)$/);
+  }
+
   get vocative_singular() {
     if (this.#declension === 2 && this.nominative_singular.endsWith("ius")) return `${this.#stem}`;
     if (this.#declension === 2 && this.nominative_singular.endsWith("us")) return `${this.#stem}e`;
@@ -62,11 +66,13 @@ export default class Noun {
   }
 
   get ablative_singular() {
-    return `${this.#stem}${Noun.ABLATIVE_SINGULAR_ENDINGS[this.#declension - 1]}`;
+    const endingIndex = this.#isIStem ? 3 : this.#declension - 1;
+    return `${this.#stem}${Noun.ABLATIVE_SINGULAR_ENDINGS[endingIndex]}`;
   }
 
   get nominative_plural() {
-    return `${this.#stem}${this.#gender === "n" ? "a" : Noun.NOMINATIVE_PLURAL_ENDINGS[this.#declension - 1]}`;
+    if (this.#gender === "n") return `${this.#stem}${this.#isIStem ? "ia" : "a"}`;
+    return `${this.#stem}${Noun.NOMINATIVE_PLURAL_ENDINGS[this.#declension - 1]}`;
   }
 
   get vocative_plural() {
@@ -78,7 +84,8 @@ export default class Noun {
   }
 
   get genitive_plural() {
-    return `${this.#stem}${Noun.GENITIVE_PLURAL_ENDINGS[this.#declension - 1]}`;
+    const endingIndex = this.#isIStem ? 3 : this.#declension - 1;
+    return `${this.#stem}${Noun.GENITIVE_PLURAL_ENDINGS[endingIndex]}`;
   }
 
   get dative_plural() {
