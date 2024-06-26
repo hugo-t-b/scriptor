@@ -2,10 +2,11 @@ import { assertNever } from "assert-never";
 import { parseForm, parsePrincipalParts } from "./utils/parse";
 
 import Adjective from "./utils/adjective";
+import Adverb from "./utils/adverb";
 import Noun from "./utils/noun";
 import Verb from "./utils/verb";
 
-const validateKey = (key: string, word: Adjective | Noun | Verb): key is keyof typeof word => key in word;
+const validateKey = (key: string, word: Adjective | Adverb | Noun | Verb): key is keyof typeof word => key in word;
 
 export default (parts: string, ...form: string[]): string => {
   const principalPartsParseResult = parsePrincipalParts(parts);
@@ -92,6 +93,21 @@ export default (parts: string, ...form: string[]): string => {
       }
 
       return adjectiveResult;
+    case "adverb":
+      const adverb = new Adverb(principalParts);
+      const adverbKey = formParseResult.data[0];
+
+      if (!validateKey(adverbKey, adverb)) {
+        throw new Error("Unsupported or invalid form");
+      }
+
+      const adverbResult = adverb[adverbKey];
+
+      if (typeof adverbResult !== "string") {
+        throw new Error("Invalid form");
+      }
+
+      return adverbResult;
     default:
       assertNever(partOfSpeech);
   }
