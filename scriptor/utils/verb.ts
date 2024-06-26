@@ -64,11 +64,13 @@ export default class Verb {
   get #conjugation() {
     if (this.#presentStem.endsWith("a")) return 1;
     if (this.#presentStem.endsWith("i")) return 4;
-    return this.#principalParts[0].endsWith("eo") ? 2 : 3;
+    if (this.#principalParts[0].endsWith("eo")) return 2;
+    
+    return this.#principalParts[0].endsWith("io") ? 3.5 : 3;
   }
 
   get present_active_indicative() {
-    const stem = this.#conjugation === 3 ? `${this.#presentStem.slice(0, -1)}i` : this.#presentStem;
+    const stem = Math.floor(this.#conjugation) === 3 ? `${this.#presentStem.slice(0, -1)}i` : this.#presentStem;
 
     return Verb.DEFAULT_ENDINGS
       .with(0, "o")
@@ -81,7 +83,7 @@ export default class Verb {
           return `${stem.slice(0, -1)}u${ending}`;
         }
 
-        if (index === 5 && this.#conjugation === 4) {
+        if (index === 5 && Math.ceil(this.#conjugation) === 4) {
           return `${stem}u${ending}`;
         }
 
@@ -94,8 +96,8 @@ export default class Verb {
   }
 
   get imperfect_active_indicative() {
-    const addToStem = this.#conjugation === 4 ? "e" : "";
-    return Verb.DEFAULT_ENDINGS.map(ending => `${this.#presentStem}${addToStem}ba${ending}`);
+    const stem = Math.ceil(this.#conjugation) === 4 ? `${this.#presentStem.slice(0, -1)}ie` : this.#presentStem;
+    return Verb.DEFAULT_ENDINGS.map(ending => `${stem}ba${ending}`);
   }
 
   get pluperfect_active_indicative() {
@@ -116,7 +118,7 @@ export default class Verb {
       `${this.#presentStem}`,
       null,
       null,
-      this.#conjugation === 3 ? `${this.#presentStem.slice(0, -1)}ite` : `${this.#presentStem}te`,
+      Math.floor(this.#conjugation) === 3 ? `${this.#presentStem.slice(0, -1)}ite` : `${this.#presentStem}te`,
       null
     ];
   }
@@ -130,8 +132,8 @@ export default class Verb {
   }
 
   get present_active_participle() {
-    const addToStem = this.#conjugation === 4 ? "e" : "";
-    return `${this.#presentStem}${addToStem}ns, ${this.#presentStem}${addToStem}ntis`;
+    const stem = Math.ceil(this.#conjugation) === 4 ? `${this.#presentStem.slice(0, -1)}ie` : this.#presentStem;
+    return `${stem}ns, ${stem}ntis`;
   }
 
   get perfect_passive_participle() {
