@@ -508,6 +508,18 @@ describe("Neuter plural", () => {
   });
 });
 
+test("Positive", () => {
+  const form = "positive";
+
+  expect(scriptor(acer, form)).toBe("acer, acris, acre");
+  expect(scriptor(aeger, form)).toBe("aeger, aegra, aegrum");
+  expect(scriptor(celer, form)).toBe("celer, celeris, celere");
+  expect(scriptor(fortis, form)).toBe("fortis, forte");
+  expect(scriptor(ingens, form)).toBe("ingens, ingentis");
+  expect(scriptor(laetus, form)).toBe("laetus, laeta, laetum");
+  expect(scriptor(liber, form)).toBe("liber, libera, liberum");
+});
+
 test("Comparative", () => {
   const form = "comparative";
 

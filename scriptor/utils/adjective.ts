@@ -8,7 +8,7 @@ export const AdjectiveForm = z.union([
   ]),
 
   z.tuple([
-    z.enum([ "comparative", "superlative", "adverb" ])
+    z.enum([ "positive", "comparative", "superlative", "adverb" ])
   ])
 ]);
 
@@ -211,6 +211,10 @@ export default class Adjective {
 
   get ablative_neuter_plural() {
     return this.ablative_masculine_plural;
+  }
+
+  get positive() {
+    return this.#principalParts.join(", ");
   }
 
   get comparative() {
