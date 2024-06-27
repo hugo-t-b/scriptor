@@ -1,17 +1,17 @@
 import { describe, expect, test } from "bun:test";
 import scriptor from "..";
 
-const amo = "amo, amare, amavi, amatus";
+const amo = "amō, amāre, amāvī, amātus";
 const doVerb = "do, dare, dedi, datus";
 const porto = "porto, portare, portavi, portatus";
 
 const habeo = "habeo, habere, habui, habitus";
-const maneo = "maneo, manere, mansi, mansus";
+const maneo = "maneō, manēre, mānsī, mānsus";
 const moneo = "moneo, monere, monui, monitus";
 
 const contendo = "contendo, contendere, contendi, contentus";
 const dico = "dico, dicere, dixi, dictus";
-const traho = "traho, trahere, traxi, tractus";
+const traho = "trahō, trahere, trāxī, tractus";
 
 const capio = "capio, capere, cepi, captus";
 const facio = "facio, facere, feci, factus";

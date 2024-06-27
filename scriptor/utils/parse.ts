@@ -1,9 +1,12 @@
 import assertNever from "assert-never";
+import removeAccents from "remove-accents";
+import { z } from "zod";
+
 import { AdjectiveForm, AdjectivePrincipalParts } from "./adjective";
 import { AdverbForm, AdverbPrincipalParts } from "./adverb";
 import { NounForm, NounPrincipalParts } from "./noun";
 import { VerbForm, VerbPrincipalParts } from "./verb";
-import { z } from "zod";
+
 
 type PrincipalPartsResult = 
   [ "verb", z.infer<typeof VerbPrincipalParts> ] |
@@ -15,7 +18,8 @@ type PrincipalPartsResult =
 type PartOfSpeech = NonNullable<PrincipalPartsResult>[0];
 
 export const parsePrincipalParts = (parts: string): PrincipalPartsResult => {
-  const principalParts = parts.split(/, | ,| |,/);
+  const principalPartsArray = parts.split(/, | ,| |,/);
+  const principalParts = principalPartsArray.map(part => removeAccents(part));
   const verbParse = VerbPrincipalParts.safeParse(principalParts);
 
   if (verbParse.success) {
