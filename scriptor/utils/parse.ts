@@ -17,7 +17,7 @@ const PrincipalParts = z.preprocess(
   z.union([ AdjectivePrincipalParts, AdverbPrincipalParts, NounPrincipalParts, VerbPrincipalParts ])
 );
 
-export const parsePrincipalParts = (parts: unknown): PrincipalPartsResult => {
+const parsePrincipalParts = (parts: unknown): PrincipalPartsResult => {
   const principalParts = PrincipalParts.parse(parts);
   const verbParse = VerbPrincipalParts.safeParse(principalParts);
 
@@ -43,5 +43,15 @@ export const parsePrincipalParts = (parts: unknown): PrincipalPartsResult => {
     return ["adverb", adverbParse.data];
   }
 
-  throw new Error("Failed to determine part of speech");
+  throw new Error("Principal parts valid but part of speech could not be determined");
 };
+
+export default (parts: unknown) => {
+  try {
+    return parsePrincipalParts(parts);
+  } catch (error) {
+    throw new Error("Missing or invalid principal parts", {
+      cause: error
+    });
+  }
+}

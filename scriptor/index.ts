@@ -1,5 +1,5 @@
 import { assertNever } from "assert-never";
-import { parsePrincipalParts } from "./utils/parse";
+import parsePrincipalParts from "./utils/parse";
 
 import createAdjective, { type AdjectiveShape as Adjective, type AdjectiveOptions } from "./adjectives";
 import createAdverb, { type AdverbShape as Adverb, type AdverbOptions } from "./adverbs";
