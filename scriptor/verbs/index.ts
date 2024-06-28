@@ -1,12 +1,22 @@
 import deepMapValues from "just-deep-map-values";
+import extend from "just-extend";
 import formatStringTemplate from "string-template";
 import { getConjugation, PrincipalParts, type Shape as VerbShape } from "./utils";
 import verbTemplate from "./template";
 import { z } from "zod";
 
-export { type VerbShape, PrincipalParts as VerbPrincipalParts };
+const Overrides: z.ZodType<VerbShape, z.ZodTypeDef, VerbShape | undefined> = z.record(z.string(), z.unknown()).default({});
 
-export default (principalParts: z.infer<typeof PrincipalParts>) => {
+const Options = z.object({
+  overrides: Overrides
+}).default({});
+
+type VerbOptions = z.input<typeof Options>;
+
+export { type VerbOptions, type VerbShape, PrincipalParts as VerbPrincipalParts };
+
+export default (principalParts: z.infer<typeof PrincipalParts>, optionsInput?: VerbOptions) => {
+  const options = Options.parse(optionsInput);
   const conjugation = getConjugation(principalParts);
 
   const presentActiveIndicative = principalParts[0];
@@ -18,7 +28,7 @@ export default (principalParts: z.infer<typeof PrincipalParts>) => {
   const presentStemB = conjugation >= 3 ? `${presentActiveIndicative.slice(0, -1)}u` : presentStem;
   const presentStemC = conjugation > 3 ? `${presentActiveIndicative.slice(0, -1)}e` : presentStem;
 
-  return deepMapValues(verbTemplate, (template: string) => {
+  const verb = deepMapValues(verbTemplate, template => {
     return formatStringTemplate(template, {
       presentActiveIndicative,
       presentStem,
@@ -28,5 +38,7 @@ export default (principalParts: z.infer<typeof PrincipalParts>) => {
       presentStemB,
       presentStemC
     });
-  }) as VerbShape;
+  });
+
+  return extend(true, verb, options.overrides) as VerbShape;
 }

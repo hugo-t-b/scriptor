@@ -13,6 +13,7 @@
   "dependencies": {
     "assert-never": "^1.2.1",
     "just-deep-map-values": "^1.2.0",
+    "just-extend": "^6.2.0",
     "remove-accents": "^0.5.0",
     "string-template": "^1.0.0",
     "zod": "^3.23.8"

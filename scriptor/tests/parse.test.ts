@@ -27,3 +27,18 @@ test("Accepts principal parts as strings or arrays", () => {
   expect(scriptor<Noun>(" scriptor, scriptoris, m ").nominative?.singular).toBe("scriptor");
   expect(scriptor<Noun>(["scriptor", "scriptoris", "m"]).nominative?.singular).toBe("scriptor");
 });
+
+test("Takes an overrides option", () => {
+  expect(scriptor<Adjective>("bonus, bona, bonum", { overrides: { comparative: "melior, melius" } }).comparative).toBe("melior, melius");
+  expect(scriptor<Adverb>("bene", { overrides: { superlative: "optime" } }).superlative).toBe("optime");
+  expect(scriptor<Noun>("deus, dei, m", { overrides: { nominative: { plural: "di" } } }).nominative?.plural).toBe("di");
+
+  expect(scriptor<Verb>("duco, ducere, duxi, ductus", {
+    overrides: {
+      imperative: { active: { present: { singular: { second: "duc" } } } }
+    }
+  }).imperative?.active?.present).toEqual({
+    singular: { second: "duc" },
+    plural: { second: "ducite" }
+  });
+});

@@ -1,17 +1,28 @@
 import adjectiveTemplate from "./template";
 import deepMapValues from "just-deep-map-values";
+import extend from "just-extend";
 import formatStringTemplate from "string-template";
 import { getStem, getSuperlative, PrincipalParts, type Shape as AdverbShape } from "./utils";
 import { z } from "zod";
 
-export { type AdverbShape, PrincipalParts as AdverbPrincipalParts };
+const Overrides: z.ZodType<AdverbShape, z.ZodTypeDef, AdverbShape | undefined> = z.record(z.string(), z.unknown()).default({});
 
-export default (principalParts: z.infer<typeof PrincipalParts>) => {
+const Options = z.object({
+  overrides: Overrides
+}).default({});
+
+type AdverbOptions = z.input<typeof Options>;
+
+export { type AdverbOptions, type AdverbShape, PrincipalParts as AdverbPrincipalParts };
+
+export default (principalParts: z.infer<typeof PrincipalParts>, optionsInput?: AdverbOptions) => {
+  const options = Options.parse(optionsInput);
+  
   const positive = principalParts[0];
   const stem = getStem(positive);
   const superlative = getSuperlative(stem);
 
-  const verb = deepMapValues(adjectiveTemplate, (template: string) => {
+  const adverb = deepMapValues(adjectiveTemplate, template => {
     return formatStringTemplate(template, {
       positive,
       stem,
@@ -19,5 +30,5 @@ export default (principalParts: z.infer<typeof PrincipalParts>) => {
     });
   }) as AdverbShape;
 
-  return verb;
+  return extend(true, adverb, options.overrides) as AdverbShape;
 }
