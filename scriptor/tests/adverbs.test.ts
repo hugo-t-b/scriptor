@@ -1,38 +1,32 @@
 import { expect, test } from "bun:test";
-import scriptor from "..";
+import scriptor, { type Adverb } from "..";
 
-const facile = "facile";
-const fortiter = "fortiter";
-const laete = "laete";
-const misere = "misere";
-const sapienter = "sapienter";
+const facile = scriptor<Adverb>("facile");
+const fortiter = scriptor<Adverb>("fortiter");
+const laete = scriptor<Adverb>("laete");
+const misere = scriptor<Adverb>("misere");
+const sapienter = scriptor<Adverb>("sapienter");
 
 test("Positive", () => {
-  const form = "positive";
-
-  expect(scriptor(facile, form)).toBe("facile");
-  expect(scriptor(fortiter, form)).toBe("fortiter");
-  expect(scriptor(laete, form)).toBe("laete");
-  expect(scriptor(misere, form)).toBe("misere");
-  expect(scriptor(sapienter, form)).toBe("sapienter");
+  expect(facile.positive).toBe("facile");
+  expect(fortiter.positive).toBe("fortiter");
+  expect(laete.positive).toBe("laete");
+  expect(misere.positive).toBe("misere");
+  expect(sapienter.positive).toBe("sapienter");
 });
 
 test("Comparative", () => {
-  const form = "comparative";
-
-  expect(scriptor(facile, form)).toBe("facilius");
-  expect(scriptor(fortiter, form)).toBe("fortius");
-  expect(scriptor(laete, form)).toBe("laetius");
-  expect(scriptor(misere, form)).toBe("miserius");
-  expect(scriptor(sapienter, form)).toBe("sapientius");
+  expect(facile.comparative).toBe("facilius");
+  expect(fortiter.comparative).toBe("fortius");
+  expect(laete.comparative).toBe("laetius");
+  expect(misere.comparative).toBe("miserius");
+  expect(sapienter.comparative).toBe("sapientius");
 });
 
 test("Superlative", () => {
-  const form = "superlative";
-
-  expect(scriptor(facile, form)).toBe("facillime");
-  expect(scriptor(fortiter, form)).toBe("fortissime");
-  expect(scriptor(laete, form)).toBe("laetissime");
-  expect(scriptor(misere, form)).toBe("miserrime");
-  expect(scriptor(sapienter, form)).toBe("sapientissime");
+  expect(facile.superlative).toBe("facillime");
+  expect(fortiter.superlative).toBe("fortissime");
+  expect(laete.superlative).toBe("laetissime");
+  expect(misere.superlative).toBe("miserrime");
+  expect(sapienter.superlative).toBe("sapientissime");
 });

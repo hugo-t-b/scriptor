@@ -1,157 +1,174 @@
 import { describe, expect, test } from "bun:test";
-import scriptor from "..";
+import scriptor, { type Noun } from "..";
 
-const metella = "Metella, Metellae, f";
-const scriba = "scriba, scribae, m";
-const villa = "villa, villae, f";
+const metella = scriptor<Noun>("Metella, Metellae, f");
+const scriba = scriptor<Noun>("scriba, scribae, m");
+const villa = scriptor<Noun>("villa, villae, f");
 
-const hortus = "hortus, horti, m";
-const puer = "puer, pueri, m";
-const salvius = "Salvius, Salvii, m";
+const hortus = scriptor<Noun>("hortus, horti, m");
+const puer = scriptor<Noun>("puer, pueri, m");
+const salvius = scriptor<Noun>("Salvius, Salvii, m");
 
-const donum = "donum, doni, n";
-const oppidum = "oppidum, oppidi, n";
-const templum = "templum, templi, n";
+const donum = scriptor<Noun>("donum, doni, n");
+const oppidum = scriptor<Noun>("oppidum, oppidi, n");
+const templum = scriptor<Noun>("templum, templi, n");
 
-const scriptorNoun = "scriptor, scriptoris, m";
-const scriptrix = "scriptrix, scriptricis, f";
-const virtus = "virtus, virtutis, f";
+const scriptorNoun = scriptor<Noun>("scriptor, scriptoris, m");
+const scriptrix = scriptor<Noun>("scriptrix, scriptricis, f");
+const virtus = scriptor<Noun>("virtus, virtutis, f");
 
-const corpus = "corpus, corporis, n";
-const nomen = "nomen, nominis, n";
-const tempus = "tempus, temporis, n";
+const corpus = scriptor<Noun>("corpus, corporis, n");
+const nomen = scriptor<Noun>("nomen, nominis, n");
+const tempus = scriptor<Noun>("tempus, temporis, n");
 
-const animal = "animal, animalis, n";
-const exemplar =  "exemplar, exemplaris, n";
-const mare = "mare, maris, n";
+const animal = scriptor<Noun>("animal, animalis, n");
+const exemplar =  scriptor<Noun>("exemplar, exemplaris, n");
+const mare = scriptor<Noun>("mare, maris, n");
 
-describe("Singular", () => {
-  test("Nominative", () => {
-    const form = ["nominative", "singular"];
-  
-    expect(scriptor(metella, ...form)).toBe("Metella");
-    expect(scriptor(hortus, ...form)).toBe("hortus");
-    expect(scriptor(donum, ...form)).toBe("donum");
-    expect(scriptor(scriptorNoun, ...form)).toBe("scriptor");
-    expect(scriptor(corpus, ...form)).toBe("corpus");
+const ars = scriptor<Noun>("ars, artis, f", { iStem: true });
+const ignis = scriptor<Noun>("ignis, ignis, m", { iStem: true });
+const imber = scriptor<Noun>("imber, imbris, m", { iStem: true });
+
+describe("Nominative", () => {
+  test("Singular", () => {
+    const find = (noun: Noun) => noun.nominative?.singular;
+
+    expect(find(metella)).toBe("Metella");
+    expect(find(hortus)).toBe("hortus");
+    expect(find(donum)).toBe("donum");
+    expect(find(scriptorNoun)).toBe("scriptor");
+    expect(find(corpus)).toBe("corpus");
   });
 
-  test("Vocative", () => {
-    const form = ["vocative", "singular"];
+  test("Plural", () => {
+    const find = (noun: Noun) => noun.nominative?.plural;
   
-    expect(scriptor(metella, ...form)).toBe("Metella");
-    expect(scriptor(hortus, ...form)).toBe("horte");
-    expect(scriptor(puer, ...form)).toBe("puer");
-    expect(scriptor(salvius, ...form)).toBe("Salvi");
-    expect(scriptor(donum, ...form)).toBe("donum");
-    expect(scriptor(scriptorNoun, ...form)).toBe("scriptor");
-    expect(scriptor(corpus, ...form)).toBe("corpus");
-  });
-
-  test("Accusative", () => {
-    const form = ["accusative", "singular"];
-  
-    expect(scriptor(scriba, ...form)).toBe("scribam");
-    expect(scriptor(puer, ...form)).toBe("puerum");
-    expect(scriptor(oppidum, ...form)).toBe("oppidum");
-    expect(scriptor(scriptrix, ...form)).toBe("scriptricem");
-    expect(scriptor(nomen, ...form)).toBe("nomen");
-  });
-
-  test("Genitive", () => {
-    const form = ["genitive", "singular"];
-  
-    expect(scriptor(villa, ...form)).toBe("villae");
-    expect(scriptor(salvius, ...form)).toBe("Salvii");
-    expect(scriptor(templum, ...form)).toBe("templi");
-    expect(scriptor(virtus, ...form)).toBe("virtutis");
-    expect(scriptor(tempus, ...form)).toBe("temporis");
-  });
-
-  test("Dative", () => {
-    const form = ["dative", "singular"];
-  
-    expect(scriptor(metella, ...form)).toBe("Metellae");
-    expect(scriptor(hortus, ...form)).toBe("horto");
-    expect(scriptor(donum, ...form)).toBe("dono");
-    expect(scriptor(scriptorNoun, ...form)).toBe("scriptori");
-    expect(scriptor(corpus, ...form)).toBe("corpori");
-  });
-
-  test("Ablative", () => {
-    const form = ["ablative", "singular"];
-  
-    expect(scriptor(scriba, ...form)).toBe("scriba");
-    expect(scriptor(puer, ...form)).toBe("puero");
-    expect(scriptor(oppidum, ...form)).toBe("oppido");
-    expect(scriptor(scriptrix, ...form)).toBe("scriptrice");
-    expect(scriptor(nomen, ...form)).toBe("nomine");
-    expect(scriptor(animal, ...form)).toBe("animali");
+    expect(find(villa)).toBe("villae");
+    expect(find(puer)).toBe("pueri");
+    expect(find(templum)).toBe("templa");
+    expect(find(virtus)).toBe("virtutes");
+    expect(find(tempus)).toBe("tempora");
+    expect(find(exemplar)).toBe("exemplaria");
+    expect(find(ignis)).toBe("ignes");
   });
 });
 
-describe("Plural", () => {
-  test("Nominative", () => {
-    const form = ["nominative", "plural"];
+describe("Vocative", () => {
+  test("Singular", () => {
+    const find = (noun: Noun) => noun.vocative?.singular;
   
-    expect(scriptor(villa, ...form)).toBe("villae");
-    expect(scriptor(puer, ...form)).toBe("pueri");
-    expect(scriptor(templum, ...form)).toBe("templa");
-    expect(scriptor(virtus, ...form)).toBe("virtutes");
-    expect(scriptor(tempus, ...form)).toBe("tempora");
-    expect(scriptor(exemplar, ...form)).toBe("exemplaria");
+    expect(find(metella)).toBe("Metella");
+    expect(find(hortus)).toBe("horte");
+    expect(find(puer)).toBe("puer");
+    expect(find(salvius)).toBe("Salvi");
+    expect(find(donum)).toBe("donum");
+    expect(find(scriptorNoun)).toBe("scriptor");
+    expect(find(corpus)).toBe("corpus");
   });
 
-  test("Vocative", () => {
-    const form = ["vocative", "plural"];
+  test("Plural", () => {
+    const find = (noun: Noun) => noun.vocative?.plural;
   
-    expect(scriptor(villa, ...form)).toBe("villae");
-    expect(scriptor(puer, ...form)).toBe("pueri");
-    expect(scriptor(templum, ...form)).toBe("templa");
-    expect(scriptor(virtus, ...form)).toBe("virtutes");
-    expect(scriptor(tempus, ...form)).toBe("tempora");
-    expect(scriptor(mare, ...form)).toBe("maria");
+    expect(find(villa)).toBe("villae");
+    expect(find(puer)).toBe("pueri");
+    expect(find(templum)).toBe("templa");
+    expect(find(virtus)).toBe("virtutes");
+    expect(find(tempus)).toBe("tempora");
+    expect(find(mare)).toBe("maria");
+    expect(find(imber)).toBe("imbres");
+  });
+});
+
+describe("Accusative", () => {
+  test("Singular", () => {
+    const find = (noun: Noun) => noun.accusative?.singular;
+  
+    expect(find(scriba)).toBe("scribam");
+    expect(find(puer)).toBe("puerum");
+    expect(find(oppidum)).toBe("oppidum");
+    expect(find(scriptrix)).toBe("scriptricem");
+    expect(find(nomen)).toBe("nomen");
   });
 
-  test("Accusative", () => {
-    const form = ["accusative", "plural"];
+  test("Plural", () => {
+    const find = (noun: Noun) => noun.accusative?.plural;
   
-    expect(scriptor(villa, ...form)).toBe("villas");
-    expect(scriptor(hortus, ...form)).toBe("hortos");
-    expect(scriptor(donum, ...form)).toBe("dona");
-    expect(scriptor(scriptorNoun, ...form)).toBe("scriptores");
-    expect(scriptor(corpus, ...form)).toBe("corpora");
-    expect(scriptor(animal, ...form)).toBe("animalia");
+    expect(find(villa)).toBe("villas");
+    expect(find(hortus)).toBe("hortos");
+    expect(find(donum)).toBe("dona");
+    expect(find(scriptorNoun)).toBe("scriptores");
+    expect(find(corpus)).toBe("corpora");
+    expect(find(animal)).toBe("animalia");
+    expect(find(ars)).toBe("artes");
+  });
+});
+
+describe("Genitive", () => {
+  test("Singular", () => {
+    const find = (noun: Noun) => noun.genitive?.singular;
+  
+    expect(find(villa)).toBe("villae");
+    expect(find(salvius)).toBe("Salvii");
+    expect(find(templum)).toBe("templi");
+    expect(find(virtus)).toBe("virtutis");
+    expect(find(tempus)).toBe("temporis");
   });
 
-  test("Genitive", () => {
-    const form = ["genitive", "plural"];
+  test("Plural", () => {
+    const find = (noun: Noun) => noun.genitive?.plural;
   
-    expect(scriptor(scriba, ...form)).toBe("scribarum");
-    expect(scriptor(puer, ...form)).toBe("puerorum");
-    expect(scriptor(oppidum, ...form)).toBe("oppidorum");
-    expect(scriptor(scriptrix, ...form)).toBe("scriptricum");
-    expect(scriptor(nomen, ...form)).toBe("nominum");
-    expect(scriptor(exemplar, ...form)).toBe("exemplarium");
+    expect(find(scriba)).toBe("scribarum");
+    expect(find(puer)).toBe("puerorum");
+    expect(find(oppidum)).toBe("oppidorum");
+    expect(find(scriptrix)).toBe("scriptricum");
+    expect(find(nomen)).toBe("nominum");
+    expect(find(exemplar)).toBe("exemplarium");
+    expect(find(ignis)).toBe("ignium");
+  });
+});
+
+describe("Dative", () => {
+  test("Singular", () => {
+    const find = (noun: Noun) => noun.dative?.singular;
+  
+    expect(find(metella)).toBe("Metellae");
+    expect(find(hortus)).toBe("horto");
+    expect(find(donum)).toBe("dono");
+    expect(find(scriptorNoun)).toBe("scriptori");
+    expect(find(corpus)).toBe("corpori");
   });
 
-  test("Dative", () => {
-    const form = ["dative", "plural"];
+  test("Plural", () => {
+    const find = (noun: Noun) => noun.dative?.plural;
   
-    expect(scriptor(villa, ...form)).toBe("villis");
-    expect(scriptor(puer, ...form)).toBe("pueris");
-    expect(scriptor(templum, ...form)).toBe("templis");
-    expect(scriptor(virtus, ...form)).toBe("virtutibus");
-    expect(scriptor(tempus, ...form)).toBe("temporibus");
+    expect(find(villa)).toBe("villis");
+    expect(find(puer)).toBe("pueris");
+    expect(find(templum)).toBe("templis");
+    expect(find(virtus)).toBe("virtutibus");
+    expect(find(tempus)).toBe("temporibus");
+  });
+});
+
+describe("Ablative", () => {
+  test("Singular", () => {
+    const find = (noun: Noun) => noun.ablative?.singular;
+  
+    expect(find(scriba)).toBe("scriba");
+    expect(find(puer)).toBe("puero");
+    expect(find(oppidum)).toBe("oppido");
+    expect(find(scriptrix)).toBe("scriptrice");
+    expect(find(nomen)).toBe("nomine");
+    expect(find(animal)).toBe("animali");
+    expect(find(ars)).toBe("arte");
   });
 
-  test("Ablative", () => {
-    const form = ["ablative", "plural"];
+  test("Plural", () => {
+    const find = (noun: Noun) => noun.ablative?.plural;
   
-    expect(scriptor(villa, ...form)).toBe("villis");
-    expect(scriptor(puer, ...form)).toBe("pueris");
-    expect(scriptor(templum, ...form)).toBe("templis");
-    expect(scriptor(virtus, ...form)).toBe("virtutibus");
-    expect(scriptor(tempus, ...form)).toBe("temporibus");
+    expect(find(villa)).toBe("villis");
+    expect(find(puer)).toBe("pueris");
+    expect(find(templum)).toBe("templis");
+    expect(find(virtus)).toBe("virtutibus");
+    expect(find(tempus)).toBe("temporibus");
   });
 });

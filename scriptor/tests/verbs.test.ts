@@ -1,230 +1,254 @@
 import { describe, expect, test } from "bun:test";
-import scriptor from "..";
+import scriptor, { type Verb } from "..";
 
-const amo = "amō, amāre, amāvī, amātus";
-const doVerb = "do, dare, dedi, datus";
-const porto = "porto, portare, portavi, portatus";
+const amo = scriptor<Verb>("amo, amare, amavi, amatus");
+const doVerb = scriptor<Verb>("do, dare, dedi, datus");
+const porto = scriptor<Verb>("porto, portare, portavi, portatus");
 
-const habeo = "habeo, habere, habui, habitus";
-const maneo = "maneō, manēre, mānsī, mānsus";
-const moneo = "moneo, monere, monui, monitus";
+const habeo = scriptor<Verb>("habeo, habere, habui, habitus");
+const maneo = scriptor<Verb>("maneo, manere, mansi, mansus");
+const moneo = scriptor<Verb>("moneo, monere, monui, monitus");
 
-const contendo = "contendo, contendere, contendi, contentus";
-const dico = "dico, dicere, dixi, dictus";
-const traho = "trahō, trahere, trāxī, tractus";
+const contendo = scriptor<Verb>("contendo, contendere, contendi, contentus");
+const dico = scriptor<Verb>("dico, dicere, dixi, dictus");
+const traho = scriptor<Verb>("traho, trahere, traxi, tractus");
 
-const capio = "capio, capere, cepi, captus";
-const facio = "facio, facere, feci, factus";
-const fugio = "fugio, fugere, fugi, fugitus";
+const capio = scriptor<Verb>("capio, capere, cepi, captus");
+const facio = scriptor<Verb>("facio, facere, feci, factus");
+const fugio = scriptor<Verb>("fugio, fugere, fugi, fugitus");
 
-const audio = "audio, audire, audivi, auditus";
-const invenio = "invenio, invenire, inveni, inventus";
-const saevio = "saevio, saevire, saevii";
+const audio = scriptor<Verb>("audio, audire, audivi, auditus");
+const invenio = scriptor<Verb>("invenio, invenire, inveni, inventus");
+const saevio = scriptor<Verb>("saevio, saevire, saevii");
 
-describe("Present active indicative", () => {
-  const repeated = ["present", "active", "indicative"];
+describe("Indicative", () => {
+  describe("Present active", () => {
+    test("1st person singular", () => {
+      const find = (verb: Verb) => verb.indicative?.active?.present?.singular?.first;
 
-  test("1st person singular", () => {
-    expect(scriptor(amo, "1st", "singular", ...repeated)).toBe("amo");
-    expect(scriptor(habeo, "1st", "singular", ...repeated)).toBe("habeo");
-    expect(scriptor(contendo, "1st", "singular", ...repeated)).toBe("contendo");
-    expect(scriptor(capio, "1st", "singular", ...repeated)).toBe("capio");
-    expect(scriptor(audio, "1st", "singular", ...repeated)).toBe("audio");
+      expect(find(amo)).toBe("amo");
+      expect(find(habeo)).toBe("habeo");
+      expect(find(contendo)).toBe("contendo");
+      expect(find(capio)).toBe("capio");
+      expect(find(audio)).toBe("audio");
+    });
+
+    test("2nd person singular", () => {
+      const find = (verb: Verb) => verb.indicative?.active?.present?.singular?.second;
+
+      expect(find(doVerb)).toBe("das");
+      expect(find(maneo)).toBe("manes");
+      expect(find(dico)).toBe("dicis");
+      expect(find(facio)).toBe("facis");
+      expect(find(invenio)).toBe("invenis");
+    });
+
+    test("3rd person singular", () => {
+      const find = (verb: Verb) => verb.indicative?.active?.present?.singular?.third;
+
+      expect(find(porto)).toBe("portat");
+      expect(find(moneo)).toBe("monet");
+      expect(find(traho)).toBe("trahit");
+      expect(find(fugio)).toBe("fugit");
+      expect(find(saevio)).toBe("saevit");
+    });
+
+    test("1st person plural", () => {
+      const find = (verb: Verb) => verb.indicative?.active?.present?.plural?.first;
+
+      expect(find(amo)).toBe("amamus");
+      expect(find(habeo)).toBe("habemus");
+      expect(find(contendo)).toBe("contendimus");
+      expect(find(capio)).toBe("capimus");
+      expect(find(audio)).toBe("audimus");
+    });
+
+    test("2nd person plural", () => {
+      const find = (verb: Verb) => verb.indicative?.active?.present?.plural?.second;
+
+      expect(find(doVerb)).toBe("datis");
+      expect(find(maneo)).toBe("manetis");
+      expect(find(dico)).toBe("dicitis");
+      expect(find(facio)).toBe("facitis");
+      expect(find(invenio)).toBe("invenitis");
+    });
+
+    test("3rd person plural", () => {
+      const find = (verb: Verb) => verb.indicative?.active?.present?.plural?.third;
+
+      expect(find(porto)).toBe("portant");
+      expect(find(moneo)).toBe("monent");
+      expect(find(traho)).toBe("trahunt");
+      expect(find(fugio)).toBe("fugiunt");
+      expect(find(saevio)).toBe("saeviunt");
+    });
   });
 
-  test("2nd person singular", () => {
-    expect(scriptor(doVerb, "2nd", "singular", ...repeated)).toBe("das");
-    expect(scriptor(maneo, "2nd", "singular", ...repeated)).toBe("manes");
-    expect(scriptor(dico, "2nd", "singular", ...repeated)).toBe("dicis");
-    expect(scriptor(facio, "2nd", "singular", ...repeated)).toBe("facis");
-    expect(scriptor(invenio, "2nd", "singular", ...repeated)).toBe("invenis");
+  describe("Perfect active", () => {
+    test("1st person singular", () => expect(amo.indicative?.active?.perfect?.singular?.first).toBe("amavi"));
+    test("2nd person singular", () => expect(habeo.indicative?.active?.perfect?.singular?.second).toBe("habuisti"));
+    test("3rd person singular", () => expect(traho.indicative?.active?.perfect?.singular?.third).toBe("traxit"));
+    test("1st person plural", () => expect(invenio.indicative?.active?.perfect?.plural?.first).toBe("invenimus"));
+    test("2nd person plural", () => expect(doVerb.indicative?.active?.perfect?.plural?.second).toBe("dedistis"));
+    test("3rd person plural", () => expect(maneo.indicative?.active?.perfect?.plural?.third).toBe("manserunt"));  
   });
 
-  test("3rd person singular", () => {
-    expect(scriptor(porto, "3rd", "singular", ...repeated)).toBe("portat");
-    expect(scriptor(moneo, "3rd", "singular", ...repeated)).toBe("monet");
-    expect(scriptor(traho, "3rd", "singular", ...repeated)).toBe("trahit");
-    expect(scriptor(fugio, "3rd", "singular", ...repeated)).toBe("fugit");
-    expect(scriptor(saevio, "3rd", "singular", ...repeated)).toBe("saevit");
+  describe("Imperfect active", () => {
+    test("1st person singular", () => {
+      const find = (verb: Verb) => verb.indicative?.active?.imperfect?.singular?.first;
+
+      expect(find(amo)).toBe("amabam");
+      expect(find(habeo)).toBe("habebam");
+      expect(find(contendo)).toBe("contendebam");
+      expect(find(capio)).toBe("capiebam");
+      expect(find(audio)).toBe("audiebam");
+    });
+
+    test("2nd person singular", () => {
+      const find = (verb: Verb) => verb.indicative?.active?.imperfect?.singular?.second;
+
+      expect(find(doVerb)).toBe("dabas");
+      expect(find(maneo)).toBe("manebas");
+      expect(find(dico)).toBe("dicebas");
+      expect(find(facio)).toBe("faciebas");
+      expect(find(invenio)).toBe("inveniebas");
+    });
+
+    test("3rd person singular", () => {
+      const find = (verb: Verb) => verb.indicative?.active?.imperfect?.singular?.third;
+
+      expect(find(porto)).toBe("portabat");
+      expect(find(moneo)).toBe("monebat");
+      expect(find(traho)).toBe("trahebat");
+      expect(find(fugio)).toBe("fugiebat");
+      expect(find(saevio)).toBe("saeviebat");
+    });
+
+    test("1st person plural", () => {
+      const find = (verb: Verb) => verb.indicative?.active?.imperfect?.plural?.first;
+
+      expect(find(amo)).toBe("amabamus");
+      expect(find(habeo)).toBe("habebamus");
+      expect(find(contendo)).toBe("contendebamus");
+      expect(find(capio)).toBe("capiebamus");
+      expect(find(audio)).toBe("audiebamus");
+    });
+
+    test("2nd person plural", () => {
+      const find = (verb: Verb) => verb.indicative?.active?.imperfect?.plural?.second;
+
+      expect(find(doVerb)).toBe("dabatis");
+      expect(find(maneo)).toBe("manebatis");
+      expect(find(dico)).toBe("dicebatis");
+      expect(find(facio)).toBe("faciebatis");
+      expect(find(invenio)).toBe("inveniebatis");
+    });
+
+    test("3rd person plural", () => {
+      const find = (verb: Verb) => verb.indicative?.active?.imperfect?.plural?.third;
+
+      expect(find(porto)).toBe("portabant");
+      expect(find(moneo)).toBe("monebant");
+      expect(find(traho)).toBe("trahebant");
+      expect(find(fugio)).toBe("fugiebant");
+      expect(find(saevio)).toBe("saeviebant");
+    });
   });
 
-  test("1st person plural", () => {
-    expect(scriptor(amo, "1st", "plural", ...repeated)).toBe("amamus");
-    expect(scriptor(habeo, "1st", "plural", ...repeated)).toBe("habemus");
-    expect(scriptor(contendo, "1st", "plural", ...repeated)).toBe("contendimus");
-    expect(scriptor(capio, "1st", "plural", ...repeated)).toBe("capimus");
-    expect(scriptor(audio, "1st", "plural", ...repeated)).toBe("audimus");
-  });
-
-  test("2nd person plural", () => {
-    expect(scriptor(doVerb, "2nd", "plural", ...repeated)).toBe("datis");
-    expect(scriptor(maneo, "2nd", "plural", ...repeated)).toBe("manetis");
-    expect(scriptor(dico, "2nd", "plural", ...repeated)).toBe("dicitis");
-    expect(scriptor(facio, "2nd", "plural", ...repeated)).toBe("facitis");
-    expect(scriptor(invenio, "2nd", "plural", ...repeated)).toBe("invenitis");
-  });
-
-  test("3rd person plural", () => {
-    expect(scriptor(porto, "3rd", "plural", ...repeated)).toBe("portant");
-    expect(scriptor(moneo, "3rd", "plural", ...repeated)).toBe("monent");
-    expect(scriptor(traho, "3rd", "plural", ...repeated)).toBe("trahunt");
-    expect(scriptor(fugio, "3rd", "plural", ...repeated)).toBe("fugiunt");
-    expect(scriptor(saevio, "3rd", "plural", ...repeated)).toBe("saeviunt");
-  });
-});
-
-describe("Perfect active indicative", () => {
-  const repeated = ["perfect", "active", "indicative"];
-
-  test("1st person singular", () => expect(scriptor(amo, "1st", "singular", ...repeated)).toBe("amavi"));
-  test("2nd person singular", () => expect(scriptor(habeo, "2nd", "singular", ...repeated)).toBe("habuisti"));
-  test("3rd person singular", () => expect(scriptor(traho, "3rd", "singular", ...repeated)).toBe("traxit"));
-  test("1st person plural", () => expect(scriptor(invenio, "1st", "plural", ...repeated)).toBe("invenimus"));
-  test("2nd person plural", () => expect(scriptor(doVerb, "2nd", "plural", ...repeated)).toBe("dedistis"));
-  test("3rd person plural", () => expect(scriptor(maneo, "3rd", "plural", ...repeated)).toBe("manserunt"));
-});
-
-describe("Imperfect active indicative", () => {
-  const repeated = ["imperfect", "active", "indicative"];
-
-  test("1st person singular", () => {
-    expect(scriptor(amo, "1st", "singular", ...repeated)).toBe("amabam");
-    expect(scriptor(habeo, "1st", "singular", ...repeated)).toBe("habebam");
-    expect(scriptor(contendo, "1st", "singular", ...repeated)).toBe("contendebam");
-    expect(scriptor(capio, "1st", "singular", ...repeated)).toBe("capiebam");
-    expect(scriptor(audio, "1st", "singular", ...repeated)).toBe("audiebam");
-  });
-
-  test("2nd person singular", () => {
-    expect(scriptor(doVerb, "2nd", "singular", ...repeated)).toBe("dabas");
-    expect(scriptor(maneo, "2nd", "singular", ...repeated)).toBe("manebas");
-    expect(scriptor(dico, "2nd", "singular", ...repeated)).toBe("dicebas");
-    expect(scriptor(facio, "2nd", "singular", ...repeated)).toBe("faciebas");
-    expect(scriptor(invenio, "2nd", "singular", ...repeated)).toBe("inveniebas");
-  });
-
-  test("3rd person singular", () => {
-    expect(scriptor(porto, "3rd", "singular", ...repeated)).toBe("portabat");
-    expect(scriptor(moneo, "3rd", "singular", ...repeated)).toBe("monebat");
-    expect(scriptor(traho, "3rd", "singular", ...repeated)).toBe("trahebat");
-    expect(scriptor(fugio, "3rd", "singular", ...repeated)).toBe("fugiebat");
-    expect(scriptor(saevio, "3rd", "singular", ...repeated)).toBe("saeviebat");
-  });
-
-  test("1st person plural", () => {
-    expect(scriptor(amo, "1st", "plural", ...repeated)).toBe("amabamus");
-    expect(scriptor(habeo, "1st", "plural", ...repeated)).toBe("habebamus");
-    expect(scriptor(contendo, "1st", "plural", ...repeated)).toBe("contendebamus");
-    expect(scriptor(capio, "1st", "plural", ...repeated)).toBe("capiebamus");
-    expect(scriptor(audio, "1st", "plural", ...repeated)).toBe("audiebamus");
-  });
-
-  test("2nd person plural", () => {
-    expect(scriptor(doVerb, "2nd", "plural", ...repeated)).toBe("dabatis");
-    expect(scriptor(maneo, "2nd", "plural", ...repeated)).toBe("manebatis");
-    expect(scriptor(dico, "2nd", "plural", ...repeated)).toBe("dicebatis");
-    expect(scriptor(facio, "2nd", "plural", ...repeated)).toBe("faciebatis");
-    expect(scriptor(invenio, "2nd", "plural", ...repeated)).toBe("inveniebatis");
-  });
-
-  test("3rd person plural", () => {
-    expect(scriptor(porto, "3rd", "plural", ...repeated)).toBe("portabant");
-    expect(scriptor(moneo, "3rd", "plural", ...repeated)).toBe("monebant");
-    expect(scriptor(traho, "3rd", "plural", ...repeated)).toBe("trahebant");
-    expect(scriptor(fugio, "3rd", "plural", ...repeated)).toBe("fugiebant");
-    expect(scriptor(saevio, "3rd", "plural", ...repeated)).toBe("saeviebant");
-  });
-});
-
-describe("Pluperfect active indicative", () => {
-  const repeated = ["pluperfect", "active", "indicative"];
-
-  test("1st person singular", () => expect(scriptor(amo, "1st", "singular", ...repeated)).toBe("amaveram"));
-  test("2nd person singular", () => expect(scriptor(habeo, "2nd", "singular", ...repeated)).toBe("habueras"));
-  test("3rd person singular", () => expect(scriptor(traho, "3rd", "singular", ...repeated)).toBe("traxerat"));
-  test("1st person plural", () => expect(scriptor(invenio, "1st", "plural", ...repeated)).toBe("inveneramus"));
-  test("2nd person plural", () => expect(scriptor(doVerb, "2nd", "plural", ...repeated)).toBe("dederatis"));
-  test("3rd person plural", () => expect(scriptor(maneo, "3rd", "plural", ...repeated)).toBe("manserant"));
-});
-
-describe("Imperfect active subjunctive", () => {
-  const repeated = ["imperfect", "active", "subjunctive"];
-
-  test("1st person singular", () => expect(scriptor(amo, "1st", "singular", ...repeated)).toBe("amarem"));
-  test("2nd person singular", () => expect(scriptor(habeo, "2nd", "singular", ...repeated)).toBe("haberes"));
-  test("3rd person singular", () => expect(scriptor(traho, "3rd", "singular", ...repeated)).toBe("traheret"));
-  test("1st person plural", () => expect(scriptor(invenio, "1st", "plural", ...repeated)).toBe("inveniremus"));
-  test("2nd person plural", () => expect(scriptor(doVerb, "2nd", "plural", ...repeated)).toBe("daretis"));
-  test("3rd person plural", () => expect(scriptor(maneo, "3rd", "plural", ...repeated)).toBe("manerent"));
-});
-
-describe("Pluperfect active subjunctive", () => {
-  const repeated = ["pluperfect", "active", "subjunctive"];
-
-  test("1st person singular", () => expect(scriptor(amo, "1st", "singular", ...repeated)).toBe("amavissem"));
-  test("2nd person singular", () => expect(scriptor(habeo, "2nd", "singular", ...repeated)).toBe("habuisses"));
-  test("3rd person singular", () => expect(scriptor(traho, "3rd", "singular", ...repeated)).toBe("traxisset"));
-  test("1st person plural", () => expect(scriptor(invenio, "1st", "plural", ...repeated)).toBe("invenissemus"));
-  test("2nd person plural", () => expect(scriptor(doVerb, "2nd", "plural", ...repeated)).toBe("dedissetis"));
-  test("3rd person plural", () => expect(scriptor(maneo, "3rd", "plural", ...repeated)).toBe("mansissent"));
-});
-
-describe("Present active imperative", () => {
-  const repeated = ["present", "active", "imperative"];
-
-  test("2nd person singular", () => {
-    expect(scriptor(amo, "2nd", "singular", ...repeated)).toBe("ama");
-    expect(scriptor(habeo, "2nd", "singular", ...repeated)).toBe("habe");
-    expect(scriptor(traho, "2nd", "singular", ...repeated)).toBe("trahe");
-    expect(scriptor(capio, "2nd", "singular", ...repeated)).toBe("cape");
-    expect(scriptor(invenio, "2nd", "singular", ...repeated)).toBe("inveni");
-  });
-
-  test("2nd person plural", () => {
-    expect(scriptor(amo, "2nd", "plural", ...repeated)).toBe("amate");
-    expect(scriptor(habeo, "2nd", "plural", ...repeated)).toBe("habete");
-    expect(scriptor(traho, "2nd", "plural", ...repeated)).toBe("trahite");
-    expect(scriptor(facio, "2nd", "plural", ...repeated)).toBe("facite");
-    expect(scriptor(invenio, "2nd", "plural", ...repeated)).toBe("invenite");
+  describe("Pluperfect active", () => {  
+    test("1st person singular", () => expect(amo.indicative?.active?.pluperfect?.singular?.first).toBe("amaveram"));
+    test("2nd person singular", () => expect(habeo.indicative?.active?.pluperfect?.singular?.second).toBe("habueras"));
+    test("3rd person singular", () => expect(traho.indicative?.active?.pluperfect?.singular?.third).toBe("traxerat"));
+    test("1st person plural", () => expect(invenio.indicative?.active?.pluperfect?.plural?.first).toBe("inveneramus"));
+    test("2nd person plural", () => expect(doVerb.indicative?.active?.pluperfect?.plural?.second).toBe("dederatis"));
+    test("3rd person plural", () => expect(maneo.indicative?.active?.pluperfect?.plural?.third).toBe("manserant"));
   });
 });
 
-test("Present active infinitive", () => {
-  const repeated = ["present", "active", "infinitive"];
+describe("Subjunctive", () => {
+  describe("Imperfect active", () => {
+    test("1st person singular", () => expect(amo.subjunctive?.active?.imperfect?.singular?.first).toBe("amarem"));
+    test("2nd person singular", () => expect(habeo.subjunctive?.active?.imperfect?.singular?.second).toBe("haberes"));
+    test("3rd person singular", () => expect(traho.subjunctive?.active?.imperfect?.singular?.third).toBe("traheret"));
+    test("1st person plural", () => expect(invenio.subjunctive?.active?.imperfect?.plural?.first).toBe("inveniremus"));
+    test("2nd person plural", () => expect(doVerb.subjunctive?.active?.imperfect?.plural?.second).toBe("daretis"));
+    test("3rd person plural", () => expect(maneo.subjunctive?.active?.imperfect?.plural?.third).toBe("manerent"));
+  });
 
-  expect(scriptor(amo, ...repeated)).toBe("amare");
-  expect(scriptor(habeo, ...repeated)).toBe("habere");
-  expect(scriptor(traho, ...repeated)).toBe("trahere");
-  expect(scriptor(fugio, ...repeated)).toBe("fugere");
-  expect(scriptor(invenio, ...repeated)).toBe("invenire");
+  describe("Pluperfect active", () => {
+    test("1st person singular", () => expect(amo.subjunctive?.active?.pluperfect?.singular?.first).toBe("amavissem"));
+    test("2nd person singular", () => expect(habeo.subjunctive?.active?.pluperfect?.singular?.second).toBe("habuisses"));
+    test("3rd person singular", () => expect(traho.subjunctive?.active?.pluperfect?.singular?.third).toBe("traxisset"));
+    test("1st person plural", () => expect(invenio.subjunctive?.active?.pluperfect?.plural?.first).toBe("invenissemus"));
+    test("2nd person plural", () => expect(doVerb.subjunctive?.active?.pluperfect?.plural?.second).toBe("dedissetis"));
+    test("3rd person plural", () => expect(maneo.subjunctive?.active?.pluperfect?.plural?.third).toBe("mansissent"));
+  });
 });
 
-test("Perfect active infinitive", () => {
-  const repeated = ["perfect", "active", "infinitive"];
+describe("Imperative", () => {
+  describe("Present active", () => {
+    test("2nd person singular", () => {
+      const find = (verb: Verb) => verb.imperative?.active?.present?.singular?.second;
 
-  expect(scriptor(amo, ...repeated)).toBe("amavisse");
-  expect(scriptor(habeo, ...repeated)).toBe("habuisse");
-  expect(scriptor(traho, ...repeated)).toBe("traxisse");
-  expect(scriptor(capio, ...repeated)).toBe("cepisse");
-  expect(scriptor(invenio, ...repeated)).toBe("invenisse");
+      expect(find(amo)).toBe("ama");
+      expect(find(habeo)).toBe("habe");
+      expect(find(traho)).toBe("trahe");
+      expect(find(capio)).toBe("cape");
+      expect(find(invenio)).toBe("inveni");
+    });
+  
+    test("2nd person plural", () => {
+      const find = (verb: Verb) => verb.imperative?.active?.present?.plural?.second;
+
+      expect(find(amo)).toBe("amate");
+      expect(find(habeo)).toBe("habete");
+      expect(find(traho)).toBe("trahite");
+      expect(find(facio)).toBe("facite");
+      expect(find(invenio)).toBe("invenite");
+    });
+  });
 });
 
-test("Present active participle", () => {
-  const repeated = ["present", "active", "participle"];
+describe("Infinitive", () => {
+  test("Present active", () => {
+    const find = (verb: Verb) => verb.infinitive?.active?.present;
 
-  expect(scriptor(amo, ...repeated)).toBe("amans, amantis");
-  expect(scriptor(habeo, ...repeated)).toBe("habens, habentis");
-  expect(scriptor(traho, ...repeated)).toBe("trahens, trahentis");
-  expect(scriptor(facio, ...repeated)).toBe("faciens, facientis");
-  expect(scriptor(invenio, ...repeated)).toBe("inveniens, invenientis");
+    expect(find(amo)).toBe("amare");
+    expect(find(habeo)).toBe("habere");
+    expect(find(traho)).toBe("trahere");
+    expect(find(fugio)).toBe("fugere");
+    expect(find(invenio)).toBe("invenire");  
+  });
+  
+  test("Perfect active", () => {
+    const find = (verb: Verb) => verb.infinitive?.active?.perfect;
+
+    expect(find(amo)).toBe("amavisse");
+    expect(find(habeo)).toBe("habuisse");
+    expect(find(traho)).toBe("traxisse");
+    expect(find(capio)).toBe("cepisse");
+    expect(find(invenio)).toBe("invenisse");
+  });
 });
 
-test("Perfect passive participle", () => {
-  const repeated = ["perfect", "passive", "participle"];
+describe("Participle", () => {
+  test("Present active", () => {
+    const find = (verb: Verb) => verb.participle?.active?.present;
 
-  expect(scriptor(amo, ...repeated)).toBe("amatus, amata, amatum");
-  expect(scriptor(habeo, ...repeated)).toBe("habitus, habita, habitum");
-  expect(scriptor(traho, ...repeated)).toBe("tractus, tracta, tractum");
-  expect(scriptor(fugio, ...repeated)).toBe("fugitus, fugita, fugitum");
-  expect(scriptor(invenio, ...repeated)).toBe("inventus, inventa, inventum");
+    expect(find(amo)).toBe("amans, amantis");
+    expect(find(habeo)).toBe("habens, habentis");
+    expect(find(traho)).toBe("trahens, trahentis");
+    expect(find(facio)).toBe("faciens, facientis");
+    expect(find(invenio)).toBe("inveniens, invenientis");  
+  });
+
+  test("Perfect passive", () => {
+    const find = (verb: Verb) => verb.participle?.passive?.perfect;
+
+    expect(find(amo)).toBe("amatus, amata, amatum");
+    expect(find(habeo)).toBe("habitus, habita, habitum");
+    expect(find(traho)).toBe("tractus, tracta, tractum");
+    expect(find(fugio)).toBe("fugitus, fugita, fugitum");
+    expect(find(invenio)).toBe("inventus, inventa, inventum");
+  });
 });

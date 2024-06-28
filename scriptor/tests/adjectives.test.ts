@@ -1,559 +1,539 @@
 import { describe, expect, test } from "bun:test";
-import scriptor from "..";
+import scriptor, { type Adjective } from "..";
 
-const acer = "acer, acris, acre";
-const aeger = "aeger, aegra, aegrum";
-const celer = "celer, celeris, celere";
-const felix = "felix, felicis";
-const fortis = "fortis, forte";
-const ingens = "ingens, ingentis";
-const laetissimus = "laetissimus, laetissima, laetissimum";
-const laetus = "laetus, laeta, laetum";
-const liber = "liber, libera, liberum";
-const maior = "maior, maius";
-const omnis = "omnis, omne";
-const sapiens = "sapiens, sapientis";
-const scribens = "scribens, scribentis";
-const scriptus = "scriptus, scripta, scriptum";
+const acer = scriptor<Adjective>("acer, acris, acre");
+const aeger = scriptor<Adjective>("aeger, aegra, aegrum");
+const celer = scriptor<Adjective>("celer, celeris, celere");
+const felix = scriptor<Adjective>("felix, felicis");
+const fortis = scriptor<Adjective>("fortis, forte");
+const ingens = scriptor<Adjective>("ingens, ingentis");
+const laetissimus = scriptor<Adjective>("laetissimus, laetissima, laetissimum");
+const laetus = scriptor<Adjective>("laetus, laeta, laetum");
+const liber = scriptor<Adjective>("liber, libera, liberum");
+const maior = scriptor<Adjective>("maior, maius");
+const omnis = scriptor<Adjective>("omnis, omne");
+const sapiens = scriptor<Adjective>("sapiens, sapientis");
+const scribens = scriptor<Adjective>("scribens, scribentis");
+const scriptus = scriptor<Adjective>("scriptus, scripta, scriptum");
 
-describe("Masculine singular", () => {
-  const repeated = ["masculine", "singular"];
+describe("Nominative", () => {
+  test("Masculine singular", () => {
+    const find = (adjective: Adjective) => adjective.nominative?.masculine?.singular;
 
-  test("Nominative", () => {
-    const form = ["nominative", ...repeated];
-  
-    expect(scriptor(aeger, ...form)).toBe("aeger");
-    expect(scriptor(celer, ...form)).toBe("celer");
-    expect(scriptor(laetissimus, ...form)).toBe("laetissimus");
-    expect(scriptor(liber, ...form)).toBe("liber");
-    expect(scriptor(maior, ...form)).toBe("maior");
-    expect(scriptor(omnis, ...form)).toBe("omnis");
-    expect(scriptor(scribens, ...form)).toBe("scribens");
-    expect(scriptor(scriptus, ...form)).toBe("scriptus");
+    expect(find(aeger)).toBe("aeger");
+    expect(find(celer)).toBe("celer");
+    expect(find(laetissimus)).toBe("laetissimus");
+    expect(find(liber)).toBe("liber");
+    expect(find(maior)).toBe("maior");
+    expect(find(omnis)).toBe("omnis");
+    expect(find(scribens)).toBe("scribens");
+    expect(find(scriptus)).toBe("scriptus");
   });
-  
-  test("Vocative", () => {
-    const form = ["vocative", ...repeated];
-  
-    expect(scriptor(aeger, ...form)).toBe("aeger");
-    expect(scriptor(celer, ...form)).toBe("celer");
-    expect(scriptor(laetissimus, ...form)).toBe("laetissime");
-    expect(scriptor(liber, ...form)).toBe("liber");
-    expect(scriptor(maior, ...form)).toBe("maior");
-    expect(scriptor(omnis, ...form)).toBe("omnis");
-    expect(scriptor(scribens, ...form)).toBe("scribens");
-    expect(scriptor(scriptus, ...form)).toBe("scripte");
-  });
-  
-  test("Accusative", () => {
-    const form = ["accusative", ...repeated];
-  
-    expect(scriptor(aeger, ...form)).toBe("aegrum");
-    expect(scriptor(celer, ...form)).toBe("celerem");
-    expect(scriptor(laetissimus, ...form)).toBe("laetissimum");
-    expect(scriptor(liber, ...form)).toBe("liberum");
-    expect(scriptor(maior, ...form)).toBe("maiorem");
-    expect(scriptor(omnis, ...form)).toBe("omnem");
-    expect(scriptor(scribens, ...form)).toBe("scribentem");
-    expect(scriptor(scriptus, ...form)).toBe("scriptum");
-  });
-  
-  test("Genitive", () => {
-    const form = ["genitive", ...repeated];
-  
-    expect(scriptor(aeger, ...form)).toBe("aegri");
-    expect(scriptor(celer, ...form)).toBe("celeris");
-    expect(scriptor(laetissimus, ...form)).toBe("laetissimi");
-    expect(scriptor(liber, ...form)).toBe("liberi");
-    expect(scriptor(maior, ...form)).toBe("maioris");
-    expect(scriptor(omnis, ...form)).toBe("omnis");
-    expect(scriptor(scribens, ...form)).toBe("scribentis");
-    expect(scriptor(scriptus, ...form)).toBe("scripti");
-  });
-  
-  test("Dative", () => {
-    const form = ["dative", ...repeated];
-  
-    expect(scriptor(aeger, ...form)).toBe("aegro");
-    expect(scriptor(celer, ...form)).toBe("celeri");
-    expect(scriptor(laetissimus, ...form)).toBe("laetissimo");
-    expect(scriptor(liber, ...form)).toBe("libero");
-    expect(scriptor(maior, ...form)).toBe("maiori");
-    expect(scriptor(omnis, ...form)).toBe("omni");
-    expect(scriptor(scribens, ...form)).toBe("scribenti");
-    expect(scriptor(scriptus, ...form)).toBe("scripto");
-  });
-  
-  test("Ablative", () => {
-    const form = ["ablative", ...repeated];
-  
-    expect(scriptor(aeger, ...form)).toBe("aegro");
-    expect(scriptor(celer, ...form)).toBe("celeri");
-    expect(scriptor(laetissimus, ...form)).toBe("laetissimo");
-    expect(scriptor(liber, ...form)).toBe("libero");
-    expect(scriptor(maior, ...form)).toBe("maiore");
-    expect(scriptor(omnis, ...form)).toBe("omni");
-    expect(scriptor(scribens, ...form)).toBe("scribenti");
-    expect(scriptor(scriptus, ...form)).toBe("scripto");
-  });  
-});
 
-describe("Feminine singular", () => {
-  const repeated = ["feminine", "singular"];
+  test("Feminine singular", () => {
+    const find = (adjective: Adjective) => adjective.nominative?.feminine?.singular;
+      
+    expect(find(aeger)).toBe("aegra");
+    expect(find(celer)).toBe("celeris");
+    expect(find(laetissimus)).toBe("laetissima");
+    expect(find(liber)).toBe("libera");
+    expect(find(maior)).toBe("maior");
+    expect(find(omnis)).toBe("omnis");
+    expect(find(scribens)).toBe("scribens");
+    expect(find(scriptus)).toBe("scripta");
+  });
 
-  test("Nominative", () => {
-    const form = ["nominative", ...repeated];
+  test("Neuter singular", () => {
+    const find = (adjective: Adjective) => adjective.nominative?.neuter?.singular;
   
-    expect(scriptor(aeger, ...form)).toBe("aegra");
-    expect(scriptor(celer, ...form)).toBe("celeris");
-    expect(scriptor(laetissimus, ...form)).toBe("laetissima");
-    expect(scriptor(liber, ...form)).toBe("libera");
-    expect(scriptor(maior, ...form)).toBe("maior");
-    expect(scriptor(omnis, ...form)).toBe("omnis");
-    expect(scriptor(scribens, ...form)).toBe("scribens");
-    expect(scriptor(scriptus, ...form)).toBe("scripta");
+    expect(find(aeger)).toBe("aegrum");
+    expect(find(celer)).toBe("celere");
+    expect(find(laetissimus)).toBe("laetissimum");
+    expect(find(liber)).toBe("liberum");
+    expect(find(maior)).toBe("maius");
+    expect(find(omnis)).toBe("omne");
+    expect(find(scribens)).toBe("scribens");
+    expect(find(scriptus)).toBe("scriptum");
   });
+
+  test("Masculine plural", () => {
+    const find = (adjective: Adjective) => adjective.nominative?.masculine?.plural;
   
-  test("Vocative", () => {
-    const form = ["vocative", ...repeated];
-  
-    expect(scriptor(aeger, ...form)).toBe("aegra");
-    expect(scriptor(celer, ...form)).toBe("celeris");
-    expect(scriptor(laetissimus, ...form)).toBe("laetissima");
-    expect(scriptor(liber, ...form)).toBe("libera");
-    expect(scriptor(maior, ...form)).toBe("maior");
-    expect(scriptor(omnis, ...form)).toBe("omnis");
-    expect(scriptor(scribens, ...form)).toBe("scribens");
-    expect(scriptor(scriptus, ...form)).toBe("scripta");
+    expect(find(aeger)).toBe("aegri");
+    expect(find(celer)).toBe("celeres");
+    expect(find(laetissimus)).toBe("laetissimi");
+    expect(find(liber)).toBe("liberi");
+    expect(find(maior)).toBe("maiores");
+    expect(find(omnis)).toBe("omnes");
+    expect(find(scribens)).toBe("scribentes");
+    expect(find(scriptus)).toBe("scripti");
   });
+
+  test("Feminine plural", () => {
+    const find = (adjective: Adjective) => adjective.nominative?.feminine?.plural;
   
-  test("Accusative", () => {
-    const form = ["accusative", ...repeated];
-  
-    expect(scriptor(aeger, ...form)).toBe("aegram");
-    expect(scriptor(celer, ...form)).toBe("celerem");
-    expect(scriptor(laetissimus, ...form)).toBe("laetissimam");
-    expect(scriptor(liber, ...form)).toBe("liberam");
-    expect(scriptor(maior, ...form)).toBe("maiorem");
-    expect(scriptor(omnis, ...form)).toBe("omnem");
-    expect(scriptor(scribens, ...form)).toBe("scribentem");
-    expect(scriptor(scriptus, ...form)).toBe("scriptam");
+    expect(find(aeger)).toBe("aegrae");
+    expect(find(celer)).toBe("celeres");
+    expect(find(laetissimus)).toBe("laetissimae");
+    expect(find(liber)).toBe("liberae");
+    expect(find(maior)).toBe("maiores");
+    expect(find(omnis)).toBe("omnes");
+    expect(find(scribens)).toBe("scribentes");
+    expect(find(scriptus)).toBe("scriptae");
   });
+
+  test("Neuter plural", () => {
+    const find = (adjective: Adjective) => adjective.nominative?.neuter?.plural;
   
-  test("Genitive", () => {
-    const form = ["genitive", ...repeated];
-  
-    expect(scriptor(aeger, ...form)).toBe("aegrae");
-    expect(scriptor(celer, ...form)).toBe("celeris");
-    expect(scriptor(laetissimus, ...form)).toBe("laetissimae");
-    expect(scriptor(liber, ...form)).toBe("liberae");
-    expect(scriptor(maior, ...form)).toBe("maioris");
-    expect(scriptor(omnis, ...form)).toBe("omnis");
-    expect(scriptor(scribens, ...form)).toBe("scribentis");
-    expect(scriptor(scriptus, ...form)).toBe("scriptae");
-  });
-  
-  test("Dative", () => {
-    const form = ["dative", ...repeated];
-  
-    expect(scriptor(aeger, ...form)).toBe("aegrae");
-    expect(scriptor(celer, ...form)).toBe("celeri");
-    expect(scriptor(laetissimus, ...form)).toBe("laetissimae");
-    expect(scriptor(liber, ...form)).toBe("liberae");
-    expect(scriptor(maior, ...form)).toBe("maiori");
-    expect(scriptor(omnis, ...form)).toBe("omni");
-    expect(scriptor(scribens, ...form)).toBe("scribenti");
-    expect(scriptor(scriptus, ...form)).toBe("scriptae");
-  });
-  
-  test("Ablative", () => {
-    const form = ["ablative", ...repeated];
-  
-    expect(scriptor(aeger, ...form)).toBe("aegra");
-    expect(scriptor(celer, ...form)).toBe("celeri");
-    expect(scriptor(laetissimus, ...form)).toBe("laetissima");
-    expect(scriptor(liber, ...form)).toBe("libera");
-    expect(scriptor(maior, ...form)).toBe("maiore");
-    expect(scriptor(omnis, ...form)).toBe("omni");
-    expect(scriptor(scribens, ...form)).toBe("scribenti");
-    expect(scriptor(scriptus, ...form)).toBe("scripta");
+    expect(find(aeger)).toBe("aegra");
+    expect(find(celer)).toBe("celeria");
+    expect(find(laetissimus)).toBe("laetissima");
+    expect(find(liber)).toBe("libera");
+    expect(find(maior)).toBe("maiora");
+    expect(find(omnis)).toBe("omnia");
+    expect(find(scribens)).toBe("scribentia");
+    expect(find(scriptus)).toBe("scripta");
   });
 });
 
-describe("Neuter singular", () => {
-  const repeated = ["neuter", "singular"];
+describe("Vocative", () => {
+  test("Masculine singular", () => {
+    const find = (adjective: Adjective) => adjective.vocative?.masculine?.singular;
+  
+    expect(find(aeger)).toBe("aeger");
+    expect(find(celer)).toBe("celer");
+    expect(find(laetissimus)).toBe("laetissime");
+    expect(find(liber)).toBe("liber");
+    expect(find(maior)).toBe("maior");
+    expect(find(omnis)).toBe("omnis");
+    expect(find(scribens)).toBe("scribens");
+    expect(find(scriptus)).toBe("scripte");
+  });
 
-  test("Nominative", () => {
-    const form = ["nominative", ...repeated];
+  test("Feminine singular", () => {
+    const find = (adjective: Adjective) => adjective.vocative?.feminine?.singular;
   
-    expect(scriptor(aeger, ...form)).toBe("aegrum");
-    expect(scriptor(celer, ...form)).toBe("celere");
-    expect(scriptor(laetissimus, ...form)).toBe("laetissimum");
-    expect(scriptor(liber, ...form)).toBe("liberum");
-    expect(scriptor(maior, ...form)).toBe("maius");
-    expect(scriptor(omnis, ...form)).toBe("omne");
-    expect(scriptor(scribens, ...form)).toBe("scribens");
-    expect(scriptor(scriptus, ...form)).toBe("scriptum");
+    expect(find(aeger)).toBe("aegra");
+    expect(find(celer)).toBe("celeris");
+    expect(find(laetissimus)).toBe("laetissima");
+    expect(find(liber)).toBe("libera");
+    expect(find(maior)).toBe("maior");
+    expect(find(omnis)).toBe("omnis");
+    expect(find(scribens)).toBe("scribens");
+    expect(find(scriptus)).toBe("scripta");
   });
+
+  test("Neuter singular", () => {
+    const find = (adjective: Adjective) => adjective.vocative?.neuter?.singular;
   
-  test("Vocative", () => {
-    const form = ["vocative", ...repeated];
-  
-    expect(scriptor(aeger, ...form)).toBe("aegrum");
-    expect(scriptor(celer, ...form)).toBe("celere");
-    expect(scriptor(laetissimus, ...form)).toBe("laetissimum");
-    expect(scriptor(liber, ...form)).toBe("liberum");
-    expect(scriptor(maior, ...form)).toBe("maius");
-    expect(scriptor(omnis, ...form)).toBe("omne");
-    expect(scriptor(scribens, ...form)).toBe("scribens");
-    expect(scriptor(scriptus, ...form)).toBe("scriptum");
+    expect(find(aeger)).toBe("aegrum");
+    expect(find(celer)).toBe("celere");
+    expect(find(laetissimus)).toBe("laetissimum");
+    expect(find(liber)).toBe("liberum");
+    expect(find(maior)).toBe("maius");
+    expect(find(omnis)).toBe("omne");
+    expect(find(scribens)).toBe("scribens");
+    expect(find(scriptus)).toBe("scriptum");
   });
+
+  test("Masculine plural", () => {
+    const find = (adjective: Adjective) => adjective.vocative?.masculine?.plural;
   
-  test("Accusative", () => {
-    const form = ["accusative", ...repeated];
-  
-    expect(scriptor(aeger, ...form)).toBe("aegrum");
-    expect(scriptor(celer, ...form)).toBe("celere");
-    expect(scriptor(laetissimus, ...form)).toBe("laetissimum");
-    expect(scriptor(liber, ...form)).toBe("liberum");
-    expect(scriptor(maior, ...form)).toBe("maius");
-    expect(scriptor(omnis, ...form)).toBe("omne");
-    expect(scriptor(scribens, ...form)).toBe("scribens");
-    expect(scriptor(scriptus, ...form)).toBe("scriptum");
+    expect(find(aeger)).toBe("aegri");
+    expect(find(celer)).toBe("celeres");
+    expect(find(laetissimus)).toBe("laetissimi");
+    expect(find(liber)).toBe("liberi");
+    expect(find(maior)).toBe("maiores");
+    expect(find(omnis)).toBe("omnes");
+    expect(find(scribens)).toBe("scribentes");
+    expect(find(scriptus)).toBe("scripti");
   });
+
+  test("Feminine plural", () => {
+    const find = (adjective: Adjective) => adjective.vocative?.feminine?.plural;
   
-  test("Genitive", () => {
-    const form = ["genitive", ...repeated];
-  
-    expect(scriptor(aeger, ...form)).toBe("aegri");
-    expect(scriptor(celer, ...form)).toBe("celeris");
-    expect(scriptor(laetissimus, ...form)).toBe("laetissimi");
-    expect(scriptor(liber, ...form)).toBe("liberi");
-    expect(scriptor(maior, ...form)).toBe("maioris");
-    expect(scriptor(omnis, ...form)).toBe("omnis");
-    expect(scriptor(scribens, ...form)).toBe("scribentis");
-    expect(scriptor(scriptus, ...form)).toBe("scripti");
+    expect(find(aeger)).toBe("aegrae");
+    expect(find(celer)).toBe("celeres");
+    expect(find(laetissimus)).toBe("laetissimae");
+    expect(find(liber)).toBe("liberae");
+    expect(find(maior)).toBe("maiores");
+    expect(find(omnis)).toBe("omnes");
+    expect(find(scribens)).toBe("scribentes");
+    expect(find(scriptus)).toBe("scriptae");
   });
+
+  test("Neuter plural", () => {
+    const find = (adjective: Adjective) => adjective.vocative?.neuter?.plural;
   
-  test("Dative", () => {
-    const form = ["dative", ...repeated];
-  
-    expect(scriptor(aeger, ...form)).toBe("aegro");
-    expect(scriptor(celer, ...form)).toBe("celeri");
-    expect(scriptor(laetissimus, ...form)).toBe("laetissimo");
-    expect(scriptor(liber, ...form)).toBe("libero");
-    expect(scriptor(maior, ...form)).toBe("maiori");
-    expect(scriptor(omnis, ...form)).toBe("omni");
-    expect(scriptor(scribens, ...form)).toBe("scribenti");
-    expect(scriptor(scriptus, ...form)).toBe("scripto");
-  });
-  
-  test("Ablative", () => {
-    const form = ["ablative", ...repeated];
-  
-    expect(scriptor(aeger, ...form)).toBe("aegro");
-    expect(scriptor(celer, ...form)).toBe("celeri");
-    expect(scriptor(laetissimus, ...form)).toBe("laetissimo");
-    expect(scriptor(liber, ...form)).toBe("libero");
-    expect(scriptor(maior, ...form)).toBe("maiore");
-    expect(scriptor(omnis, ...form)).toBe("omni");
-    expect(scriptor(scribens, ...form)).toBe("scribenti");
-    expect(scriptor(scriptus, ...form)).toBe("scripto");
+    expect(find(aeger)).toBe("aegra");
+    expect(find(celer)).toBe("celeria");
+    expect(find(laetissimus)).toBe("laetissima");
+    expect(find(liber)).toBe("libera");
+    expect(find(maior)).toBe("maiora");
+    expect(find(omnis)).toBe("omnia");
+    expect(find(scribens)).toBe("scribentia");
+    expect(find(scriptus)).toBe("scripta");
   });
 });
 
-describe("Masculine plural", () => {
-  const repeated = ["masculine", "plural"];
+describe("Accusative", () => {
+  test("Masculine singular", () => {
+    const find = (adjective: Adjective) => adjective.accusative?.masculine?.singular;
 
-  test("Nominative", () => {
-    const form = ["nominative", ...repeated];
-  
-    expect(scriptor(aeger, ...form)).toBe("aegri");
-    expect(scriptor(celer, ...form)).toBe("celeres");
-    expect(scriptor(laetissimus, ...form)).toBe("laetissimi");
-    expect(scriptor(liber, ...form)).toBe("liberi");
-    expect(scriptor(maior, ...form)).toBe("maiores");
-    expect(scriptor(omnis, ...form)).toBe("omnes");
-    expect(scriptor(scribens, ...form)).toBe("scribentes");
-    expect(scriptor(scriptus, ...form)).toBe("scripti");
+    expect(find(aeger)).toBe("aegrum");
+    expect(find(celer)).toBe("celerem");
+    expect(find(laetissimus)).toBe("laetissimum");
+    expect(find(liber)).toBe("liberum");
+    expect(find(maior)).toBe("maiorem");
+    expect(find(omnis)).toBe("omnem");
+    expect(find(scribens)).toBe("scribentem");
+    expect(find(scriptus)).toBe("scriptum");
   });
+
+  test("Feminine singular", () => {
+    const find = (adjective: Adjective) => adjective.accusative?.feminine?.singular;
   
-  test("Vocative", () => {
-    const form = ["vocative", ...repeated];
-  
-    expect(scriptor(aeger, ...form)).toBe("aegri");
-    expect(scriptor(celer, ...form)).toBe("celeres");
-    expect(scriptor(laetissimus, ...form)).toBe("laetissimi");
-    expect(scriptor(liber, ...form)).toBe("liberi");
-    expect(scriptor(maior, ...form)).toBe("maiores");
-    expect(scriptor(omnis, ...form)).toBe("omnes");
-    expect(scriptor(scribens, ...form)).toBe("scribentes");
-    expect(scriptor(scriptus, ...form)).toBe("scripti");
+    expect(find(aeger)).toBe("aegram");
+    expect(find(celer)).toBe("celerem");
+    expect(find(laetissimus)).toBe("laetissimam");
+    expect(find(liber)).toBe("liberam");
+    expect(find(maior)).toBe("maiorem");
+    expect(find(omnis)).toBe("omnem");
+    expect(find(scribens)).toBe("scribentem");
+    expect(find(scriptus)).toBe("scriptam");
   });
+
+  test("Neuter singular", () => {
+    const find = (adjective: Adjective) => adjective.accusative?.neuter?.singular;
   
-  test("Accusative", () => {
-    const form = ["accusative", ...repeated];
-  
-    expect(scriptor(aeger, ...form)).toBe("aegros");
-    expect(scriptor(celer, ...form)).toBe("celeres");
-    expect(scriptor(laetissimus, ...form)).toBe("laetissimos");
-    expect(scriptor(liber, ...form)).toBe("liberos");
-    expect(scriptor(maior, ...form)).toBe("maiores");
-    expect(scriptor(omnis, ...form)).toBe("omnes");
-    expect(scriptor(scribens, ...form)).toBe("scribentes");
-    expect(scriptor(scriptus, ...form)).toBe("scriptos");
+    expect(find(aeger)).toBe("aegrum");
+    expect(find(celer)).toBe("celere");
+    expect(find(laetissimus)).toBe("laetissimum");
+    expect(find(liber)).toBe("liberum");
+    expect(find(maior)).toBe("maius");
+    expect(find(omnis)).toBe("omne");
+    expect(find(scribens)).toBe("scribens");
+    expect(find(scriptus)).toBe("scriptum");
   });
+
+  test("Masculine plural", () => {
+    const find = (adjective: Adjective) => adjective.accusative?.masculine?.plural;
   
-  test("Genitive", () => {
-    const form = ["genitive", ...repeated];
-  
-    expect(scriptor(aeger, ...form)).toBe("aegrorum");
-    expect(scriptor(celer, ...form)).toBe("celerium");
-    expect(scriptor(laetissimus, ...form)).toBe("laetissimorum");
-    expect(scriptor(liber, ...form)).toBe("liberorum");
-    expect(scriptor(maior, ...form)).toBe("maiorum");
-    expect(scriptor(omnis, ...form)).toBe("omnium");
-    expect(scriptor(scribens, ...form)).toBe("scribentium");
-    expect(scriptor(scriptus, ...form)).toBe("scriptorum");
+    expect(find(aeger)).toBe("aegros");
+    expect(find(celer)).toBe("celeres");
+    expect(find(laetissimus)).toBe("laetissimos");
+    expect(find(liber)).toBe("liberos");
+    expect(find(maior)).toBe("maiores");
+    expect(find(omnis)).toBe("omnes");
+    expect(find(scribens)).toBe("scribentes");
+    expect(find(scriptus)).toBe("scriptos");
   });
+
+  test("Feminine plural", () => {
+    const find = (adjective: Adjective) => adjective.accusative?.feminine?.plural;
   
-  test("Dative", () => {
-    const form = ["dative", ...repeated];
-  
-    expect(scriptor(aeger, ...form)).toBe("aegris");
-    expect(scriptor(celer, ...form)).toBe("celeribus");
-    expect(scriptor(laetissimus, ...form)).toBe("laetissimis");
-    expect(scriptor(liber, ...form)).toBe("liberis");
-    expect(scriptor(maior, ...form)).toBe("maioribus");
-    expect(scriptor(omnis, ...form)).toBe("omnibus");
-    expect(scriptor(scribens, ...form)).toBe("scribentibus");
-    expect(scriptor(scriptus, ...form)).toBe("scriptis");
+    expect(find(aeger)).toBe("aegras");
+    expect(find(celer)).toBe("celeres");
+    expect(find(laetissimus)).toBe("laetissimas");
+    expect(find(liber)).toBe("liberas");
+    expect(find(maior)).toBe("maiores");
+    expect(find(omnis)).toBe("omnes");
+    expect(find(scribens)).toBe("scribentes");
+    expect(find(scriptus)).toBe("scriptas");
   });
+
+  test("Neuter plural", () => {
+    const find = (adjective: Adjective) => adjective.accusative?.neuter?.plural;
   
-  test("Ablative", () => {
-    const form = ["ablative", ...repeated];
-  
-    expect(scriptor(aeger, ...form)).toBe("aegris");
-    expect(scriptor(celer, ...form)).toBe("celeribus");
-    expect(scriptor(laetissimus, ...form)).toBe("laetissimis");
-    expect(scriptor(liber, ...form)).toBe("liberis");
-    expect(scriptor(maior, ...form)).toBe("maioribus");
-    expect(scriptor(omnis, ...form)).toBe("omnibus");
-    expect(scriptor(scribens, ...form)).toBe("scribentibus");
-    expect(scriptor(scriptus, ...form)).toBe("scriptis");
+    expect(find(aeger)).toBe("aegra");
+    expect(find(celer)).toBe("celeria");
+    expect(find(laetissimus)).toBe("laetissima");
+    expect(find(liber)).toBe("libera");
+    expect(find(maior)).toBe("maiora");
+    expect(find(omnis)).toBe("omnia");
+    expect(find(scribens)).toBe("scribentia");
+    expect(find(scriptus)).toBe("scripta");
   });
 });
 
-describe("Feminine plural", () => {
-  const repeated = ["feminine", "plural"];
+describe("Genitive", () => {
+  test("Masculine singular", () => {
+    const find = (adjective: Adjective) => adjective.genitive?.masculine?.singular;
+  
+    expect(find(aeger)).toBe("aegri");
+    expect(find(celer)).toBe("celeris");
+    expect(find(laetissimus)).toBe("laetissimi");
+    expect(find(liber)).toBe("liberi");
+    expect(find(maior)).toBe("maioris");
+    expect(find(omnis)).toBe("omnis");
+    expect(find(scribens)).toBe("scribentis");
+    expect(find(scriptus)).toBe("scripti");
+  });
 
-  test("Nominative", () => {
-    const form = ["nominative", ...repeated];
+  test("Feminine singular", () => {
+    const find = (adjective: Adjective) => adjective.genitive?.feminine?.singular;
   
-    expect(scriptor(aeger, ...form)).toBe("aegrae");
-    expect(scriptor(celer, ...form)).toBe("celeres");
-    expect(scriptor(laetissimus, ...form)).toBe("laetissimae");
-    expect(scriptor(liber, ...form)).toBe("liberae");
-    expect(scriptor(maior, ...form)).toBe("maiores");
-    expect(scriptor(omnis, ...form)).toBe("omnes");
-    expect(scriptor(scribens, ...form)).toBe("scribentes");
-    expect(scriptor(scriptus, ...form)).toBe("scriptae");
+    expect(find(aeger)).toBe("aegrae");
+    expect(find(celer)).toBe("celeris");
+    expect(find(laetissimus)).toBe("laetissimae");
+    expect(find(liber)).toBe("liberae");
+    expect(find(maior)).toBe("maioris");
+    expect(find(omnis)).toBe("omnis");
+    expect(find(scribens)).toBe("scribentis");
+    expect(find(scriptus)).toBe("scriptae");
   });
+
+  test("Neuter singular", () => {
+    const find = (adjective: Adjective) => adjective.genitive?.neuter?.singular;
   
-  test("Vocative", () => {
-    const form = ["vocative", ...repeated];
-  
-    expect(scriptor(aeger, ...form)).toBe("aegrae");
-    expect(scriptor(celer, ...form)).toBe("celeres");
-    expect(scriptor(laetissimus, ...form)).toBe("laetissimae");
-    expect(scriptor(liber, ...form)).toBe("liberae");
-    expect(scriptor(maior, ...form)).toBe("maiores");
-    expect(scriptor(omnis, ...form)).toBe("omnes");
-    expect(scriptor(scribens, ...form)).toBe("scribentes");
-    expect(scriptor(scriptus, ...form)).toBe("scriptae");
+    expect(find(aeger)).toBe("aegri");
+    expect(find(celer)).toBe("celeris");
+    expect(find(laetissimus)).toBe("laetissimi");
+    expect(find(liber)).toBe("liberi");
+    expect(find(maior)).toBe("maioris");
+    expect(find(omnis)).toBe("omnis");
+    expect(find(scribens)).toBe("scribentis");
+    expect(find(scriptus)).toBe("scripti");
   });
+
+  test("Masculine plural", () => {
+    const find = (adjective: Adjective) => adjective.genitive?.masculine?.plural;
   
-  test("Accusative", () => {
-    const form = ["accusative", ...repeated];
-  
-    expect(scriptor(aeger, ...form)).toBe("aegras");
-    expect(scriptor(celer, ...form)).toBe("celeres");
-    expect(scriptor(laetissimus, ...form)).toBe("laetissimas");
-    expect(scriptor(liber, ...form)).toBe("liberas");
-    expect(scriptor(maior, ...form)).toBe("maiores");
-    expect(scriptor(omnis, ...form)).toBe("omnes");
-    expect(scriptor(scribens, ...form)).toBe("scribentes");
-    expect(scriptor(scriptus, ...form)).toBe("scriptas");
+    expect(find(aeger)).toBe("aegrorum");
+    expect(find(celer)).toBe("celerium");
+    expect(find(laetissimus)).toBe("laetissimorum");
+    expect(find(liber)).toBe("liberorum");
+    expect(find(maior)).toBe("maiorum");
+    expect(find(omnis)).toBe("omnium");
+    expect(find(scribens)).toBe("scribentium");
+    expect(find(scriptus)).toBe("scriptorum");
   });
+
+  test("Feminine plural", () => {
+    const find = (adjective: Adjective) => adjective.genitive?.feminine?.plural;
   
-  test("Genitive", () => {
-    const form = ["genitive", ...repeated];
-  
-    expect(scriptor(aeger, ...form)).toBe("aegrarum");
-    expect(scriptor(celer, ...form)).toBe("celerium");
-    expect(scriptor(laetissimus, ...form)).toBe("laetissimarum");
-    expect(scriptor(liber, ...form)).toBe("liberarum");
-    expect(scriptor(maior, ...form)).toBe("maiorum");
-    expect(scriptor(omnis, ...form)).toBe("omnium");
-    expect(scriptor(scribens, ...form)).toBe("scribentium");
-    expect(scriptor(scriptus, ...form)).toBe("scriptarum");
+    expect(find(aeger)).toBe("aegrarum");
+    expect(find(celer)).toBe("celerium");
+    expect(find(laetissimus)).toBe("laetissimarum");
+    expect(find(liber)).toBe("liberarum");
+    expect(find(maior)).toBe("maiorum");
+    expect(find(omnis)).toBe("omnium");
+    expect(find(scribens)).toBe("scribentium");
+    expect(find(scriptus)).toBe("scriptarum");
   });
+
+  test("Neuter plural", () => {
+    const find = (adjective: Adjective) => adjective.genitive?.neuter?.plural;
   
-  test("Dative", () => {
-    const form = ["dative", ...repeated];
-  
-    expect(scriptor(aeger, ...form)).toBe("aegris");
-    expect(scriptor(celer, ...form)).toBe("celeribus");
-    expect(scriptor(laetissimus, ...form)).toBe("laetissimis");
-    expect(scriptor(liber, ...form)).toBe("liberis");
-    expect(scriptor(maior, ...form)).toBe("maioribus");
-    expect(scriptor(omnis, ...form)).toBe("omnibus");
-    expect(scriptor(scribens, ...form)).toBe("scribentibus");
-    expect(scriptor(scriptus, ...form)).toBe("scriptis");
-  });
-  
-  test("Ablative", () => {
-    const form = ["ablative", ...repeated];
-  
-    expect(scriptor(aeger, ...form)).toBe("aegris");
-    expect(scriptor(celer, ...form)).toBe("celeribus");
-    expect(scriptor(laetissimus, ...form)).toBe("laetissimis");
-    expect(scriptor(liber, ...form)).toBe("liberis");
-    expect(scriptor(maior, ...form)).toBe("maioribus");
-    expect(scriptor(omnis, ...form)).toBe("omnibus");
-    expect(scriptor(scribens, ...form)).toBe("scribentibus");
-    expect(scriptor(scriptus, ...form)).toBe("scriptis");
+    expect(find(aeger)).toBe("aegrorum");
+    expect(find(celer)).toBe("celerium");
+    expect(find(laetissimus)).toBe("laetissimorum");
+    expect(find(liber)).toBe("liberorum");
+    expect(find(maior)).toBe("maiorum");
+    expect(find(omnis)).toBe("omnium");
+    expect(find(scribens)).toBe("scribentium");
+    expect(find(scriptus)).toBe("scriptorum");
   });
 });
 
-describe("Neuter plural", () => {
-  const repeated = ["neuter", "plural"];
+describe("Dative", () => {
+  test("Masculine singular", () => {
+    const find = (adjective: Adjective) => adjective.dative?.masculine?.singular;
 
-  test("Nominative", () => {
-    const form = ["nominative", ...repeated];
-  
-    expect(scriptor(aeger, ...form)).toBe("aegra");
-    expect(scriptor(celer, ...form)).toBe("celeria");
-    expect(scriptor(laetissimus, ...form)).toBe("laetissima");
-    expect(scriptor(liber, ...form)).toBe("libera");
-    expect(scriptor(maior, ...form)).toBe("maiora");
-    expect(scriptor(omnis, ...form)).toBe("omnia");
-    expect(scriptor(scribens, ...form)).toBe("scribentia");
-    expect(scriptor(scriptus, ...form)).toBe("scripta");
+    expect(find(aeger)).toBe("aegro");
+    expect(find(celer)).toBe("celeri");
+    expect(find(laetissimus)).toBe("laetissimo");
+    expect(find(liber)).toBe("libero");
+    expect(find(maior)).toBe("maiori");
+    expect(find(omnis)).toBe("omni");
+    expect(find(scribens)).toBe("scribenti");
+    expect(find(scriptus)).toBe("scripto");
   });
+
+  test("Feminine singular", () => {
+    const find = (adjective: Adjective) => adjective.dative?.feminine?.singular;
   
-  test("Vocative", () => {
-    const form = ["vocative", ...repeated];
-  
-    expect(scriptor(aeger, ...form)).toBe("aegra");
-    expect(scriptor(celer, ...form)).toBe("celeria");
-    expect(scriptor(laetissimus, ...form)).toBe("laetissima");
-    expect(scriptor(liber, ...form)).toBe("libera");
-    expect(scriptor(maior, ...form)).toBe("maiora");
-    expect(scriptor(omnis, ...form)).toBe("omnia");
-    expect(scriptor(scribens, ...form)).toBe("scribentia");
-    expect(scriptor(scriptus, ...form)).toBe("scripta");
+    expect(find(aeger)).toBe("aegrae");
+    expect(find(celer)).toBe("celeri");
+    expect(find(laetissimus)).toBe("laetissimae");
+    expect(find(liber)).toBe("liberae");
+    expect(find(maior)).toBe("maiori");
+    expect(find(omnis)).toBe("omni");
+    expect(find(scribens)).toBe("scribenti");
+    expect(find(scriptus)).toBe("scriptae");
   });
+
+  test("Neuter singular", () => {
+    const find = (adjective: Adjective) => adjective.dative?.neuter?.singular;
   
-  test("Accusative", () => {
-    const form = ["accusative", ...repeated];
-  
-    expect(scriptor(aeger, ...form)).toBe("aegra");
-    expect(scriptor(celer, ...form)).toBe("celeria");
-    expect(scriptor(laetissimus, ...form)).toBe("laetissima");
-    expect(scriptor(liber, ...form)).toBe("libera");
-    expect(scriptor(maior, ...form)).toBe("maiora");
-    expect(scriptor(omnis, ...form)).toBe("omnia");
-    expect(scriptor(scribens, ...form)).toBe("scribentia");
-    expect(scriptor(scriptus, ...form)).toBe("scripta");
+    expect(find(aeger)).toBe("aegro");
+    expect(find(celer)).toBe("celeri");
+    expect(find(laetissimus)).toBe("laetissimo");
+    expect(find(liber)).toBe("libero");
+    expect(find(maior)).toBe("maiori");
+    expect(find(omnis)).toBe("omni");
+    expect(find(scribens)).toBe("scribenti");
+    expect(find(scriptus)).toBe("scripto");
   });
+
+  test("Masculine plural", () => {
+    const find = (adjective: Adjective) => adjective.dative?.masculine?.plural;
   
-  test("Genitive", () => {
-    const form = ["genitive", ...repeated];
-  
-    expect(scriptor(aeger, ...form)).toBe("aegrorum");
-    expect(scriptor(celer, ...form)).toBe("celerium");
-    expect(scriptor(laetissimus, ...form)).toBe("laetissimorum");
-    expect(scriptor(liber, ...form)).toBe("liberorum");
-    expect(scriptor(maior, ...form)).toBe("maiorum");
-    expect(scriptor(omnis, ...form)).toBe("omnium");
-    expect(scriptor(scribens, ...form)).toBe("scribentium");
-    expect(scriptor(scriptus, ...form)).toBe("scriptorum");
+    expect(find(aeger)).toBe("aegris");
+    expect(find(celer)).toBe("celeribus");
+    expect(find(laetissimus)).toBe("laetissimis");
+    expect(find(liber)).toBe("liberis");
+    expect(find(maior)).toBe("maioribus");
+    expect(find(omnis)).toBe("omnibus");
+    expect(find(scribens)).toBe("scribentibus");
+    expect(find(scriptus)).toBe("scriptis");
   });
+
+  test("Feminine plural", () => {
+    const find = (adjective: Adjective) => adjective.dative?.feminine?.plural;
   
-  test("Dative", () => {
-    const form = ["dative", ...repeated];
-  
-    expect(scriptor(aeger, ...form)).toBe("aegris");
-    expect(scriptor(celer, ...form)).toBe("celeribus");
-    expect(scriptor(laetissimus, ...form)).toBe("laetissimis");
-    expect(scriptor(liber, ...form)).toBe("liberis");
-    expect(scriptor(maior, ...form)).toBe("maioribus");
-    expect(scriptor(omnis, ...form)).toBe("omnibus");
-    expect(scriptor(scribens, ...form)).toBe("scribentibus");
-    expect(scriptor(scriptus, ...form)).toBe("scriptis");
+    expect(find(aeger)).toBe("aegris");
+    expect(find(celer)).toBe("celeribus");
+    expect(find(laetissimus)).toBe("laetissimis");
+    expect(find(liber)).toBe("liberis");
+    expect(find(maior)).toBe("maioribus");
+    expect(find(omnis)).toBe("omnibus");
+    expect(find(scribens)).toBe("scribentibus");
+    expect(find(scriptus)).toBe("scriptis");
   });
+
+  test("Neuter plural", () => {
+    const find = (adjective: Adjective) => adjective.dative?.neuter?.plural;
   
-  test("Ablative", () => {
-    const form = ["ablative", ...repeated];
+    expect(find(aeger)).toBe("aegris");
+    expect(find(celer)).toBe("celeribus");
+    expect(find(laetissimus)).toBe("laetissimis");
+    expect(find(liber)).toBe("liberis");
+    expect(find(maior)).toBe("maioribus");
+    expect(find(omnis)).toBe("omnibus");
+    expect(find(scribens)).toBe("scribentibus");
+    expect(find(scriptus)).toBe("scriptis");
+  });
+});
+
+describe("Ablative", () => {
+  test("Masculine singular", () => {
+    const find = (adjective: Adjective) => adjective.ablative?.masculine?.singular;
+
+    expect(find(aeger)).toBe("aegro");
+    expect(find(celer)).toBe("celeri");
+    expect(find(laetissimus)).toBe("laetissimo");
+    expect(find(liber)).toBe("libero");
+    expect(find(maior)).toBe("maiore");
+    expect(find(omnis)).toBe("omni");
+    expect(find(scribens)).toBe("scribenti");
+    expect(find(scriptus)).toBe("scripto");
+  });
+
+  test("Feminine singular", () => {
+    const find = (adjective: Adjective) => adjective.ablative?.feminine?.singular;
   
-    expect(scriptor(aeger, ...form)).toBe("aegris");
-    expect(scriptor(celer, ...form)).toBe("celeribus");
-    expect(scriptor(laetissimus, ...form)).toBe("laetissimis");
-    expect(scriptor(liber, ...form)).toBe("liberis");
-    expect(scriptor(maior, ...form)).toBe("maioribus");
-    expect(scriptor(omnis, ...form)).toBe("omnibus");
-    expect(scriptor(scribens, ...form)).toBe("scribentibus");
-    expect(scriptor(scriptus, ...form)).toBe("scriptis");
+    expect(find(aeger)).toBe("aegra");
+    expect(find(celer)).toBe("celeri");
+    expect(find(laetissimus)).toBe("laetissima");
+    expect(find(liber)).toBe("libera");
+    expect(find(maior)).toBe("maiore");
+    expect(find(omnis)).toBe("omni");
+    expect(find(scribens)).toBe("scribenti");
+    expect(find(scriptus)).toBe("scripta");
+  });
+
+  test("Neuter singular", () => {
+    const find = (adjective: Adjective) => adjective.ablative?.neuter?.singular;
+  
+    expect(find(aeger)).toBe("aegro");
+    expect(find(celer)).toBe("celeri");
+    expect(find(laetissimus)).toBe("laetissimo");
+    expect(find(liber)).toBe("libero");
+    expect(find(maior)).toBe("maiore");
+    expect(find(omnis)).toBe("omni");
+    expect(find(scribens)).toBe("scribenti");
+    expect(find(scriptus)).toBe("scripto");
+  });
+
+  test("Masculine plural", () => {
+    const find = (adjective: Adjective) => adjective.ablative?.masculine?.plural;
+  
+    expect(find(aeger)).toBe("aegris");
+    expect(find(celer)).toBe("celeribus");
+    expect(find(laetissimus)).toBe("laetissimis");
+    expect(find(liber)).toBe("liberis");
+    expect(find(maior)).toBe("maioribus");
+    expect(find(omnis)).toBe("omnibus");
+    expect(find(scribens)).toBe("scribentibus");
+    expect(find(scriptus)).toBe("scriptis");
+  });
+
+  test("Feminine plural", () => {
+    const find = (adjective: Adjective) => adjective.ablative?.feminine?.plural;
+  
+    expect(find(aeger)).toBe("aegris");
+    expect(find(celer)).toBe("celeribus");
+    expect(find(laetissimus)).toBe("laetissimis");
+    expect(find(liber)).toBe("liberis");
+    expect(find(maior)).toBe("maioribus");
+    expect(find(omnis)).toBe("omnibus");
+    expect(find(scribens)).toBe("scribentibus");
+    expect(find(scriptus)).toBe("scriptis");
+  });
+
+  test("Neuter plural", () => {
+    const find = (adjective: Adjective) => adjective.ablative?.neuter?.plural;
+  
+    expect(find(aeger)).toBe("aegris");
+    expect(find(celer)).toBe("celeribus");
+    expect(find(laetissimus)).toBe("laetissimis");
+    expect(find(liber)).toBe("liberis");
+    expect(find(maior)).toBe("maioribus");
+    expect(find(omnis)).toBe("omnibus");
+    expect(find(scribens)).toBe("scribentibus");
+    expect(find(scriptus)).toBe("scriptis");
   });
 });
 
 test("Positive", () => {
-  const form = "positive";
-
-  expect(scriptor(acer, form)).toBe("acer, acris, acre");
-  expect(scriptor(aeger, form)).toBe("aeger, aegra, aegrum");
-  expect(scriptor(celer, form)).toBe("celer, celeris, celere");
-  expect(scriptor(fortis, form)).toBe("fortis, forte");
-  expect(scriptor(ingens, form)).toBe("ingens, ingentis");
-  expect(scriptor(laetus, form)).toBe("laetus, laeta, laetum");
-  expect(scriptor(liber, form)).toBe("liber, libera, liberum");
+  expect(acer.positive).toBe("acer, acris, acre");
+  expect(aeger.positive).toBe("aeger, aegra, aegrum");
+  expect(celer.positive).toBe("celer, celeris, celere");
+  expect(fortis.positive).toBe("fortis, forte");
+  expect(ingens.positive).toBe("ingens, ingentis");
+  expect(laetus.positive).toBe("laetus, laeta, laetum");
+  expect(liber.positive).toBe("liber, libera, liberum");
 });
 
 test("Comparative", () => {
-  const form = "comparative";
-
-  expect(scriptor(acer, form)).toBe("acrior, acrius");
-  expect(scriptor(aeger, form)).toBe("aegrior, aegrius");
-  expect(scriptor(celer, form)).toBe("celerior, celerius");
-  expect(scriptor(fortis, form)).toBe("fortior, fortius");
-  expect(scriptor(ingens, form)).toBe("ingentior, ingentius");
-  expect(scriptor(laetus, form)).toBe("laetior, laetius");
-  expect(scriptor(liber, form)).toBe("liberior, liberius");
+  expect(acer.comparative).toBe("acrior, acrius");
+  expect(aeger.comparative).toBe("aegrior, aegrius");
+  expect(celer.comparative).toBe("celerior, celerius");
+  expect(fortis.comparative).toBe("fortior, fortius");
+  expect(ingens.comparative).toBe("ingentior, ingentius");
+  expect(laetus.comparative).toBe("laetior, laetius");
+  expect(liber.comparative).toBe("liberior, liberius");
 });
 
 test("Superlative", () => {
-  const form = "superlative";
-
-  expect(scriptor(acer, form)).toBe("acerrimus, acerrima, acerrimum");
-  expect(scriptor(aeger, form)).toBe("aegerrimus, aegerrima, aegerrimum");
-  expect(scriptor(celer, form)).toBe("celerrimus, celerrima, celerrimum");
-  expect(scriptor("facilis, facile", form)).toBe("facillimus, facillima, facillimum");
-  expect(scriptor(fortis, form)).toBe("fortissimus, fortissima, fortissimum");
-  expect(scriptor(ingens, form)).toBe("ingentissimus, ingentissima, ingentissimum");
-  expect(scriptor(laetus, form)).toBe("laetissimus, laetissima, laetissimum");
-  expect(scriptor(liber, form)).toBe("liberrimus, liberrima, liberrimum");
+  expect(acer.superlative).toBe("acerrimus, acerrima, acerrimum");
+  expect(aeger.superlative).toBe("aegerrimus, aegerrima, aegerrimum");
+  expect(celer.superlative).toBe("celerrimus, celerrima, celerrimum");
+  expect((scriptor("facilis, facile") as Adjective).superlative).toBe("facillimus, facillima, facillimum");
+  expect(fortis.superlative).toBe("fortissimus, fortissima, fortissimum");
+  expect(ingens.superlative).toBe("ingentissimus, ingentissima, ingentissimum");
+  expect(laetus.superlative).toBe("laetissimus, laetissima, laetissimum");
+  expect(liber.superlative).toBe("liberrimus, liberrima, liberrimum");
 });
 
 test("Adverb", () => {
-  const form = "adverb";
-
-  expect(scriptor(acer, form)).toBe("acriter");
-  expect(scriptor(aeger, form)).toBe("aegre");
-  expect(scriptor(celer, form)).toBe("celeriter");
-  expect(scriptor(felix, form)).toBe("feliciter");
-  expect(scriptor(fortis, form)).toBe("fortiter");
-  expect(scriptor(laetus, form)).toBe("laete");
-  expect(scriptor(liber, form)).toBe("libere");
-  expect(scriptor(sapiens, form)).toBe("sapienter");
+  expect(acer.adverb).toBe("acriter");
+  expect(aeger.adverb).toBe("aegre");
+  expect(celer.adverb).toBe("celeriter");
+  expect(felix.adverb).toBe("feliciter");
+  expect(fortis.adverb).toBe("fortiter");
+  expect(laetus.adverb).toBe("laete");
+  expect(liber.adverb).toBe("libere");
+  expect(sapiens.adverb).toBe("sapienter");
 });

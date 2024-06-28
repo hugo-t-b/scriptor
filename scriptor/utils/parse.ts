@@ -1,25 +1,24 @@
-import assertNever from "assert-never";
 import removeAccents from "remove-accents";
 import { z } from "zod";
 
-import { AdjectiveForm, AdjectivePrincipalParts } from "./adjective";
-import { AdverbForm, AdverbPrincipalParts } from "./adverb";
-import { NounForm, NounPrincipalParts } from "./noun";
-import { VerbForm, VerbPrincipalParts } from "./verb";
-
+import { AdjectivePrincipalParts } from "../adjectives";
+import { AdverbPrincipalParts } from "../adverbs";
+import { NounPrincipalParts } from "../nouns";
+import { VerbPrincipalParts } from "../verbs";
 
 type PrincipalPartsResult = 
   [ "verb", z.infer<typeof VerbPrincipalParts> ] |
   [ "noun", z.infer<typeof NounPrincipalParts> ] |
   [ "adjective", z.infer<typeof AdjectivePrincipalParts> ] |
-  [ "adverb", z.infer<typeof AdverbPrincipalParts> ] |
-  null;
+  [ "adverb", z.infer<typeof AdverbPrincipalParts> ];
 
-type PartOfSpeech = NonNullable<PrincipalPartsResult>[0];
+const PrincipalParts = z.preprocess(
+  parts => typeof parts === "string" ? parts.trim().split(/, | ,| |,/).map(part => removeAccents(part)) : parts,
+  z.union([ AdjectivePrincipalParts, AdverbPrincipalParts, NounPrincipalParts, VerbPrincipalParts ])
+);
 
-export const parsePrincipalParts = (parts: string): PrincipalPartsResult => {
-  const principalPartsArray = parts.split(/, | ,| |,/);
-  const principalParts = principalPartsArray.map(part => removeAccents(part));
+export const parsePrincipalParts = (parts: unknown): PrincipalPartsResult => {
+  const principalParts = PrincipalParts.parse(parts);
   const verbParse = VerbPrincipalParts.safeParse(principalParts);
 
   if (verbParse.success) {
@@ -44,24 +43,5 @@ export const parsePrincipalParts = (parts: string): PrincipalPartsResult => {
     return ["adverb", adverbParse.data];
   }
 
-  return null;
-};
-
-export const parseForm = (partOfSpeech: PartOfSpeech, form: string[]) => {
-  switch (partOfSpeech) {
-    case "verb":
-      const verbParseResult = VerbForm.safeParse(form);
-      return verbParseResult;
-    case "noun":
-      const nounParseResult = NounForm.safeParse(form);
-      return nounParseResult;
-    case "adjective":
-      const adjectiveParseResult = AdjectiveForm.safeParse(form);
-      return adjectiveParseResult;
-    case "adverb":
-      const adverbParseResult = AdverbForm.safeParse(form);
-      return adverbParseResult;
-    default:
-      assertNever(partOfSpeech);
-  }
+  throw new Error("Failed to determine part of speech");
 };
