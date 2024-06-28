@@ -59,7 +59,7 @@ const declined = scriptor("ars, artis, f", {
 console.log(declined.genitive.plural); //=> "artium"
 ```
 
-To correctly decline/conjugate words that are generally regular with some irregular forms, the `overrides` option can be used. Other forms will not change.
+To correctly decline/conjugate words that are generally regular with some irregular forms, the `overrides` option can be used. Forms that are not specified in `overrides` will not change.
 ```ts
 import scriptor from "scriptor";
 
