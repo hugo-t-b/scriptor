@@ -42,3 +42,7 @@ test("Takes an overrides option", () => {
     plural: { second: "ducite" }
   });
 });
+
+test("Throws when given invalid principal parts", () => {
+  expect(() => scriptor("scriptoribus")).toThrow();
+});
