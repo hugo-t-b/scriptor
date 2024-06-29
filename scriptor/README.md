@@ -6,15 +6,20 @@
 
 > Decline and conjugate Latin nouns, verbs, adjectives, and adverbs.
 
-* [Usage](#usage)
-  * [Basic usage](#basic-usage)
-  * [Return types](#return-types)
-  * [I-stems and irregular forms](#i-stems-and-irregular-forms)
-  * [Recursive usage](#recursive-usage)
-* [Examples](#examples)
-  * [Latin greetings](#latin-greetings)
-  * [Creating a motto](#creating-a-motto)
-
+- [Usage](#usage)
+  - [Basic usage](#basic-usage)
+  - [Return types](#return-types)
+  - [I-stems and irregular forms](#i-stems-and-irregular-forms)
+  - [Recursive usage](#recursive-usage)
+- [Examples](#examples)
+  - [Latin greetings](#latin-greetings)
+  - [Creating a motto](#creating-a-motto)
+- [Support](#support)
+  - [Nouns](#nouns)
+  - [Verbs](#verbs)
+  - [Adjectives](#adjectives)
+  - [Adverbs](#adverbs)
+  
 ## Usage
 ### Basic usage
 Pass the principal parts of a word to `scriptor` as a string or array. It will automatically detect the word's part of speech.
@@ -44,6 +49,9 @@ const fromArray = scriptor([ "scriptor", "scriptoris", "m" ]); // Principal part
 }
 ```
 
+> [!TIP]
+> The full list of supported forms and principal parts can be found in the [support](#support) section.
+
 ### Return types
 The expected return type can be passed to `scriptor` as a generic for better intellisense.
 ```ts
@@ -52,7 +60,7 @@ const declined = scriptor<Noun>("scriptor, scriptoris, m");
 ```
 
 ### I-stems and irregular forms
-A second, optional options argument can be used to specify whether a third declension noun is i-stem (`scriptor` can only automatically detect some neuter i-stems).
+An optional options argument can be used to specify whether a third declension noun is i-stem (`scriptor` can only automatically detect some neuter i-stems).
 ```ts
 import scriptor from "scriptor";
 
@@ -82,7 +90,7 @@ const conjugated = createVerb([ "sum", "esse", "fui" ]);
 ```
 
 ### Recursive usage
-Some of the forms that `scriptor` returns are the principal parts of a distinct derived word (e.g., participles, comparative and superlative adjectives, etc.). To access specific forms of these words, they must be passed back into `scriptor`.
+Some of the forms that `scriptor` returns are the principal parts of a distinct derived word (e.g., participles, comparative and superlative adjectives, etc.). To access specific forms of these words, they must be passed back to `scriptor`.
 ```ts
 import scriptor from "scriptor";
 
@@ -130,3 +138,93 @@ console.log(makeMotto("citus, cita, citum", "altus, alta, altum", "fortis, forte
 console.log(makeMotto("callidus, callida, callidum", "sapiens, sapientis", "prudens, prudentis"));
   //=> "callidius, sapientius, prudentius" (smarter, wiser, more prudent)
 ```
+
+## Support
+### Nouns
+#### Principal parts
+1. Nominative singular
+2. Genitive singular
+3. Gender (`m`, `f` or `n`)
+
+#### Declensions
+|  | 1st | 2nd | 3rd | 4th | 5th |
+| :--- | :---: | :---: | :---: | :---: | :---: |
+| Masc./fem. | ✅ | ✅ | ✅ | ❌ | ❌ |
+| Neuter | 🚫 | ✅ | ✅ | ❌ | 🚫 |
+
+#### Cases
+| Nominative | Vocative | Accusative | Genitive | Dative | Ablative |
+| :---: | :---: | :---: | :---: | :---: | :---: |
+| ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+
+### Verbs
+#### Principal parts
+1. Present active indicative first person singular
+2. Present active infinitive
+3. Perfect active indicative first person singular
+4. Perfect passive participle nominative masculine singular (optional)
+
+> [!WARNING]
+> A verb's supine is not supported as the 4th principal part. Always use its perfect passive participle instead.
+
+#### Conjugations
+| 1st | 2nd | 3rd | 3rd (-io) | 4th |
+| :---: | :---: | :---: | :---: | :---: |
+| ✅ | ✅ | ✅ | ✅ | ✅ |
+
+#### Indicatives
+|  | Present | Imperfect | Future | Perfect | Pluperfect | Future perfect |
+| :--- | :---: | :---: | :---: | :---: | :---: | :---: |
+| Active | ✅ | ✅ | ❌ | ✅ | ✅ | ❌ |
+| Passive | ❌ | ❌ | ❌ | ❌ | ❌ | ❌ |
+
+#### Subjunctives
+|  | Present | Imperfect | Perfect | Pluperfect |
+| :--- | :---: | :---: | :---: | :---: |
+| Active | ❌ | ✅ | ❌ | ✅ |
+| Passive | ❌ | ❌ | ❌ | ❌ |
+
+#### Imperatives
+|  | Present | Future |
+| :--- | :---: | :---: |
+| Active | ✅ | ❌ |
+| Passive | ❌ | ❌ |
+
+#### Infinitives
+|  | Present | Perfect | Future |
+| :--- | :---: | :---: | :---: |
+| Active | ✅ | ✅ | ❌ |
+| Passive | ❌ | ❌ | ❌ |
+
+#### Participles
+|  | Present | Perfect | Future |
+| :--- | :---: | :---: | :---: |
+| Active | ✅ | 🚫 | ❌ |
+| Passive | 🚫 | ✅ | ❌ |
+
+### Adjectives
+#### Principal parts
+The principal parts of an adjective vary based on the pattern it follows. The following examples are all valid:
+- _bonus, bona, bonum_
+- _fortis, forte_
+- _ingens, ingentis_
+- _celer, celeris, celere_
+
+#### Supported forms
+|  | Nominative | Vocative | Accusative | Genitive | Dative | Ablative |
+| :--- | :---: | :---: | :---: | :---: | :---: | :---: |
+| Masculine | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| Feminine | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| Neuter | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+
+| Positive | Comparative | Superlative | Adverb 
+| :---: | :---: | :---: | :---: |
+| ✅ | ✅ | ✅ | ✅ |
+
+### Adverbs
+The only principal part for an adverb is its **positive** (normal) form.
+
+#### Supported forms
+| Positive | Comparative | Superlative | 
+| :---: | :---: | :---: |
+| ✅ | ✅ | ✅ |
