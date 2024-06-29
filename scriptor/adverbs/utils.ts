@@ -6,7 +6,7 @@ export type Shape = {
   [form in Form]?: string;
 };
 
-export const PrincipalParts = z.tuple([ z.string().regex(/(e|ter)$/) ]);
+export const PrincipalParts = z.tuple([ z.string().regex(/(e|o|ter)$/) ]);
 
 export const getStem = (positive: string) => {
   if (positive.endsWith("iter")) return positive.slice(0, -4);
