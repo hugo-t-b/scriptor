@@ -63,10 +63,16 @@ To correctly decline/conjugate words that are generally regular with some irregu
 ```ts
 import scriptor from "scriptor";
 
-const declined = scriptor("duco, ducere, duxi, ductus", {
+const conjugated = scriptor("duco, ducere, duxi, ductus", {
   overrides: { imperative: { active: { present: { singular: { second: "duc" } } } } }
 });
 
-console.log(declined.imperative.active.present.singular.second); //=> "duc"
-console.log(declined.imperative.active.present.plural.second); //=> "ducite"
+console.log(conjugated.imperative.active.present.singular.second); //=> "duc"
+console.log(conjugated.imperative.active.present.plural.second); //=> "ducite"
+```
+
+For words with irregular principle parts, use the creator function for the specific part of speech. The principal parts must be passed as an array without macrons. Many of the returned forms will be incorrect, however the `overrides` option can be used to increase their accuracy.
+```ts
+import createVerb from "scriptor/verbs";
+const conjugated = createVerb([ "sum", "esse", "fui" ]);
 ```
