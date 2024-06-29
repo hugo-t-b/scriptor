@@ -10,6 +10,10 @@
   * [Basic usage](#basic-usage)
   * [Return types](#return-types)
   * [I-stems and irregular forms](#i-stems-and-irregular-forms)
+  * [Recursive usage](#recursive-usage)
+* [Examples](#examples)
+  * [Latin greetings](#latin-greetings)
+  * [Creating a motto](#creating-a-motto)
 
 ## Usage
 ### Basic usage
@@ -75,4 +79,54 @@ For words with irregular principle parts, use the creator function for the speci
 ```ts
 import createVerb from "scriptor/verbs";
 const conjugated = createVerb([ "sum", "esse", "fui" ]);
+```
+
+### Recursive usage
+Some of the forms that `scriptor` returns are the principal parts of a distinct derived word (e.g., participles, comparative and superlative adjectives, etc.). To access specific forms of these words, they must be passed back into `scriptor`.
+```ts
+import scriptor from "scriptor";
+
+const conjugated = scriptor("scribo, scribere, scripsi, scriptus");
+const ppp = conjugated.participle.passive.perfect;
+
+console.log(ppp); //=> "scriptus, scripta, scriptum"
+
+const declinedPPP = scriptor(ppp);
+const nomMascSg = declinedPPP.nominative.masculine.singular;
+
+console.log(nomMascSg); //=> "scriptus"
+```
+
+## Examples
+### Latin greetings
+```ts
+import scriptor, { type Noun } from "scriptor";
+
+const greet = (name: string) => {
+  const declinedName = scriptor<Noun>(name);
+  const vocative = declinedName.vocative?.singular;
+  return `salve, ${vocative}!`;
+}
+
+console.log(greet("Gaius, Gaii, m")); //=> "salve, Gai!"
+console.log(greet("Metella, Metellae, f")); //=> "salve, Metella!"
+console.log(greet("Marcus, Marci, m")); //=> "salve, Marce!"
+```
+
+### Creating a motto
+```ts
+import scriptor, { type Adjective } from "scriptor";
+
+const makeMotto = (...qualities: string[]) => {
+  return qualities
+    .map(principalParts => scriptor<Adjective>(principalParts).comparative!)
+    .map(comparative => scriptor<Adjective>(comparative).nominative?.neuter?.singular!)
+    .join(", ");
+};
+
+console.log(makeMotto("citus, cita, citum", "altus, alta, altum", "fortis, forte"));
+  //=> "citius, altius, fortius" (faster, higher, stronger)
+
+console.log(makeMotto("callidus, callida, callidum", "sapiens, sapientis", "prudens, prudentis"));
+  //=> "callidius, sapientius, prudentius" (smarter, wiser, more prudent)
 ```
