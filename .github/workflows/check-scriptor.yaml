@@ -1,7 +1,5 @@
 name: Run checks for scriptor
 on:
-  push:
-    paths: "scriptor/**/*"
   workflow_call:
   workflow_dispatch:
 jobs:
