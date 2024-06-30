@@ -1,5 +1,5 @@
 # ✏️ scriptor 
-[![Check workflow status](https://github.com/hugo-t-b/verba/actions/workflows/check-scriptor.yaml/badge.svg)](https://github.com/hugo-t-b/verba/actions/workflows/check-scriptor.yaml)
+[![Check workflow status](https://img.shields.io/github/actions/workflow/status/hugo-t-b/verba/.github%2Fworkflows%2Fcheck-scriptor.yaml?label=checks)](https://github.com/hugo-t-b/verba/actions/workflows/check-scriptor.yaml)
 [![JSR version](https://img.shields.io/jsr/v/hugo-t-b/scriptor)](https://jsr.io/@hugo-t-b/scriptor)
 [![MIT license](https://img.shields.io/github/license/hugo-t-b/verba)](https://github.com/hugo-t-b/verba/blob/main/LICENSE.txt)
 [![TypeScript](https://img.shields.io/badge/TypeScript-3178c6?logo=typescript&logoColor=eee)](https://www.typescriptlang.org/)
