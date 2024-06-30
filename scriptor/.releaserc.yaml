@@ -7,3 +7,4 @@ plugins:
       npmPublish: false
   - "@sebbo2002/semantic-release-jsr"
   - "@semantic-release/github"
+preset: "conventionalcommits"
