@@ -7,7 +7,8 @@
   "module": "index.ts",
   "devDependencies": {
     "@types/bun": "latest",
-    "@types/string-template": "^1.0.6"
+    "@types/string-template": "^1.0.6",
+    "jsr": "^0.12.4"
   },
   "peerDependencies": {
     "typescript": "^5.5.2"

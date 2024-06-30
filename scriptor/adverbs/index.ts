@@ -11,7 +11,9 @@ const Options = z.object({
   overrides: Overrides
 }).default({});
 
-type AdverbOptions = z.input<typeof Options>;
+type AdverbOptions = {
+  overrides?: AdverbShape
+} | undefined;
 
 export { type AdverbOptions, type AdverbShape, PrincipalParts as AdverbPrincipalParts };
 

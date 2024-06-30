@@ -11,7 +11,9 @@ const Options = z.object({
   overrides: Overrides
 }).default({});
 
-type VerbOptions = z.input<typeof Options>;
+type VerbOptions = {
+  overrides?: VerbShape
+} | undefined;
 
 export { type VerbOptions, type VerbShape, PrincipalParts as VerbPrincipalParts };
 

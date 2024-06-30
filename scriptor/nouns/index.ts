@@ -20,7 +20,11 @@ const Options = z.object({
   overrides: Overrides
 }).default({});
 
-type NounOptions = z.input<typeof Options>;
+type NounOptions = {
+  iStem?: boolean,
+  overrides?: NounShape
+} | undefined;
+
 export { type NounOptions, type NounShape, PrincipalParts as NounPrincipalParts };
 
 export default (principalParts: z.infer<typeof PrincipalParts>, passedOptions?: NounOptions) => {

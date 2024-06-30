@@ -11,7 +11,9 @@ const Options = z.object({
   overrides: Overrides
 }).default({});
 
-type AdjectiveOptions = z.input<typeof Options>;
+type AdjectiveOptions = {
+  overrides?: AdjectiveShape
+} | undefined;
 
 const decline = (template: AdjectiveShape, data: Record<string, string>, overrides: AdjectiveShape): AdjectiveShape => {
   const adjective = deepMapValues(template, formTemplate => {
