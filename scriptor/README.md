@@ -8,6 +8,7 @@
 
 > Decline and conjugate Latin nouns, verbs, adjectives, and adverbs
 
+- [Installation](#installation)
 - [Usage](#usage)
   - [Basic usage](#basic-usage)
   - [Return types](#return-types)
@@ -21,6 +22,11 @@
   - [Verbs](#verbs)
   - [Adjectives](#adjectives)
   - [Adverbs](#adverbs)
+ 
+## Installation
+```sh
+npx jsr add @hugo-t-b/scriptor # or use bun, deno, pnpm or yarn
+```
   
 ## Usage
 ### Basic usage
