@@ -1,6 +1,6 @@
 # ✏️ scriptor 
 [![Test workflow status](https://github.com/hugo-t-b/verba/actions/workflows/test-scriptor.yaml/badge.svg)](https://github.com/hugo-t-b/verba/actions/workflows/test-scriptor.yaml)
-![Version](https://img.shields.io/github/package-json/v/hugo-t-b/verba)
+![Version](https://img.shields.io/github/package-json/v/hugo-t-b/verba?filename=scriptor%2Fpackage.json)
 [![TypeScript](https://img.shields.io/badge/TypeScript-3178c6?logo=typescript&logoColor=eee)](https://www.typescriptlang.org/)
 [![Bun](https://img.shields.io/badge/Bun-f9f1e1?logo=bun&logoColor=14151a)](https://bun.sh)
 [![Zod](https://img.shields.io/badge/Zod-3068b7?logo=zod&logoColor=fff)](https://zod.dev)
