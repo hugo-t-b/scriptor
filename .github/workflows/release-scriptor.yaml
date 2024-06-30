@@ -8,6 +8,10 @@ jobs:
     name: Run checks
     runs-on: ubuntu-latest
     steps:
+      - name: Check out code
+        uses: actions/checkout@v4
+        with:
+          sparse-checkout: .github
       - name: Call check workflow
         uses: ./.github/workflows/check-scriptor.yaml
   release:
