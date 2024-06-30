@@ -1,5 +1,9 @@
 plugins:
-  - "@semantic-release/commit-analyzer"
+  -
+    - "@semantic-release/commit-analyzer"
+    -
+      parserOpts:
+        headerPattern: '/^[. ]?(\w*)(?:\(([\w\$\.\-\* ]*)\))?\: (.*)$/'
   - "@semantic-release/release-notes-generator"
   -
     - "@semantic-release/npm"
@@ -7,6 +11,4 @@ plugins:
       npmPublish: false
   - "@sebbo2002/semantic-release-jsr"
   - "@semantic-release/github"
-preset: "conventionalcommits"
-parserOpts:
-  headerPattern: '/^[. ]?(\w*)(?:\(([\w\$\.\-\* ]*)\))?\: (.*)$/'
+preset: conventionalcommits
