@@ -6,9 +6,11 @@
   "type": "module",
   "module": "index.ts",
   "devDependencies": {
+    "@sebbo2002/semantic-release-jsr": "^1.0.0",
     "@types/bun": "latest",
     "@types/string-template": "^1.0.6",
-    "jsr": "^0.12.4"
+    "jsr": "^0.12.4",
+    "semantic-release": "^24.0.0"
   },
   "peerDependencies": {
     "typescript": "^5.5.2"
