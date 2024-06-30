@@ -9,4 +9,4 @@ plugins:
   - "@semantic-release/github"
 preset: "conventionalcommits"
 parserOpts:
-  headerPattern: "/^[. ]?(\w*)(?:\(([\w\$\.\-\* ]*)\))?\: (.*)$/"
+  headerPattern: '/^[. ]?(\w*)(?:\(([\w\$\.\-\* ]*)\))?\: (.*)$/'
