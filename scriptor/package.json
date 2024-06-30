@@ -1,5 +1,9 @@
 {
   "name": "scriptor",
+  "description": "Decline and conjugate Latin nouns, verbs, adjectives, and adverbs",
+  "version": "0.0.1",
+  "license": "MIT",
+  "type": "module",
   "module": "index.ts",
   "devDependencies": {
     "@types/bun": "latest",
@@ -8,8 +12,6 @@
   "peerDependencies": {
     "typescript": "^5.5.2"
   },
-  "private": true,
-  "type": "module",
   "dependencies": {
     "assert-never": "^1.2.1",
     "just-deep-map-values": "^1.2.0",
