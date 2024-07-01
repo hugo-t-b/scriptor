@@ -10,9 +10,9 @@
 > Decline and conjugate Latin nouns, verbs, adjectives, and adverbs
 
 - [Installation](#installation)
+  - [Bun](#bun)
   - [Deno](#deno)
   - [Node](#node)
-  - [Bun](#bun)
 - [Usage](#usage)
   - [Basic usage](#basic-usage)
   - [Return types](#return-types)
