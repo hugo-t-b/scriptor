@@ -1,6 +1,6 @@
 # ✏️ scriptor 
+[![JSR version](https://jsr.io/badges/@hugo-t-b/scriptor)](https://jsr.io/@hugo-t-b/scriptor)
 [![Release workflow status](https://img.shields.io/github/actions/workflow/status/hugo-t-b/scriptor/.github%2Fworkflows%2Frelease.yaml?label=release)](https://github.com/hugo-t-b/scriptor/actions/workflows/release.yaml)
-[![JSR version](https://img.shields.io/jsr/v/%40hugo-t-b/scriptor)](https://jsr.io/@hugo-t-b/scriptor)
 [![MIT license](https://img.shields.io/github/license/hugo-t-b/scriptor)](LICENSE.txt)
 [![GitHub issues](https://img.shields.io/github/issues/hugo-t-b/scriptor)](https://github.com/hugo-t-b/scriptor/issues)
 [![TypeScript](https://img.shields.io/badge/TypeScript-3178c6?logo=typescript&logoColor=eee)](https://www.typescriptlang.org/)
