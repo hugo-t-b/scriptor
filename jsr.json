@@ -8,7 +8,7 @@
       "tests/**/*",
       ".github/**/*",
       ".vscode/**/*",
-      ".releaserc.yaml"
+      "release.config.js"
     ]
   }
 }
