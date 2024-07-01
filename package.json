@@ -1,7 +1,27 @@
 {
-  "name": "verba",
-  "private": true,
-  "workspaces": [
-    "scriptor"
-  ]
+  "name": "scriptor",
+  "description": "Decline and conjugate Latin nouns, verbs, adjectives, and adverbs",
+  "version": "0.0.0",
+  "license": "MIT",
+  "type": "module",
+  "module": "index.ts",
+  "devDependencies": {
+    "@sebbo2002/semantic-release-jsr": "^1.0.0",
+    "@types/bun": "latest",
+    "@types/string-template": "^1.0.6",
+    "conventional-changelog-conventionalcommits": "^8.0.0",
+    "jsr": "^0.12.4",
+    "semantic-release": "^24.0.0"
+  },
+  "peerDependencies": {
+    "typescript": "^5.5.2"
+  },
+  "dependencies": {
+    "assert-never": "^1.2.1",
+    "just-deep-map-values": "^1.2.0",
+    "just-extend": "^6.2.0",
+    "remove-accents": "^0.5.0",
+    "string-template": "^1.0.0",
+    "zod": "^3.23.8"
+  }
 }

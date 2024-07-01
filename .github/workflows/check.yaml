@@ -1,4 +1,4 @@
-name: Run checks for scriptor
+name: Run checks
 on:
   workflow_call:
   workflow_dispatch:
@@ -9,14 +9,10 @@ jobs:
     steps:
       - name: Check out code
         uses: actions/checkout@v4
-        with:
-          sparse-checkout: scriptor
       - name: Set up bun
         uses: oven-sh/setup-bun@v1
       - name: Install dependencies
         run: bun install --frozen-lockfile
-      - name: Move to scriptor directory
-        run: cd scriptor
       - name: Run tests
         run: bun test
   types:
@@ -25,13 +21,9 @@ jobs:
     steps:
       - name: Check out code
         uses: actions/checkout@v4
-        with:
-          sparse-checkout: scriptor
       - name: Set up bun
         uses: oven-sh/setup-bun@v1
       - name: Install dependencies
         run: bun install --frozen-lockfile
-      - name: Move to scriptor directory
-        run: cd scriptor
       - name: Check types
         run: bun run tsc

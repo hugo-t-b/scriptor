@@ -16,11 +16,7 @@
     "noPropertyAccessFromIndexSignature": true
   },
 
-  "references": [
-    {
-      "path": "./scriptor"
-    }
-  ],
-
-  "include": []
+  "include": [
+    "**/*.ts"
+  ]
 }
