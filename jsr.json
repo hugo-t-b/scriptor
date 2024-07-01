@@ -5,7 +5,10 @@
   "exports": "./index.ts",
   "publish": {
     "exclude": [
-      "tests/**/*"
+      "tests/**/*",
+      ".github/**/*",
+      ".vscode/**/*",
+      ".releaserc.yaml"
     ]
   }
 }
