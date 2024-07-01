@@ -3,7 +3,19 @@
  */
 export default {
   plugins: [
-    "@semantic-release/commit-analyzer",
+    [
+      "@semantic-release/commit-analyzer",
+      {
+        releaseRules: [
+          {
+            type: "docs",
+            scope: "readme",
+            release: "patch"
+          }
+        ]
+      }
+    ],
+
     "@semantic-release/release-notes-generator",
 
     [
