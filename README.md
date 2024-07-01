@@ -10,6 +10,9 @@
 > Decline and conjugate Latin nouns, verbs, adjectives, and adverbs
 
 - [Installation](#installation)
+  - [Deno](#deno)
+  - [Node](#node)
+  - [Bun](#bun)
 - [Usage](#usage)
   - [Basic usage](#basic-usage)
   - [Return types](#return-types)
@@ -25,15 +28,29 @@
   - [Adverbs](#adverbs)
  
 ## Installation
+Install `scriptor` from [JSR](https://jsr.io/@hugo-t-b/scriptor) using one of the following commands.
+### Bun
 ```sh
-npx jsr add @hugo-t-b/scriptor # or use bun, deno, pnpm or yarn
+bunx jsr add @hugo-t-b/scriptor
 ```
-  
+
+### Deno
+```sh
+deno add @hugo-t-b/scriptor
+```
+
+### Node
+```sh
+npx jsr add @hugo-t-b/scriptor
+yarn dlx jsr add @hugo-t-b/scriptor
+pnpm dlx jsr add @hugo-t-b/scriptor
+```
+
 ## Usage
 ### Basic usage
 Pass the principal parts of a word to `scriptor` as a string or array. It will automatically detect the word's part of speech.
 ```ts
-import scriptor from "scriptor";
+import scriptor from "@hugo-t-b/scriptor";
 
 const fromString = scriptor("scriptor, scriptoris, m"); // Principal parts string
 const fromArray = scriptor([ "scriptor", "scriptoris", "m" ]); // Principal parts array
@@ -64,14 +81,14 @@ const fromArray = scriptor([ "scriptor", "scriptoris", "m" ]); // Principal part
 ### Return types
 The expected return type can be passed to `scriptor` as a generic for better intellisense.
 ```ts
-import scriptor, { type Noun } from "scriptor";
+import scriptor, { type Noun } from "@hugo-t-b/scriptor";
 const declined = scriptor<Noun>("scriptor, scriptoris, m");
 ```
 
 ### I-stems and irregular forms
 An optional options argument can be used to specify whether a third declension noun is i-stem (`scriptor` can only automatically detect some neuter i-stems).
 ```ts
-import scriptor from "scriptor";
+import scriptor from "@hugo-t-b/scriptor";
 
 const declined = scriptor("ars, artis, f", {
   iStem: true
@@ -82,7 +99,7 @@ console.log(declined.genitive.plural); //=> "artium"
 
 To correctly decline/conjugate words that are generally regular with some irregular forms, the `overrides` option can be used. Forms that are not specified in `overrides` will not change.
 ```ts
-import scriptor from "scriptor";
+import scriptor from "@hugo-t-b/scriptor";
 
 const conjugated = scriptor("duco, ducere, duxi, ductus", {
   overrides: { imperative: { active: { present: { singular: { second: "duc" } } } } }
@@ -94,14 +111,14 @@ console.log(conjugated.imperative.active.present.plural.second); //=> "ducite"
 
 For words with irregular principle parts, use the creator function for the specific part of speech. The principal parts must be passed as an array without macrons. Many of the returned forms will be incorrect, however the `overrides` option can be used to increase their accuracy.
 ```ts
-import createVerb from "scriptor/verbs";
+import createVerb from "@hugo-t-b/scriptor/verbs";
 const conjugated = createVerb([ "sum", "esse", "fui" ]);
 ```
 
 ### Recursive usage
 Some of the forms that `scriptor` returns are the principal parts of a distinct derived word (e.g., participles, comparative and superlative adjectives, etc.). To access specific forms of these words, they must be passed back to `scriptor`.
 ```ts
-import scriptor from "scriptor";
+import scriptor from "@hugo-t-b/scriptor";
 
 const conjugated = scriptor("scribo, scribere, scripsi, scriptus");
 const ppp = conjugated.participle.passive.perfect;
@@ -117,7 +134,7 @@ console.log(nomMascSg); //=> "scriptus"
 ## Examples
 ### Latin greetings
 ```ts
-import scriptor, { type Noun } from "scriptor";
+import scriptor, { type Noun } from "@hugo-t-b/scriptor";
 
 const greet = (name: string) => {
   const declinedName = scriptor<Noun>(name);
@@ -132,7 +149,7 @@ console.log(greet("Marcus, Marci, m")); //=> "salve, Marce!"
 
 ### Creating a motto
 ```ts
-import scriptor, { type Adjective } from "scriptor";
+import scriptor, { type Adjective } from "@hugo-t-b/scriptor";
 
 const makeMotto = (...qualities: string[]) => {
   return qualities
