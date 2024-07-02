@@ -9,19 +9,19 @@
 
 > Decline and conjugate Latin nouns, verbs, adjectives, and adverbs
 
-- [Installation](#-installation)
+- [📦 Installation](#-installation)
   - [Bun](#bun)
   - [Deno](#deno)
   - [Node](#node)
-- [Usage](#-usage)
+- [🚀 Usage](#-usage)
   - [Basic usage](#basic-usage)
   - [Return types](#return-types)
   - [I-stems and irregular forms](#i-stems-and-irregular-forms)
   - [Recursive usage](#recursive-usage)
-- [Examples](#-examples)
+- [🔥 Examples](#-examples)
   - [Latin greetings](#latin-greetings)
   - [Creating a motto](#creating-a-motto)
-- [Support](#-support)
+- [📃 Support](#-support)
   - [Nouns](#nouns)
   - [Verbs](#verbs)
   - [Adjectives](#adjectives)
