@@ -11,6 +11,13 @@ const Options = z.object({
   overrides: Overrides
 }).default({});
 
+/** The type for the forms of an adverb. This can be passed to {@link scriptor} for better intellisense.
+ * 
+ * @example
+ * ```ts
+ * const forms = scriptor<Adverb>("sapienter");
+ * ```
+ */
 type AdverbOptions = {
   overrides?: AdverbShape
 } | undefined;
