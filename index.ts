@@ -18,7 +18,7 @@ export type { Word, Adjective, Adverb, Noun, Verb, Options };
  * Conjugates or declines a word. The part of speech will be automatically detected.
  * 
  * @param parts The principal parts of the word as a string or array.
- * @param options Additional options, such as [overrides](./README.md#overrides) or options specific to the part of speech (optional).
+ * @param options Additional options, such as [overrides](https://github.com/hugo-t-b/scriptor#i-stems-and-irregular-forms) or options specific to the part of speech (optional).
  * @returns An object with every supported form of the word.
  * 
  * @example Basic usage
