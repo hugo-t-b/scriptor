@@ -15,7 +15,7 @@ export default {
           {
             type: "docs",
             scope: "license",
-            release: "path"
+            release: "patch"
           }
         ]
       }
