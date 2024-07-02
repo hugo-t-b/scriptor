@@ -11,6 +11,18 @@ type Options = AdjectiveOptions | AdverbOptions | NounOptions | VerbOptions;
 
 export type { Word, Adjective, Adverb, Noun, Verb, Options };
 
+/**
+ * Conjugate or decline a word. `scriptor` will automatically detect its part of speech.
+ * 
+ * @param parts The principal parts of the word as a string or array.
+ * @param options Additional options, such as [overrides](./README.md#overrides) or options specific to the part of speech (optional).
+ * @returns An object with every supported form of the word.
+ * 
+ * ```ts
+ * const noun = scriptor("scriptor, scriptoris, m");
+ * console.log(noun.nominative.plural); //=> "scriptores"
+ * ```
+ */
 export default <PartOfSpeech extends Word>(parts: string | string[], options?: Options): PartOfSpeech => {
   const [ partOfSpeech, principalParts ] = parsePrincipalParts(parts);
 
