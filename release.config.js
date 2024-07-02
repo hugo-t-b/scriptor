@@ -9,12 +9,6 @@ export default {
         releaseRules: [
           {
             type: "docs",
-            scope: "readme",
-            release: "patch"
-          },
-          {
-            type: "docs",
-            scope: "license",
             release: "patch"
           }
         ]
