@@ -9,25 +9,25 @@
 
 > Decline and conjugate Latin nouns, verbs, adjectives, and adverbs
 
-- [Installation](#installation)
+- [Installation](#-installation)
   - [Bun](#bun)
   - [Deno](#deno)
   - [Node](#node)
-- [Usage](#usage)
+- [Usage](#-usage)
   - [Basic usage](#basic-usage)
   - [Return types](#return-types)
   - [I-stems and irregular forms](#i-stems-and-irregular-forms)
   - [Recursive usage](#recursive-usage)
-- [Examples](#examples)
+- [Examples](#-examples)
   - [Latin greetings](#latin-greetings)
   - [Creating a motto](#creating-a-motto)
-- [Support](#support)
+- [Support](#-support)
   - [Nouns](#nouns)
   - [Verbs](#verbs)
   - [Adjectives](#adjectives)
   - [Adverbs](#adverbs)
  
-## Installation
+## 📦 Installation
 Install `scriptor` from [JSR](https://jsr.io/@hugo-t-b/scriptor) using one of the following commands.
 ### Bun
 ```sh
@@ -46,7 +46,7 @@ yarn dlx jsr add @hugo-t-b/scriptor
 pnpm dlx jsr add @hugo-t-b/scriptor
 ```
 
-## Usage
+## 🚀 Usage
 ### Basic usage
 Pass the principal parts of a word to `scriptor` as a string or array. It will automatically detect the word's part of speech.
 ```ts
@@ -131,7 +131,7 @@ const nomMascSg = declinedPPP.nominative.masculine.singular;
 console.log(nomMascSg); //=> "scriptus"
 ```
 
-## Examples
+## 🔥 Examples
 ### Latin greetings
 ```ts
 import scriptor, { type Noun } from "@hugo-t-b/scriptor";
@@ -165,7 +165,7 @@ console.log(makeMotto("callidus, callida, callidum", "sapiens, sapientis", "prud
   //=> "callidius, sapientius, prudentius" (smarter, wiser, more prudent)
 ```
 
-## Support
+## 📃 Support
 ### Nouns
 #### Principal parts
 1. Nominative singular
