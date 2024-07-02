@@ -11,13 +11,6 @@ const Options = z.object({
   overrides: Overrides
 }).default({});
 
-/** The type for a declined adjective. This can be passed to {@link scriptor} for better intellisense.
- * 
- * @example
- * ```ts
- * const declined = scriptor<Adjective>("sapiens, sapientis");
- * ```
- */
 type AdjectiveOptions = {
   overrides?: AdjectiveShape
 } | undefined;

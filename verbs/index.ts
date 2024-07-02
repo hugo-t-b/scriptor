@@ -11,13 +11,6 @@ const Options = z.object({
   overrides: Overrides
 }).default({});
 
-/** The type for a conjugated verb. This can be passed to {@link scriptor} for better intellisense.
- * 
- * @example
- * ```ts
- * const conjugated = scriptor<Verb>("scribo, scribere, scripsi, scriptus");
- * ```
- */
 type VerbOptions = {
   overrides?: VerbShape
 } | undefined;

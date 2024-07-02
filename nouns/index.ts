@@ -20,13 +20,6 @@ const Options = z.object({
   overrides: Overrides
 }).default({});
 
-/** The type for a declined noun. This can be passed to {@link scriptor} for better intellisense.
- * 
- * @example
- * ```ts
- * const declined = scriptor<Noun>("scriptor, scriptoris, m");
- * ```
- */
 type NounOptions = {
   iStem?: boolean,
   overrides?: NounShape

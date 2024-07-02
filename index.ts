@@ -6,13 +6,8 @@ import createAdverb, { type AdverbShape as Adverb, type AdverbOptions } from "./
 import createNoun, { type NounShape as Noun, type NounOptions } from "./nouns";
 import createVerb, { type VerbShape as Verb, type VerbOptions } from "./verbs";
 
-/** General type for a word returned from {@link scriptor}. */
 type Word = Adjective | Adverb | Noun | Verb;
-
-/** General type for the options that {@link scriptor} optionally takes as its second argument. */
 type Options = AdjectiveOptions | AdverbOptions | NounOptions | VerbOptions;
-
-export type { Word, Adjective, Adverb, Noun, Verb, Options };
 
 /**
  * Conjugates or declines a word. The part of speech will be automatically detected.
@@ -56,6 +51,50 @@ const scriptor = <PartOfSpeech extends Word>(parts: string | string[], options?:
     default:
       assertNever(partOfSpeech);
   }
+};
+
+export type {
+  /** General type for a word returned from {@link scriptor}. */
+  Word,
+
+  /** The type for a declined adjective. This can be passed to {@link scriptor} for better intellisense.
+  * 
+  * @example
+  * ```ts
+  * const declined = scriptor<Adjective>("sapiens, sapientis");
+  * ```
+  */
+  Adjective,
+
+  /** The type for the forms of an adverb. This can be passed to {@link scriptor} for better intellisense.
+  * 
+  * @example
+  * ```ts
+  * const forms = scriptor<Adverb>("sapienter");
+  * ```
+  */
+  Adverb,
+
+  /** The type for a declined noun. This can be passed to {@link scriptor} for better intellisense.
+  * 
+  * @example
+  * ```ts
+  * const declined = scriptor<Noun>("scriptor, scriptoris, m");
+  * ```
+  */
+  Noun,
+
+  /** The type for a conjugated verb. This can be passed to {@link scriptor} for better intellisense.
+  * 
+  * @example
+  * ```ts
+  * const conjugated = scriptor<Verb>("scribo, scribere, scripsi, scriptus");
+  * ```
+  */
+  Verb,
+
+  /** General type for the options that {@link scriptor} optionally takes as its second argument. */
+  Options
 };
 
 export default scriptor;
