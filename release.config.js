@@ -11,6 +11,11 @@ export default {
             type: "docs",
             scope: "readme",
             release: "patch"
+          },
+          {
+            type: "docs",
+            scope: "license",
+            release: "path"
           }
         ]
       }
