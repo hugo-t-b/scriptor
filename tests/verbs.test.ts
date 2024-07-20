@@ -250,5 +250,6 @@ describe("Participle", () => {
     expect(find(traho)).toBe("tractus, tracta, tractum");
     expect(find(fugio)).toBe("fugitus, fugita, fugitum");
     expect(find(invenio)).toBe("inventus, inventa, inventum");
+    expect(saevio.participle?.passive).not.toHaveProperty("perfect");
   });
 });

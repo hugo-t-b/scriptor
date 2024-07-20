@@ -2,7 +2,7 @@ import deepMapValues from "just-deep-map-values";
 import extend from "just-extend";
 import formatStringTemplate from "string-template";
 import { getConjugation, PrincipalParts, type Shape as VerbShape } from "./utils";
-import verbTemplate from "./template";
+import * as templates from "./template";
 import { z } from "zod";
 
 const Overrides: z.ZodType<VerbShape, z.ZodTypeDef, VerbShape | undefined> = z.record(z.string(), z.unknown()).default({});
@@ -30,6 +30,8 @@ export default (principalParts: z.infer<typeof PrincipalParts>, optionsInput?: V
   const presentStemB = conjugation >= 3 ? `${presentActiveIndicative.slice(0, -1)}u` : presentStem;
   const presentStemC = conjugation > 3 ? `${presentActiveIndicative.slice(0, -1)}e` : presentStem;
 
+  const verbTemplate = perfectPassiveStem ? templates.withPerfectPassiveStem : templates.withoutPerfectPassiveStem;
+
   const verb = deepMapValues(verbTemplate, template => {
     return formatStringTemplate(template, {
       presentActiveIndicative,
@@ -43,4 +45,4 @@ export default (principalParts: z.infer<typeof PrincipalParts>, optionsInput?: V
   });
 
   return extend(true, verb, options.overrides) as VerbShape;
-}
+};

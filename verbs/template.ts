@@ -1,6 +1,6 @@
 import type { Shape as VerbShape } from "./utils";
 
-export default {
+export const withoutPerfectPassiveStem = {
   indicative: {
     active: {
       present: {
@@ -106,7 +106,16 @@ export default {
   participle: {
     active: {
       present: "{presentStemC}ns, {presentStemC}ntis"
-    },
+    }
+  }
+} satisfies VerbShape;
+
+export const withPerfectPassiveStem = {
+  ...withoutPerfectPassiveStem,
+
+  participle: {
+    ...withoutPerfectPassiveStem.participle,
+
     passive: {
       perfect: "{perfectPassiveStem}us, {perfectPassiveStem}a, {perfectPassiveStem}um"
     }
