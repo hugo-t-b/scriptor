@@ -252,4 +252,14 @@ describe("Participle", () => {
     expect(find(invenio)).toBe("inventus, inventa, inventum");
     expect(saevio.participle?.passive).not.toHaveProperty("perfect");
   });
+
+  test.todo("Future passive", () => {
+    const find = (verb: Verb) => verb.participle?.passive?.future;
+
+    expect(find(amo)).toBe("amandus, amanda, amandum");
+    expect(find(habeo)).toBe("habendus, habenda, habendum");
+    expect(find(traho)).toBe("trahendus, trahenda, trahendum");
+    expect(find(fugio)).toBe("fugiendus, fugienda, fugiendum");
+    expect(find(invenio)).toBe("inveniendus, invenienda, inveniendum");
+  });
 });
