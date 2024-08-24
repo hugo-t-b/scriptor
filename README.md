@@ -227,7 +227,7 @@ console.log(makeMotto("callidus, callida, callidum", "sapiens, sapientis", "prud
 |  | Present | Perfect | Future |
 | :--- | :---: | :---: | :---: |
 | Active | ✅ | 🚫 | ❌ |
-| Passive | 🚫 | ✅ | ❌ |
+| Passive | 🚫 | ✅ | ✅ |
 
 ### Adjectives
 #### Principal parts
