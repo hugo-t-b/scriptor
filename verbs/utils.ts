@@ -4,7 +4,7 @@ type Mood = "imperative" | "indicative" | "subjunctive";
 type Form = "infinitive" | "participle";
 type GrammaticalNumber = "singular" | "plural";
 type Person = "first" | "second" | "third";
-type Tense = "imperfect" | "perfect" | "pluperfect" | "present";
+type Tense = "future" | "imperfect" | "perfect" | "pluperfect" | "present";
 type Voice = "active" | "passive";
 
 export type Shape = {

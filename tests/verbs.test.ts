@@ -253,7 +253,7 @@ describe("Participle", () => {
     expect(saevio.participle?.passive).not.toHaveProperty("perfect");
   });
 
-  test.todo("Future passive", () => {
+  test("Future passive", () => {
     const find = (verb: Verb) => verb.participle?.passive?.future;
 
     expect(find(amo)).toBe("amandus, amanda, amandum");

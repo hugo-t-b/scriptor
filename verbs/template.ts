@@ -1,3 +1,4 @@
+import extend from "just-extend";
 import type { Shape as VerbShape } from "./utils";
 
 export const withoutPerfectPassiveStem = {
@@ -106,18 +107,18 @@ export const withoutPerfectPassiveStem = {
   participle: {
     active: {
       present: "{presentStemC}ns, {presentStemC}ntis"
+    },
+
+    passive: {
+      future: "{presentStemC}ndus, {presentStemC}nda, {presentStemC}ndum"
     }
   }
 } satisfies VerbShape;
 
-export const withPerfectPassiveStem = {
-  ...withoutPerfectPassiveStem,
-
+export const withPerfectPassiveStem: VerbShape = extend(true, structuredClone(withoutPerfectPassiveStem), {
   participle: {
-    ...withoutPerfectPassiveStem.participle,
-
     passive: {
       perfect: "{perfectPassiveStem}us, {perfectPassiveStem}a, {perfectPassiveStem}um"
     }
   }
-} satisfies VerbShape;
+} satisfies VerbShape);
