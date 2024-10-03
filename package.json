@@ -7,10 +7,10 @@
   "module": "index.ts",
   "devDependencies": {
     "@sebbo2002/semantic-release-jsr": "^1.1.0",
-    "@types/bun": "^1.1.6",
+    "@types/bun": "^1.1.10",
     "@types/string-template": "^1.0.6",
-    "jsr": "^0.13.1",
-    "semantic-release": "^24.1.0"
+    "jsr": "^0.13.2",
+    "semantic-release": "^24.1.2"
   },
   "peerDependencies": {
     "typescript": "^5.5.4"
